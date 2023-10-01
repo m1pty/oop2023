@@ -1,0 +1,2 @@
+/usr/bin/ar qc libRDialogue.a CMakeFiles/RDialogue.dir/source/RDialogue.cpp.o
+/usr/bin/ranlib libRDialogue.a

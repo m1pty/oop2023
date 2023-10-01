@@ -1,0 +1,2 @@
+/usr/bin/ar qc libHandlers.a CMakeFiles/Handlers.dir/source/Handlers.cpp.o
+/usr/bin/ranlib libHandlers.a
