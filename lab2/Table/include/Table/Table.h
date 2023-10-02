@@ -2,18 +2,26 @@
 #define TABLE_H
 #include "Resource/Resource.h"
 
+static const int MAX_SIZE = 10;
 namespace TNS {
     enum class Fullness{full, partly_full, empty};
     // класс таблицы
-    class ResourceTable {
+    class Table {
     private:
-        static const int msize = 10;
-        RNS::Resource table_vector[msize];
-        int csize = 0;
+        int msize;
+        RNS::Resource* table_vector;
+        int csize;
 
     public:
-        // -создание экземпляров класса с инициализацией заданным количеством ресурсов из массива ресурсов;
-        // конструктор, деструктор
+        // метод сортировки
+        // метод shrink
+
+        // инициализирующий конструктор
+        Table() : msize(MAX_SIZE), table_vector(new RNS::Resource[msize]), csize(0){}
+        // конструктор по умолчанию
+        Table(int msz, RNS::Resource* vector = nullptr, int csize = 0);
+        // деструктор по умолчанию
+        ~Table(){ delete[] table_vector; }
 
         /*!
             Returns a state of the table (full / partly full / empty)
@@ -51,7 +59,7 @@ namespace TNS {
             @param indices a pointer to array of integers, containing indecies of resource
             @returns a link to the new printable table, containing all examples of this result
         */
-        ResourceTable &searchResult(int* indices); // ([]) получение таблицы найденных ресурсов, при помощи двоичного поиска
+        Table &searchResult(int* indices); // ([]) получение таблицы найденных ресурсов, при помощи двоичного поиска
     
         /*!
             Changing the name of the resource
@@ -73,5 +81,4 @@ namespace TNS {
         double getProfit();
     };
 }
-
 #endif
