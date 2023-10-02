@@ -26,6 +26,7 @@ namespace Handler {
         double max = std::numeric_limits<double>::max()
     );
     std::string getString(std::istream &stream = std::cin);
+    int countIntLength(int link);
 }
 
 #endif

@@ -169,8 +169,8 @@ _deps/catch2-build/src/clean: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.d
 
 # All Build rule for target.
 CMakeFiles/main.dir/all: RDialogue/CMakeFiles/RDialogue.dir/all
-CMakeFiles/main.dir/all: Resource/CMakeFiles/Resource.dir/all
 CMakeFiles/main.dir/all: Handlers/CMakeFiles/Handlers.dir/all
+CMakeFiles/main.dir/all: Resource/CMakeFiles/Resource.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=88,89 "Built target main"
@@ -197,8 +197,8 @@ CMakeFiles/main.dir/clean:
 
 # All Build rule for target.
 CMakeFiles/Tests.dir/all: RDialogue/CMakeFiles/RDialogue.dir/all
-CMakeFiles/Tests.dir/all: Resource/CMakeFiles/Resource.dir/all
 CMakeFiles/Tests.dir/all: Handlers/CMakeFiles/Handlers.dir/all
+CMakeFiles/Tests.dir/all: Resource/CMakeFiles/Resource.dir/all
 CMakeFiles/Tests.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 CMakeFiles/Tests.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tests.dir/build.make CMakeFiles/Tests.dir/depend
@@ -278,8 +278,8 @@ Handlers/CMakeFiles/Handlers.dir/clean:
 # Target rules for target RDialogue/CMakeFiles/RDialogue.dir
 
 # All Build rule for target.
-RDialogue/CMakeFiles/RDialogue.dir/all: Resource/CMakeFiles/Resource.dir/all
 RDialogue/CMakeFiles/RDialogue.dir/all: Handlers/CMakeFiles/Handlers.dir/all
+RDialogue/CMakeFiles/RDialogue.dir/all: Resource/CMakeFiles/Resource.dir/all
 	$(MAKE) $(MAKESILENT) -f RDialogue/CMakeFiles/RDialogue.dir/build.make RDialogue/CMakeFiles/RDialogue.dir/depend
 	$(MAKE) $(MAKESILENT) -f RDialogue/CMakeFiles/RDialogue.dir/build.make RDialogue/CMakeFiles/RDialogue.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=82,83 "Built target RDialogue"

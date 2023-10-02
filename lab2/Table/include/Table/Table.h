@@ -15,6 +15,8 @@ namespace TNS {
     public:
         // метод сортировки
         // метод shrink
+        // метод ввода
+        // метод вывода
 
         // инициализирующий конструктор
         Table() : msize(MAX_SIZE), table_vector(new RNS::Resource[msize]), csize(0){}
@@ -22,6 +24,13 @@ namespace TNS {
         Table(int msz, RNS::Resource* vector = nullptr, int csize = 0);
         // деструктор по умолчанию
         ~Table(){ delete[] table_vector; }
+
+        /*!
+            Prints the current state of the table
+            @param stream A link to the output stream
+            @returns A link to the output stream
+        */
+        std::ostream &print(std::ostream &stream) const;
 
         /*!
             Returns a state of the table (full / partly full / empty)
@@ -48,18 +57,18 @@ namespace TNS {
         void deleteByIndex(int index); // удаляет ресур по индексу
 
         /*!
-            Returns a pointer to array of <name> resource indices
+            Returns the first index of resource appearance or -1
             @param name the name of the searched resource 
-            @returns a pointer to array of <name> resource indices
+            @returns the first index of resource appearance or -1
         */
-        int* searchByName(std::string name); // поиск ресурсов в таблице 
+        int searchByName(std::string name);
 
         /*!
             Returns a link to the new printable table, containing all examples of this result
             @param indices a pointer to array of integers, containing indecies of resource
             @returns a link to the new printable table, containing all examples of this result
         */
-        Table &searchResult(int* indices); // ([]) получение таблицы найденных ресурсов, при помощи двоичного поиска
+        Table &searchResult(std::string name); // ([]) получение таблицы найденных ресурсов, при помощи двоичного поиска
     
         /*!
             Changing the name of the resource

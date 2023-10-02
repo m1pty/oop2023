@@ -81,4 +81,13 @@ namespace Handler {
         }
         return label;
     }
+
+    int countIntLength(int link){
+        int answer = 1;
+        while (std::abs(link) >= 10){
+            ++answer;
+            link /= 10;
+        }
+        return answer;
+    }
 }

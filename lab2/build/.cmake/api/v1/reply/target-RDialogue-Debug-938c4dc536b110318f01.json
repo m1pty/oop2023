@@ -87,11 +87,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "Resource::@d2fb656b8fe608565999"
+			"id" : "Handlers::@e669859dbd0a8f601aae"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "Handlers::@e669859dbd0a8f601aae"
+			"id" : "Resource::@d2fb656b8fe608565999"
 		}
 	],
 	"id" : "RDialogue::@92125027bd7008ca1bdf",
