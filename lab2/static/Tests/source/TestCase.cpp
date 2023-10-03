@@ -9,7 +9,7 @@ TEST_CASE("Resource Constructors + Getters")
     SECTION("Default Constructor")
     {
         RNS::Resource r;
-        REQUIRE(r.getName() == "");
+        REQUIRE(r.getName() == "Empty");
         REQUIRE(r.getDC() == 0.0);
         REQUIRE(r.getDP() == 0.0);
         REQUIRE(r.getPrice() == 0.0);

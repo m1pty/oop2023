@@ -2,15 +2,13 @@
 #define HANDLERS_H
 #include <cstring>
 #include <limits>
+#include <iostream>
 
 #ifndef PROMPT
 #define PROMPT "> "
 #endif
 
 namespace Handler {
-    // int getInt(int min, int max);
-    // int getInt(int min, int max = std::numeric_limits<int>::max());
-    // int getInt(int min = std::numeric_limits<int>::lowest(), int max);
     int getInt(
         std::istream &stream = std::cin,
         int min = std::numeric_limits<int>::lowest(),

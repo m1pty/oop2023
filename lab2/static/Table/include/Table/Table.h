@@ -1,6 +1,7 @@
 #ifndef TABLE_H
 #define TABLE_H
 #include "Resource/Resource.h"
+#include "Table/Table.h"
 
 static const int MAX_SIZE = 10;
 namespace TNS {

@@ -6,12 +6,11 @@
 
 namespace TNS {
     // конструктор по умолчанию (при отрицательном csz копирует последние csz эл-тов)
-    Table::Table(int msz, RNS::Resource* vector, int csz){
+    Table::Table(RNS::Resource* vector, int csz){
         if (msz <= 0)
             throw std::invalid_argument("Invalid <msize> occured, while initializing! Must be > 0");
         
-        msize = msz;
-        table_vector = new RNS::Resource[msize];
+        table_vector = RNS::Resource array [msize];
         // если пустой вектор
         if (!vector){ csize = 0; }
         // если вектор не пуст    
