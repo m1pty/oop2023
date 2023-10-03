@@ -8,8 +8,8 @@ namespace TNS {
     // класс таблицы
     class Table {
     private:
-        int msize;
-        RNS::Resource* table_vector;
+        const int msize = MAX_SIZE;
+        RNS::Resource table_vector[MAX_SIZE];
         int csize;
 
     public:
@@ -19,9 +19,9 @@ namespace TNS {
         // метод вывода
 
         // инициализирующий конструктор
-        Table() : msize(MAX_SIZE), table_vector(new RNS::Resource[msize]), csize(0){}
+        Table() : msize(MAX_SIZE), csize(0) {}
         // конструктор по умолчанию
-        Table(int msz, RNS::Resource* vector = nullptr, int csize = 0);
+        Table(int msz = MAX_SIZE, RNS::Resource vector[], int csize = 0);
         // деструктор по умолчанию
         ~Table(){ delete[] table_vector; }
 
