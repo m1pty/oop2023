@@ -53,7 +53,7 @@ namespace dialogueT {
         }
     }
     
-    void tableInputD(TNS::Table &t) { int a = 0; }
+    void tableInputD(TNS::Table &t) { int a = 0; } // ввод матрицы
     void tablePrintD(TNS::Table &t)       // [02, +] печать таблицы
     {
         try {
@@ -76,7 +76,6 @@ namespace dialogueT {
                 std::cout << "[RESULT]: Таблица заполнена - невозможно добавить элемент!";
         } catch (...){ throw; }
     }
-
     void tableGetResD(TNS::Table &t)      // [04, ---] вывести ресурс по его наименованию
     { 
         try {
@@ -102,7 +101,7 @@ namespace dialogueT {
             t.deleteByIndex(index);
         } catch (...) { throw; }
     }
-    void tableRenameResD(TNS::Table &t)   // [07, ?] переименовать тип ресурса
+    void tableRenameResD(TNS::Table &t)   // [07, ---] переименовать тип ресурса
     {
         try {
             std::cout << "Введите старое имя переименовываемого ресурса:\n" << PROMPT;

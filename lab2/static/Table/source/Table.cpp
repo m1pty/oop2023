@@ -244,11 +244,14 @@ namespace TNS {
             int index = searchByName(old_name);
             if (index == -1)
                 return;
+            std::cout << "Before renaming\n";
             while ((table_vector[index].getName() == old_name) && (index < csize)){
                 table_vector[index].setName(new_name);
                 ++index;
             }
+            std::cout << "After renaming\n";
             sort();
+            std::cout << "After sorting\n";
         } catch (...) { throw; }    
     }
     void Table::incTurnover(double multipliter){
