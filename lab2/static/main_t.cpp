@@ -6,7 +6,7 @@
 #include "TDialogue/TDialogue.h"
 
 int main(){
-    TNS::Table table;
+    TNS::Table table{};
     TNS::Table &link = table;
     try {
         dialogueT::tableMenuD(link);

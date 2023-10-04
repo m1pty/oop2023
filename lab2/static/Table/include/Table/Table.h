@@ -15,14 +15,12 @@ namespace TNS {
 
     public:
         // метод ввода
-        // метод вывода
 
-        // инициализирующий конструктор
-        Table() : msize(MAX_SIZE), csize(0) {}
-        // конструктор по умолчанию
-        Table(int msz = MAX_SIZE, RNS::Resource vector[], int csize = 0);
         // деструктор по умолчанию
-        ~Table(){ delete[] table_vector; }
+        ~Table() = default;
+        // конструктор по умолчанию
+        Table() : msize(MAX_SIZE), csize(0) {};
+        
 
         /*!
             @brief Returns the msize of a Table

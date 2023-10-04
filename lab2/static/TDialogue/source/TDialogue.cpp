@@ -6,10 +6,10 @@
 #endif
 
 #include "RDialogue/RDialogue.h"
-#include "TDialogue/TDialogue.h"
 #include "Handlers/Handlers.h"
 #include "Resource/Resource.h"
 #include "Table/Table.h"
+#include "TDialogue/TDialogue.h"
 
 const int N_TABLE_OPTIONS = 12;
 namespace dialogueT {
@@ -26,7 +26,7 @@ namespace dialogueT {
         "[ 9]: Посчитать прибыльность ресурсов таблицы\n",
         "[10]: Вывести состояние полноты таблицы\n",
         "[11]: Увеличить оборот всех ресурсов таблицы\n\n----------------------------------------------------\n"
-    }
+    };
     // указатели на функции, соответствующие пунктам меню
     void (*table_menu_functions[N_TABLE_OPTIONS]) (TNS::Table &) = {
         nullptr, tableInputD, tablePrintD, tableAddResD, tableGetResD,
@@ -62,7 +62,6 @@ namespace dialogueT {
     //
     //
     //
-    //
     void tableRenameResD(TNS::Table &t)   // [07] переименовать тип ресурса
     {
         try {
@@ -73,7 +72,7 @@ namespace dialogueT {
             t.rename(old_name, new_name);
             std::cout << "[RESULT]: Переименовывание прошло успешно!\n";
 
-        } catch { throw; };
+        } catch (...) { throw; };
     }
     void tableChangeResD(TNS::Table &t)   // [08] изменение ресурса по индексу через диалоговую функцию ресурса
     {
@@ -88,7 +87,7 @@ namespace dialogueT {
     {
         try {
             double profit = t.getProfit();
-            std::cout << std::format("[PROFIT]: {} у.е.\n", profit);
+            std::cout << "[PROFIT]: " << profit << " у.е.\n";
         } catch (...) { throw; }
     }
     void tableCheckStateD (TNS::Table &t) // [10] проверка заполненности таблицы
@@ -96,13 +95,14 @@ namespace dialogueT {
         try {
             TNS::Fullness state = t.checkFullness();
             if (state == TNS::Fullness::full)
-                std::cout << std::format("[STATE]: Заполнена ({} / {}})\n", t.getCSize(), t.getMSize());
+                std::cout << "[STATE]: Заполнена (" << t.getCSize() << "/" << t.getMSize() << ")\n";
             
             if (state == TNS::Fullness::partly_full)
-                std::cout << std::format("[STATE]: Частично заполнена ({} / {}})\n", t.getCSize(), t.getMSize());
+                std::cout << "[STATE]: Частично заполнена (" << t.getCSize() << "/" << t.getMSize() << ")\n";
 
             if (state == TNS::Fullness::empty)
-                std::cout << std::format("[STATE]: Пуста (0 / {}})\n", t.getMSize());
+                std::cout << "[STATE]: Пуста (" << t.getCSize() << "/" << t.getMSize() << ")\n";
+
         } catch (...) { throw; }
     }
     void tableIncTurnoverD(TNS::Table &t) // [11] увеличение оборота всех ресурсов таблицы

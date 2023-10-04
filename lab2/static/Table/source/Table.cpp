@@ -6,41 +6,41 @@
 
 namespace TNS {
     // конструктор по умолчанию (при отрицательном csz копирует последние csz эл-тов)
-    Table::Table(int msz, RNS::Resource* vector, int csz){
-        if (msz <= 0)
-            throw std::invalid_argument("Invalid <msize> occured, while initializing! Must be > 0");
+    // Table::Table(int msz, RNS::Resource* vector, int csz){
+    //     if (msz <= 0)
+    //         throw std::invalid_argument("Invalid <msize> occured, while initializing! Must be > 0");
         
-        // если пустой вектор
-        if (!vector){ csize = 0; }
-        // если вектор не пуст    
-        else {
-            int v_size = sizeof(vector) / sizeof(RNS::Resource);
-            // если нужно заполнить весь массив элементами из начала 
-            if ((std::abs(csz) >= msz) && (csz > 0)){
-                csize = (msz < v_size) ? msz : v_size;
-                for (int i = 0; i < csize; ++i)
-                    table_vector[i] = vector[i];
-            }
-            // если нужно заполнить весь массив элементами из конца
-            else if ((std::abs(csz) >= msz) && (csz < 0)){
-                csize = (msz < v_size) ? msz : v_size;
-                for (int i = 0; i < csize; ++i)
-                    table_vector[i] = vector[v_size - csize + i];
-            }
-            // если нужно заполнить массив частично элементами из начала 
-            else if ((std::abs(csz) < msz) && (csz >= 0)){
-                csize = (csz < v_size) ? csz : v_size;
-                for (int i = 0; i < csize; ++i)
-                    table_vector[i] = vector[i];
-            }
-            // если нужно заполнить массив частично элементами из конца
-            else if ((std::abs(csz) < msz) && (csz <= 0)){
-                csize = (std::abs(csz) < v_size) ? std::abs(csz) : v_size;
-                for (int i = 0; i < csize; ++i)
-                    table_vector[i] = vector[v_size - csize + i];
-            }
-        }
-    }
+    //     // если пустой вектор
+    //     if (!vector){ csize = 0; }
+    //     // если вектор не пуст    
+    //     else {
+    //         int v_size = sizeof(vector) / sizeof(RNS::Resource);
+    //         // если нужно заполнить весь массив элементами из начала 
+    //         if ((std::abs(csz) >= msz) && (csz > 0)){
+    //             csize = (msz < v_size) ? msz : v_size;
+    //             for (int i = 0; i < csize; ++i)
+    //                 table_vector[i] = vector[i];
+    //         }
+    //         // если нужно заполнить весь массив элементами из конца
+    //         else if ((std::abs(csz) >= msz) && (csz < 0)){
+    //             csize = (msz < v_size) ? msz : v_size;
+    //             for (int i = 0; i < csize; ++i)
+    //                 table_vector[i] = vector[v_size - csize + i];
+    //         }
+    //         // если нужно заполнить массив частично элементами из начала 
+    //         else if ((std::abs(csz) < msz) && (csz >= 0)){
+    //             csize = (csz < v_size) ? csz : v_size;
+    //             for (int i = 0; i < csize; ++i)
+    //                 table_vector[i] = vector[i];
+    //         }
+    //         // если нужно заполнить массив частично элементами из конца
+    //         else if ((std::abs(csz) < msz) && (csz <= 0)){
+    //             csize = (std::abs(csz) < v_size) ? std::abs(csz) : v_size;
+    //             for (int i = 0; i < csize; ++i)
+    //                 table_vector[i] = vector[v_size - csize + i];
+    //         }
+    //     }
+    // }
 
 
     // = [METHODS] =============================================
@@ -132,12 +132,8 @@ namespace TNS {
         return stream;
     }
 
-    /*!
-        Returns the first index of resource appearance or -1
-        @param name the name of the searched resource 
-        @returns the first index of resource appearance or -1
-    */
-    int Table::searchByName(std::string name){
+    int Table::searchByName(std::string name) // поиск по имени
+    {
         int left     = 0, right  = csize - 1;
         int comp_res = 0, middle = 0;
         bool found = false;
@@ -165,37 +161,21 @@ namespace TNS {
         }
         return middle + 1;
     }
-
-    
-
-    /*!
-        Returns a state of the table (full / partly full / empty)
-        @returns A state of the table (full / partly full / empty)
-    */
-    Fullness Table::checkFullness(){
+    Fullness Table::checkFullness() // проверка заполненности таблицы
+    {
         if (csize == 0)
             return Fullness::empty;
         if (csize < msize)
             return Fullness::partly_full;
         return Fullness::full;
     }
-
-    /*!
-        Adding the resource to the table by it's link
-        @param r a link to the adding resource
-    */
-    void Table::add(const RNS::Resource &r){   // (+=) добавление ресурса в таблицу
+    void Table::add(const RNS::Resource &r) // (+=) добавление ресурса в таблицу
+    {
         if (csize == msize){
             std::cout << "[ERROR]: Таблица заполнена, добавление нового ресурса невозможно";
             return;
         }
     }
-
-    /*!
-        Changing the name of the resource
-        @param old_name An old name of the resource
-        @param new_name A new name of the resource
-    */
     void Table::rename(std::string old_name, std::string new_name){
         try {
             int index = searchByName(old_name);
@@ -207,22 +187,12 @@ namespace TNS {
             }
         } catch (...) { throw; }    
     }
-
-    /*!
-        Increasing the turnover of all resources in <multiplier> times
-        @param multiplier A multuiplier for increasing the turnover of all resources
-    */
     void Table::incTurnover(double multipliter){
         try {
             for (int i = 0; i < csize; ++i)
                 table_vector[i].RNS::Resource::incTurnover(multipliter);
         } catch (...) { throw; }
     }
-
-    /*!
-        Returns a profit for all of the resources in summary
-        @returns A profit for all of the resources in summary
-    */
     double Table::getProfit(){
         try {
             double summary = 0;

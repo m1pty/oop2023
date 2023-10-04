@@ -4,7 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/Dialogue/include"
+                "${workspaceFolder}/static/RDialogue/include",
+                "${workspaceFolder}/static/TDialogue/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
