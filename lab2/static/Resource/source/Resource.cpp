@@ -107,6 +107,49 @@ namespace RNS {
         return *this;
     }
 
+    std::istream &Resource::input(std::istream &stream){
+        if (&stream == &std::cin)
+            std::cout << PROMPT;
+        std::string str = Handler::getString(stream);
+        if (stream.good()){
+            if (str != "")
+                setName(str);
+            else
+                stream.setstate(std::ios::failbit);
+        }
+
+        if (&stream == &std::cin)
+            std::cout << PROMPT;
+        double dc = Handler::getDouble(stream, 0.0);
+        if (stream.good()){
+            if (dc)
+                setDC(dc);
+            else
+                stream.setstate(std::ios::failbit);
+        }
+
+        if (&stream == &std::cin)
+            std::cout << PROMPT;
+        double dp = Handler::getDouble(stream, 0.0);
+        if (stream.good()){
+            if (dp)
+                setDP(dp);
+            else
+                stream.setstate(std::ios::failbit);
+        }
+
+        if (&stream == &std::cin)
+            std::cout << PROMPT;
+        double price = Handler::getDouble(stream, 0.0);
+        if (stream.good()){
+            if (price)
+                setPrice(price);           
+            else
+                stream.setstate(std::ios::failbit);
+        }
+        return stream;
+    }
+
     // ======================== [ПЕРЕГРУЗКА ОПЕРАТОРОВ] ========================
     Resource &Resource::operator + (const Resource &r){
         add(r);
@@ -121,37 +164,7 @@ namespace RNS {
         return stream;
     }
     std::istream &operator >> (std::istream &stream, Resource &r){
-        std::string str = Handler::getString(stream);
-        if (stream.good()){
-            if (str != "")
-                r.setName(str);
-            else
-                stream.setstate(std::ios::failbit);
-        }
-
-        double dc = Handler::getDouble(stream, 0.0);
-        if (stream.good()){
-            if (dc)
-                r.setDC(dc);
-            else
-                stream.setstate(std::ios::failbit);
-        }
-
-        double dp = Handler::getDouble(stream, 0.0);
-        if (stream.good()){
-            if (dp)
-                r.setDP(dp);
-            else
-                stream.setstate(std::ios::failbit);
-        }
-
-        double price = Handler::getDouble(stream, 0.0);
-        if (stream.good()){
-            if (price)
-                r.setPrice(price);           
-            else
-                stream.setstate(std::ios::failbit);
-        }
-        return stream;
+        std::istream &s = r.input(stream);
+        return s;
     }
 }

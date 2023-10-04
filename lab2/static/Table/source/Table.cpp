@@ -6,11 +6,14 @@
 
 namespace TNS {
 
+    // конструктор по умолчанию
     Table::Table(){
         csize = 0;
         for (int i = 0; i < MAX_SIZE; ++i)
             table_vector[i] = RNS::Resource{};
     }
+
+
 
     // конструктор по умолчанию (при отрицательном csz копирует последние csz эл-тов)
     // Table::Table(int msz, RNS::Resource* vector, int csz){
@@ -71,12 +74,31 @@ namespace TNS {
         }
     }
 
-    /*!
-        Prints the current state of the table
-        @param stream A link to the output stream
-        @returns A link to the output stream
-    */
-    std::ostream &Table::print(std::ostream &stream) const {
+    void Table::sort()
+    {
+        int i = 0;
+        bool swap_made = true;
+        while (swap_made){
+            swap_made = false;
+            for (int j = 0; j < csize; ++j){
+                if (table_vector[j].getName().compare(table_vector[j + 1].getName()) > 0){
+                    RNS::Resource tmp = table_vector[j];
+                    table_vector[j] = table_vector[j + 1];
+                    table_vector[j + 1] = tmp;
+                    swap_made = true;
+                }
+            }
+            ++i;
+        }
+    }
+
+    void Table::deleteByIndex(int index) // удаление пробелов
+    {
+        table_vector[index] = RNS::Resource{};
+        garbageCollector(); 
+    }
+    std::ostream &Table::print(std::ostream &stream) const // вывод
+    {
         // считаем кол-во пробелов для форматированого вывода индекса
         int spaces_n = Handler::countIntLength(msize - 1);
 
@@ -118,15 +140,27 @@ namespace TNS {
             // вывод DC, DP, Price
             stream.setf(std::ios::fixed);
             stream.precision(3);
+
+            int diff_dc = spaces_double - Handler::countIntLength((int)table_vector[i].getDC());
+            int diff_dp = spaces_double - Handler::countIntLength((int)table_vector[i].getDP());
+            int diff_price = spaces_double - Handler::countIntLength((int)table_vector[i].getPrice());
+
+            for (int i = 0; i < diff_dc; ++i)
+                stream << " ";
             stream << table_vector[i].getDC() << " | ";
+
+            for (int i = 0; i < diff_dp; ++i)
+                stream << " ";
             stream << table_vector[i].getDP() << " | ";
+            
+            for (int i = 0; i < diff_price; ++i)
+                stream << " ";
             stream << table_vector[i].getPrice() << " |\n";              
             
         }
         return stream;
     }
-
-    int Table::searchByName(std::string name) // поиск по имени
+    int Table::searchByName(std::string name)              // поиск по имени
     {
         int left     = 0, right  = csize - 1;
         int comp_res = 0, middle = 0;
@@ -155,7 +189,7 @@ namespace TNS {
         }
         return middle + 1;
     }
-    Fullness Table::checkFullness() // проверка заполненности таблицы
+    Fullness Table::checkFullness()                        // проверка заполненности таблицы
     {
         if (csize == 0)
             return Fullness::empty;
@@ -163,11 +197,26 @@ namespace TNS {
             return Fullness::partly_full;
         return Fullness::full;
     }
-    void Table::add(const RNS::Resource &r) // (+=) добавление ресурса в таблицу
+    void Table::add(RNS::Resource &r)                      // (+=) добавление ресурса в таблицу
     {
         if (csize == msize){
-            std::cout << "[ERROR]: Таблица заполнена, добавление нового ресурса невозможно";
+            std::cout << "[ERROR]: Таблица заполнена, добавление нового ресурса невозможно!\n";
             return;
+        }
+        // если такого элемента ранее не было
+        int index = searchByName(r.getName()); 
+        if (index == -1){
+            table_vector[csize] = r;
+            ++csize;
+            sort();
+        }
+        // если такие элемненты уже есть
+        else {
+            for (int i = csize; i > index; --i)
+                table_vector[i] = table_vector[i - 1];
+            table_vector[index] = r;
+            ++csize;
+            // уже отсортировано по имени
         }
     }
     void Table::rename(std::string old_name, std::string new_name){
@@ -179,6 +228,7 @@ namespace TNS {
                 table_vector[index].setName(new_name);
                 ++index;
             }
+            sort();
         } catch (...) { throw; }    
     }
     void Table::incTurnover(double multipliter){

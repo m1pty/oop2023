@@ -31,7 +31,7 @@ namespace TNS {
             @brief Returns the csize of a Table
             @returns the csize of a Table
         */
-        int getCSize(){ return msize; }
+        int getCSize(){ return csize; }
         /*!
             @brief Returns a link to the resource of index <index>
             @returns a link to the resource of index <index>
@@ -69,7 +69,7 @@ namespace TNS {
             @brief Adding the resource to the table by it's link
             @param r a link to the adding resource
         */
-        void add(const RNS::Resource &r);   // (+=) добавление ресурса в таблицу
+        void add(RNS::Resource &r);   // (+=) добавление ресурса в таблицу
         
         /*!
             @brief Deletes the resource from the table by it's name

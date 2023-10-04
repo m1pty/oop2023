@@ -1,2 +1,0 @@
-/usr/bin/ar qc libTDialogue.a CMakeFiles/TDialogue.dir/source/TDialogue.cpp.o
-/usr/bin/ranlib libTDialogue.a

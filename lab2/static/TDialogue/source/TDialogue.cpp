@@ -54,18 +54,40 @@ namespace dialogueT {
     }
     
     void tableInputD(TNS::Table &t) { int a = 0; }
-    void tablePrintD(TNS::Table &t)       // [02] печать таблицы
+    void tablePrintD(TNS::Table &t)       // [02, +] печать таблицы
     {
         try {
             t.print(std::cout);
         } catch (...) { throw; }
     }
-    void tableAddResD(TNS::Table &t) { int a = 0; }
+    void tableAddResD(TNS::Table &t)      // [03, +] добавление нового элемента
+    { 
+        try {
+            RNS::Resource r;
+            RNS::Resource &link = r;
+            std::cout << "Введите ресурс:\n";
+            r.input(std::cin);
+
+            if (t.checkFullness() != TNS::Fullness::full){
+                t.add(r);
+                std::cout << "[RESULT]: Элемент успешно добавлен!";
+            }
+            else
+                std::cout << "[RESULT]: Таблица заполнена - невозможно добавить элемент!";
+        } catch (...){ throw; }
+    }
     void tableGetResD(TNS::Table &t) { int a = 0; }
     void tableDelResNameD(TNS::Table &t) { int a = 0; }
-    void tableDelResIndexD(TNS::Table &t) { int a = 0; }
 
-    void tableRenameResD(TNS::Table &t)   // [07] переименовать тип ресурса
+    void tableDelResIndexD(TNS::Table &t) // [06] удалить ресурс по его индексу
+    { 
+        try {
+            std::cout << "Введите индекс удаляемого элемента\n" << PROMPT;
+            int index = Handler::getInt(std::cin, 0, t.getCSize());
+            t.deleteByIndex(index);
+        } catch (...) { throw; }
+    }
+    void tableRenameResD(TNS::Table &t)   // [07, ?] переименовать тип ресурса
     {
         try {
             std::cout << "Введите старое имя переименовываемого ресурса:\n" << PROMPT;
@@ -77,23 +99,24 @@ namespace dialogueT {
 
         } catch (...) { throw; }
     }
-    void tableChangeResD(TNS::Table &t)   // [08] изменение ресурса по индексу через диалоговую функцию ресурса
+    void tableChangeResD(TNS::Table &t)   // [08, +] изменение ресурса по индексу через диалоговую функцию ресурса
     {
         try {
             std::cout << "Введите индекс изменяемого элемента\n" << PROMPT;
             int index = Handler::getInt(std::cin, 0, t.getCSize());
             RNS::Resource &link = t.getResByIndex(index);
             dialogR::menuD(link);
+            t.sort();
         } catch (...) { throw; }
     } 
-    void tableGetProfitD(TNS::Table &t)    // [09] получение прибыльности всех ресурсов таблицы
+    void tableGetProfitD(TNS::Table &t)   // [09, +] получение прибыльности всех ресурсов таблицы
     {
         try {
             double profit = t.getProfit();
             std::cout << "[PROFIT]: " << profit << " у.е.\n";
         } catch (...) { throw; }
     }
-    void tableCheckStateD (TNS::Table &t) // [10] проверка заполненности таблицы
+    void tableCheckStateD (TNS::Table &t) // [10, +] проверка заполненности таблицы
     {
         try {
             TNS::Fullness state = t.checkFullness();
@@ -108,7 +131,7 @@ namespace dialogueT {
 
         } catch (...) { throw; }
     }
-    void tableIncTurnoverD(TNS::Table &t) // [11] увеличение оборота всех ресурсов таблицы
+    void tableIncTurnoverD(TNS::Table &t) // [11, +] увеличение оборота всех ресурсов таблицы
     {
         try {
             std::cout << "Введите коэф. умножения\n" << PROMPT;

@@ -76,11 +76,18 @@ namespace RNS {
 
         // методы вывода
         /*!
+            @brief Prints a formatted instance
             @param stream The stream of output
             @returns The link to the stream
-            Prints a formatted instance
         */
         std::ostream & print(std::ostream &) const; // вывод
+
+         /*!
+            @brief Allows to input an instance
+            @param stream The stream of input
+            @returns The link to the stream
+        */
+        std::istream & input(std::istream &);
 
         // методы задания
         /*!
