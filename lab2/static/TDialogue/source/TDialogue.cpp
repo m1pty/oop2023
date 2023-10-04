@@ -76,10 +76,25 @@ namespace dialogueT {
                 std::cout << "[RESULT]: Таблица заполнена - невозможно добавить элемент!";
         } catch (...){ throw; }
     }
-    void tableGetResD(TNS::Table &t) { int a = 0; }
-    void tableDelResNameD(TNS::Table &t) { int a = 0; }
 
-    void tableDelResIndexD(TNS::Table &t) // [06] удалить ресурс по его индексу
+    void tableGetResD(TNS::Table &t)      // [04, ---] вывести ресурс по его наименованию
+    { 
+        try {
+            std::cout << "Введите название ресурса для поиска:\n";
+            std::string name = Handler::getString(std::cin);
+            TNS::Table &new_table = t.searchResult(name);
+            new_table.print(std::cout);
+        } catch (... ) { throw; }
+    }
+    void tableDelResNameD(TNS::Table &t)  // [05, +] удаление типа ресурса по имени
+    { 
+        try {
+            std::cout << "Введите имя удаляемого типа ресурса:\n" << PROMPT;
+            std::string name = Handler::getString(std::cin);
+            t.deleteByName(name);
+        } catch (...) { throw; }
+    }
+    void tableDelResIndexD(TNS::Table &t) // [06, +] удалить ресурс по его индексу
     { 
         try {
             std::cout << "Введите индекс удаляемого элемента\n" << PROMPT;

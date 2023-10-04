@@ -44,11 +44,12 @@ namespace TNS {
 
         /*!
             @brief Refreshes the table, deleting all gaps between resources
+            @param start_index Index to start cleaning with
         */
-        void garbageCollector();
+        void garbageCollector(int start_index = 0);
 
         /*!
-            @brief Sorting the Table's entities by their names 
+            @brief Sorting the Table's entities by their names (Bubble Sort)
         */
         void sort();
 
@@ -115,6 +116,10 @@ namespace TNS {
             @returns A profit for all of the resources in summary
         */
         double getProfit();
+
+        // [ОПЕРАТОРЫ] =======================================================================
+
+        Table &operator * (double multiplier);
     };
 }
 #endif
