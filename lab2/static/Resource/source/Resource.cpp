@@ -6,6 +6,13 @@
 #include "Handlers/Handlers.h"
 
 namespace RNS {
+    Resource::Resource(){
+        name = std::string("Empty");
+        price = 0.0;
+        daily_consumption = 0.0;
+        daily_production = 0.0;
+    }
+
     Resource::Resource(std::string n, double np, double dc, double dp) : 
         name(n), price(np), daily_consumption(dc) , daily_production(dp) {};
 

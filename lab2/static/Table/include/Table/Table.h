@@ -19,7 +19,7 @@ namespace TNS {
         // деструктор по умолчанию
         ~Table() = default;
         // конструктор по умолчанию
-        Table() : msize(MAX_SIZE), csize(0) {};
+        Table();
         
 
         /*!

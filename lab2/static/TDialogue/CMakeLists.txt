@@ -9,11 +9,11 @@ link_directories(../Handlers)
 include_directories(../Resource)
 link_directories(../Resource)
 
-link_directories(../RDialogue)
 include_directories(../RDialogue)
+link_directories(../RDialogue)
 
-link_directories(../Table)
 include_directories(../Table)
+link_directories(../Table)
 
 target_link_libraries(TDialogue RDialogue 
                                 Resource

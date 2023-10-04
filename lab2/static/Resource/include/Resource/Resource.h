@@ -17,7 +17,8 @@ namespace RNS {
         ~Resource() = default;
         // конструктор: default + создание экземпляра класса с инициализацией (все параметры / имя, цена
         // explicit = не конструктор с копированием (copy-initialization)
-        Resource(std::string name = std::string("Empty"), double price = 0.0, double dc = 0.0, double dp = 0.0);
+        Resource();
+        Resource(std::string name, double price = 0.0, double dc = 0.0, double dp = 0.0);
         // геттеры (акксессоры)
         /*!
             @returns the link to name of this

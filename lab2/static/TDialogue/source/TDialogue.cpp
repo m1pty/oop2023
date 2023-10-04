@@ -52,16 +52,19 @@ namespace dialogueT {
             } catch (...) { throw; }
         }
     }
-    // ввод таблицы
+    
+    void tableInputD(TNS::Table &t) { int a = 0; }
     void tablePrintD(TNS::Table &t)       // [02] печать таблицы
     {
         try {
             t.print(std::cout);
         } catch (...) { throw; }
     }
-    //
-    //
-    //
+    void tableAddResD(TNS::Table &t) { int a = 0; }
+    void tableGetResD(TNS::Table &t) { int a = 0; }
+    void tableDelResNameD(TNS::Table &t) { int a = 0; }
+    void tableDelResIndexD(TNS::Table &t) { int a = 0; }
+
     void tableRenameResD(TNS::Table &t)   // [07] переименовать тип ресурса
     {
         try {
@@ -72,7 +75,7 @@ namespace dialogueT {
             t.rename(old_name, new_name);
             std::cout << "[RESULT]: Переименовывание прошло успешно!\n";
 
-        } catch (...) { throw; };
+        } catch (...) { throw; }
     }
     void tableChangeResD(TNS::Table &t)   // [08] изменение ресурса по индексу через диалоговую функцию ресурса
     {
@@ -83,7 +86,7 @@ namespace dialogueT {
             dialogR::menuD(link);
         } catch (...) { throw; }
     } 
-    void tableGetProfit(TNS::Table &t)    // [09] получение прибыльности всех ресурсов таблицы
+    void tableGetProfitD(TNS::Table &t)    // [09] получение прибыльности всех ресурсов таблицы
     {
         try {
             double profit = t.getProfit();

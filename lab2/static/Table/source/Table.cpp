@@ -5,6 +5,13 @@
 #include "Table/Table.h"
 
 namespace TNS {
+
+    Table::Table(){
+        csize = 0;
+        for (int i = 0; i < MAX_SIZE; ++i)
+            table_vector[i] = RNS::Resource{};
+    }
+
     // конструктор по умолчанию (при отрицательном csz копирует последние csz эл-тов)
     // Table::Table(int msz, RNS::Resource* vector, int csz){
     //     if (msz <= 0)
@@ -71,12 +78,12 @@ namespace TNS {
     */
     std::ostream &Table::print(std::ostream &stream) const {
         // считаем кол-во пробелов для форматированого вывода индекса
-        int spaces_n = Handler::countIntLength(msize);
+        int spaces_n = Handler::countIntLength(msize - 1);
 
         // считаем кол-во символов в максимальном названии
-        int spaces_str = 0;
+        int spaces_str = 5; // "Empty"
         for (int i = 0; i < csize; ++i){
-            int length = table_vector[i].getName().length();
+            int length = (int)table_vector[i].getName().length();
             spaces_str = (length > spaces_str) ? length : spaces_str;
         }
 
@@ -101,33 +108,20 @@ namespace TNS {
                 stream << " ";
             stream << i << " | ";
                 
-            // занятые элементы
-            if (i < csize){
-                // вывод имени
-                for (int j = 0; j < spaces_str - table_vector[i].getName().length(); ++j)
-                    stream << " ";
-                stream << table_vector[i].getName() << " | ";
+            
+            // вывод имени
+            int spaces_needed = spaces_str - (int)table_vector[i].getName().length();
+            for (int j = 0; j < spaces_needed; ++j)
+                stream << " ";
+            stream << table_vector[i].getName() << " | ";
 
-                // вывод DC, DP, Price
-                stream.setf(std::ios::fixed);
-                stream.precision(3);
-                stream << table_vector[i].getDC() << " | ";
-                stream << table_vector[i].getDP() << " | ";
-                stream << table_vector[i].getPrice() << " |\n";              
-            }
-
-            // свободные элементы
-            else {
-                for (int k = 0; k < spaces_str; ++k)
-                    stream << " ";
-                stream << " | ";
-                for (int j = 0; j < 3; ++j){
-                    for (int k = 0; k < spaces_double + 4; ++k)
-                        stream << " ";
-                    stream << " | ";
-                }
-                stream << "\n";
-            }
+            // вывод DC, DP, Price
+            stream.setf(std::ios::fixed);
+            stream.precision(3);
+            stream << table_vector[i].getDC() << " | ";
+            stream << table_vector[i].getDP() << " | ";
+            stream << table_vector[i].getPrice() << " |\n";              
+            
         }
         return stream;
     }
