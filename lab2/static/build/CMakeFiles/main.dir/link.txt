@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -g -Wextra CMakeFiles/main.dir/main.cpp.o -o main  Resource/libResource.a Handlers/libHandlers.a RDialogue/libRDialogue.a Resource/libResource.a Handlers/libHandlers.a 

@@ -8,11 +8,20 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g -Wextra")
 # добавление директорий с библиотеками и тестами
 add_subdirectory( Resource )
 add_subdirectory( Handlers )
+add_subdirectory( Table    )
 add_subdirectory( RDialogue)
+add_subdirectory( TDialogue)
 
-# создание исполняемого файла
-add_executable(main main.cpp)
-target_link_libraries(main Resource Handlers RDialogue)
+# создание исполняемого файла для класса Resource
+add_executable(main_r main_r.cpp)
+target_link_libraries(main_r Resource Handlers RDialogue)
+
+# создание исполняемого файла для класса Table
+add_executable(main_t main_t.cpp)
+target_link_libraries(main_t Resource Handlers RDialogue Table TDialogue)
+
+add_compile_options(--coverage)
+add_link_options(--coverage)
 
 Include(FetchContent)
 FetchContent_Declare(
@@ -29,4 +38,6 @@ target_link_libraries(Tests PUBLIC Catch2::Catch2WithMain
                                    Resource 
                                    Handlers 
                                    RDialogue
+                                   TDialogue
+                                   Table
                       )

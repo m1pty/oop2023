@@ -6,11 +6,10 @@
 
 namespace TNS {
     // конструктор по умолчанию (при отрицательном csz копирует последние csz эл-тов)
-    Table::Table(RNS::Resource* vector, int csz){
+    Table::Table(int msz, RNS::Resource* vector, int csz){
         if (msz <= 0)
             throw std::invalid_argument("Invalid <msize> occured, while initializing! Must be > 0");
         
-        table_vector = RNS::Resource array [msize];
         // если пустой вектор
         if (!vector){ csize = 0; }
         // если вектор не пуст    
@@ -43,6 +42,27 @@ namespace TNS {
         }
     }
 
+
+    // = [METHODS] =============================================
+
+    /*!
+        Refreshes the table, deleting all gaps between resources
+    */
+    void Table::garbageCollector(){
+        for (int i = 0; i < csize; ++i){
+            if (table_vector[i].getName() == "Empty"){
+                for (int j = i + 1; j < msize; ++j){
+                    if (table_vector[j].getName() != "Empty"){
+                        table_vector[i].setDC(table_vector[j].getDC());
+                        table_vector[i].setDP(table_vector[j].getDP());
+                        table_vector[i].setPrice(table_vector[j].getPrice());
+                        table_vector[j] = RNS::Resource();
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
     /*!
         Prints the current state of the table
@@ -160,7 +180,16 @@ namespace TNS {
         return Fullness::full;
     }
 
-
+    /*!
+        Adding the resource to the table by it's link
+        @param r a link to the adding resource
+    */
+    void Table::add(const RNS::Resource &r){   // (+=) добавление ресурса в таблицу
+        if (csize == msize){
+            std::cout << "[ERROR]: Таблица заполнена, добавление нового ресурса невозможно";
+            return;
+        }
+    }
 
     /*!
         Changing the name of the resource
@@ -172,7 +201,7 @@ namespace TNS {
             int index = searchByName(old_name);
             if (index == -1)
                 return;
-            while (table_vector[index].getName() == old_name){
+            while ((table_vector[index].getName() == old_name) && (index < msize)){
                 table_vector[index].setName(new_name);
                 ++index;
             }
@@ -196,7 +225,7 @@ namespace TNS {
     */
     double Table::getProfit(){
         try {
-            int summary = 0;
+            double summary = 0;
             for (int i = 0; i < csize; ++i)
                 summary += table_vector[i].getProfit();
             return summary;

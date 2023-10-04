@@ -1,0 +1,1 @@
+/usr/bin/g++  -Wall -g -Wextra -Wall -g -Wextra -g --coverage CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.o -o Tests  ../_deps/catch2-build/src/libCatch2Maind.a Resource/libResource.a Handlers/libHandlers.a RDialogue/libRDialogue.a ../_deps/catch2-build/src/libCatch2d.a Resource/libResource.a Handlers/libHandlers.a 
