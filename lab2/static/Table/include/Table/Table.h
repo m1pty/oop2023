@@ -54,11 +54,18 @@ namespace TNS {
         void sort();
 
         /*!
-            @brief Prints the current state of the table
+            @brief Prints the current state of the Table
             @param stream A link to the output stream
             @returns A link to the output stream
         */
         std::ostream &print(std::ostream &stream) const;
+
+        /*!
+            @brief Allows to input an instance of the Table
+            @param stream The stream of input
+            @returns The link to the stream
+        */
+        std::istream &input(std::istream &stream);
 
         /*!
             @brief Returns a state of the table (full / partly full / empty)
@@ -117,9 +124,24 @@ namespace TNS {
         */
         double getProfit();
 
-        // [ОПЕРАТОРЫ] =======================================================================
 
-        Table &operator * (double multiplier);
+        /*!
+            @brief An overloaded operator "*" of increasing turnover for all table in <multiplier> times
+            @param multiplier A multiplier of increasing
+        */
+        Table &operator *  (double multiplier);
+        
+        /*!
+            @brief An overloaded operator "+=" of adding the Resource to the Table
+            @param multiplier A link to the added Resource
+        */
+        Table &operator += (RNS::Resource &r);
+
+        /*!
+            @brief An overloaded operator "[]" of indexing the Resource in the Table
+            @param name The name of the indexing Resource
+        */
+        int operator[] (std::string name);
     };
 }
 #endif

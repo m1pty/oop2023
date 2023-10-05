@@ -51,9 +51,7 @@ namespace TNS {
     // }
 
 
-    // = [METHODS] =============================================
-
-    void Table::garbageCollector(int start_index)       // [+] удаляет лишние пробелы в таблице
+    void Table::garbageCollector(int start_index)           // [+] удаляет лишние пробелы в таблице
     {   
         if (msize == csize)
             return;
@@ -180,6 +178,19 @@ namespace TNS {
         }
         return stream;
     }
+    std::istream &Table::input(std::istream & stream)
+    {
+        try {
+            if (&stream == &std::cin)
+                std::cout << "Введите число элементов для заполнения: (max = " << MAX_SIZE << ")\n" << PROMPT;
+            int quantity = Handler::getInt(stream, 0, MAX_SIZE);
+            for (int i = 0; i < quantity; ++i){
+                if (&stream == &std::cin)
+                    std::cout << "Введите элемент " << i << ":\n";
+                table_vector[i].input(stream);
+            }
+        } catch (...) { throw; }
+    }
     int Table::searchByName(std::string name)               // [+] поиск по имени
     {
         int left     = 0, right  = csize - 1;
@@ -239,28 +250,28 @@ namespace TNS {
             // уже отсортировано по имени
         }
     }
-    void Table::rename(std::string old_name, std::string new_name){
+    void Table::rename(std::string old_name, std::string new_name) // переименование типа ресурса 
+    {
         try {
             int index = searchByName(old_name);
             if (index == -1)
                 return;
-            std::cout << "Before renaming\n";
             while ((table_vector[index].getName() == old_name) && (index < csize)){
                 table_vector[index].setName(new_name);
                 ++index;
             }
-            std::cout << "After renaming\n";
             sort();
-            std::cout << "After sorting\n";
         } catch (...) { throw; }    
     }
-    void Table::incTurnover(double multipliter){
+    void Table::incTurnover(double multipliter)             // увеличение оборота всех ресурсов
+    {
         try {
             for (int i = 0; i < csize; ++i)
                 table_vector[i].RNS::Resource::incTurnover(multipliter);
         } catch (...) { throw; }
     }
-    double Table::getProfit(){
+    double Table::getProfit()                               // вычисление прибыльности всех ресурсов таблицы
+    {
         try {
             double summary = 0;
             for (int i = 0; i < csize; ++i)
@@ -268,7 +279,7 @@ namespace TNS {
             return summary;
         } catch (...) { throw; }
     }
-    Table &Table::searchResult(std::string name) // вывод таблицы найденного
+    Table &Table::searchResult(std::string name)            // вывод таблицы найденного
     {
         Table result = Table{};
         int index = searchByName(name);
@@ -281,13 +292,21 @@ namespace TNS {
         return link;
     }
 
-    
-    // [ОПЕРАТОРЫ] =======================================================================
+
 
     Table &Table::operator * (double multiplier)
     {
         incTurnover(multiplier);
         return *this;
     }
-
+    Table &Table::operator += (RNS::Resource &r)
+    {
+        add(r);
+        return *this;
+    }
+    int Table::operator [] (std::string name)
+    {
+        int index = searchByName(name);
+        return index;
+    }
 }

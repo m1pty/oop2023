@@ -65,8 +65,10 @@ namespace Handler {
     // функция ввода строки с проверками
     std::string getString(std::istream &stream){
         std::string label;
+        stream.clear();
         stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::getline(stream, label, '\n');
+        std::cout << "[" << label << "]\n";
         if (stream.eof())
             throw std::runtime_error("[ERROR]: Обнаружен конец файла");
 
@@ -89,4 +91,6 @@ namespace Handler {
         }
         return answer;
     }
+
+    
 }
