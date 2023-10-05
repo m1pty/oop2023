@@ -13,7 +13,7 @@ namespace TNS {
             table_vector[i] = RNS::Resource{};
     }
 
-    // конструктор по умолчанию (при отрицательном csz копирует последние csz эл-тов)
+    // иниц. конструктор (при отрицательном csz копирует последние csz эл-тов)
     // Table::Table(int msz, RNS::Resource* vector, int csz){
     //     if (msz <= 0)
     //         throw std::invalid_argument("Invalid <msize> occured, while initializing! Must be > 0");
@@ -100,7 +100,7 @@ namespace TNS {
     {
         RNS::Resource r{};
         table_vector[index] = r;
-        garbageCollector(); 
+        garbageCollector();
     }
     void Table::deleteByName(std::string name)              // [+] удаление по имени
     {
@@ -191,12 +191,12 @@ namespace TNS {
             }
         } catch (...) { throw; }
     }
-    int Table::searchByName(std::string name)               // [+] поиск по имени
+    size_t Table::searchByName(std::string name)               // [+] поиск по имени
     {
         int left     = 0, right  = csize - 1;
         int comp_res = 0, middle = 0;
         bool found = false;
-        while (left < right){
+        while (left <= right){
             middle = (left + right) / 2;
             comp_res = table_vector[middle].getName().compare(name);
             if (comp_res == 0){
@@ -218,7 +218,8 @@ namespace TNS {
         while ((table_vector[middle].getName().compare(name) == 0) && (middle != -1)){
             middle -= 1;
         }
-        return middle + 1;
+        ++middle;
+        return (size_t)middle;
     }
     Fullness Table::checkFullness()                         // [+] проверка заполненности таблицы
     {
@@ -279,22 +280,25 @@ namespace TNS {
             return summary;
         } catch (...) { throw; }
     }
-    Table &Table::searchResult(std::string name)            // вывод таблицы найденного
+    void Table::searchResult(std::string name, Table &link) // вывод таблицы найденного
     {
-        Table result = Table{};
         int index = searchByName(name);
+        std::cout << "[INDEX]: " << index << std::endl;
         if (index != -1){
-            while ((table_vector[index].getName().compare(name) == 0) && (index != msize))
-                result.add(table_vector[index]);
-            ++index;
+            while ((table_vector[index].getName().compare(name) == 0) && (index != msize)){
+                link.add(table_vector[index]);
+                ++index;
+            }
         }
-        Table &link = result;
-        return link;
     }
 
 
-
-    Table &Table::operator * (double multiplier)
+    size_t Table::operator [] (std::string name)
+    {
+        size_t index = searchByName(name);
+        return index;
+    }
+    Table Table::operator * (double multiplier)
     {
         incTurnover(multiplier);
         return *this;
@@ -304,9 +308,14 @@ namespace TNS {
         add(r);
         return *this;
     }
-    int Table::operator [] (std::string name)
+    std::ostream &operator << (std::ostream &stream, const Table &t)
     {
-        int index = searchByName(name);
-        return index;
+        std::ostream &s = t.print(stream);
+        return s;
+    }
+    std::istream &operator >> (std::istream &stream, Table &t)
+    {
+        std::istream &s = t.input(stream);
+        return s;
     }
 }

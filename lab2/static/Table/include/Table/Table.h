@@ -13,12 +13,13 @@ namespace TNS {
         RNS::Resource table_vector[MAX_SIZE];
         int csize;
 
-    public:
-        // метод ввода
+        /*!
+            @brief Sorting the Table's entities by their names (Bubble Sort)
+        */
+        void sort();
 
-        // деструктор по умолчанию
+    public:
         ~Table() = default;
-        // конструктор по умолчанию
         Table();
         
 
@@ -47,11 +48,6 @@ namespace TNS {
             @param start_index Index to start cleaning with
         */
         void garbageCollector(int start_index = 0);
-
-        /*!
-            @brief Sorting the Table's entities by their names (Bubble Sort)
-        */
-        void sort();
 
         /*!
             @brief Prints the current state of the Table
@@ -103,7 +99,7 @@ namespace TNS {
             @param indices a pointer to array of integers, containing indecies of resource
             @returns a link to the new printable table, containing all examples of this result
         */
-        Table &searchResult(std::string name); // ([]) получение таблицы найденных ресурсов, при помощи двоичного поиска
+        void searchResult(std::string name, Table &result); // ([]) получение таблицы найденных ресурсов, при помощи двоичного поиска
     
         /*!
             @brief Changing the name of the resource
@@ -125,11 +121,14 @@ namespace TNS {
         double getProfit();
 
 
+
+
+
         /*!
             @brief An overloaded operator "*" of increasing turnover for all table in <multiplier> times
             @param multiplier A multiplier of increasing
         */
-        Table &operator *  (double multiplier);
+        Table operator *  (double multiplier) const;
         
         /*!
             @brief An overloaded operator "+=" of adding the Resource to the Table
@@ -141,7 +140,12 @@ namespace TNS {
             @brief An overloaded operator "[]" of indexing the Resource in the Table
             @param name The name of the indexing Resource
         */
+       // Resource& operator[] (const string&)
+       // const Resource& operator (const string&) const;
         int operator[] (std::string name);
+
+        friend std::ostream &operator << (std::ostream &stream, const Table &t);
+        friend std::istream &operator >> (std::istream &stream, Table &t);
     };
 }
 #endif

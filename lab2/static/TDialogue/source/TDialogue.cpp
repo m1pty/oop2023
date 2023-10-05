@@ -33,8 +33,7 @@ namespace dialogueT {
         tableDelResNameD, tableDelResIndexD, tableRenameResD, 
         tableChangeResD, tableGetProfitD, tableCheckStateD, tableIncTurnoverD
     };
-
-    void tableMenuD(TNS::Table &t)        // [**, +] основной выбор, меню 
+    void tableMenuD  (TNS::Table &t)      // [**, +] основной выбор, меню 
     {
         int user_choice = 1;
         while (user_choice != 0){
@@ -52,14 +51,14 @@ namespace dialogueT {
             } catch (...) { throw; }
         }
     }
-    void tableInputD(TNS::Table &t)       // [01, +] ввод таблицы
+    void tableInputD (TNS::Table &t)      // [01, +] ввод таблицы
     { 
         try {
             t.input(std::cin);
         } catch (...) { throw; }
 
     } // ввод матрицы
-    void tablePrintD(TNS::Table &t)       // [02, +] печать таблицы
+    void tablePrintD (TNS::Table &t)      // [02, +] печать таблицы
     {
         try {
             t.print(std::cout);
@@ -71,7 +70,7 @@ namespace dialogueT {
             RNS::Resource r;
             RNS::Resource &link = r;
             std::cout << "Введите ресурс:\n";
-            r.input(std::cin);
+            link.input(std::cin);
 
             if (t.checkFullness() != TNS::Fullness::full){
                 t.add(r);
@@ -81,16 +80,19 @@ namespace dialogueT {
                 std::cout << "[RESULT]: Таблица заполнена - невозможно добавить элемент!";
         } catch (...){ throw; }
     }
-    void tableGetResD(TNS::Table &t)      // [04, ---] вывести ресурс по его наименованию
+    void tableGetResD(TNS::Table &t)      // [04, +] вывести ресурс по его наименованию
     { 
         try {
+            TNS::Table new_table;
+            TNS::Table &link = new_table;
             std::cout << "Введите название ресурса для поиска:\n";
             std::string name = Handler::getString(std::cin);
-            TNS::Table &new_table = t.searchResult(name);
+            std::cout << "[STREAM]: " << name << std::endl;
+            t.searchResult(name, link);
             new_table.print(std::cout);
         } catch (... ) { throw; }
     }
-    void tableDelResNameD(TNS::Table &t)  // [05, +] удаление типа ресурса по имени
+    void tableDelResNameD (TNS::Table &t) // [05, +] удаление типа ресурса по имени
     { 
         try {
             std::cout << "Введите имя удаляемого типа ресурса:\n" << PROMPT;
@@ -106,7 +108,7 @@ namespace dialogueT {
             t.deleteByIndex(index);
         } catch (...) { throw; }
     }
-    void tableRenameResD(TNS::Table &t)   // [07, ---] переименовать тип ресурса (запрашивает дополнительный ввод)
+    void tableRenameResD  (TNS::Table &t) // [07, ---] переименовать тип ресурса (запрашивает дополнительный ввод)
     {
         try {
             std::cout << "Введите старое имя переименовываемого ресурса:\n" << PROMPT;
@@ -115,20 +117,18 @@ namespace dialogueT {
             std::string new_name = Handler::getString(std::cin);
             t.rename(old_name, new_name);
             std::cout << "[RESULT]: Переименовывание прошло успешно!\n";
-
         } catch (...) { throw; }
     }
-    void tableChangeResD(TNS::Table &t)   // [08, +] изменение ресурса по индексу через диалоговую функцию ресурса
+    void tableChangeResD  (TNS::Table &t) // [08, +] изменение ресурса по индексу через диалоговую функцию ресурса
     {
         try {
             std::cout << "Введите индекс изменяемого элемента\n" << PROMPT;
             int index = Handler::getInt(std::cin, 0, t.getCSize());
             RNS::Resource &link = t.getResByIndex(index);
             dialogR::menuD(link);
-            t.sort();
         } catch (...) { throw; }
     } 
-    void tableGetProfitD(TNS::Table &t)   // [09, +] получение прибыльности всех ресурсов таблицы
+    void tableGetProfitD  (TNS::Table &t) // [09, +] получение прибыльности всех ресурсов таблицы
     {
         try {
             double profit = t.getProfit();
