@@ -51,15 +51,15 @@ namespace TNS {
     // }
 
 
-    void Table::garbageCollector(int start_index)           // [+] удаляет лишние пробелы в таблице
+    void Table::garbageCollector(int start_index) noexcept         // [+] удаляет лишние пробелы в таблице
     {   
         if (msize == csize)
             return;
 
         for (int i = start_index; i < csize; ++i){
-            if (table_vector[i].getName() == "Empty"){
+            if (table_vector[i].getName() == ""){
                 for (int j = i + 1; j < msize; ++j){
-                    if (table_vector[j].getName() != "Empty"){
+                    if (table_vector[j].getName() != ""){
                         table_vector[i].setName(table_vector[j].getName());
                         table_vector[i].setDC(table_vector[j].getDC());
                         table_vector[i].setDP(table_vector[j].getDP());
@@ -71,7 +71,7 @@ namespace TNS {
             }
         }
     }
-    void Table::sort()                                      // [+] сортировка пузырьком для ресурсов в таблице
+    void Table::sort() noexcept  // [+] сортировка пузырьком для ресурсов в таблице
     {
         int i = 0;
         bool swap_made = true;
@@ -96,24 +96,39 @@ namespace TNS {
             ++i;
         }
     }
+    void Table::clear() noexcept
+    {
+        RNS::Resource empty_resource;
+        for (int i = 0; i < csize; ++i)
+            table_vector[i] = empty_resource;
+        csize = 0;
+    }
+
+
     void Table::deleteByIndex(int index)                    // [+] удаление по индексу
     {
+        if ((index >= csize) || (index < 0))
+            throw std::invalid_argument("[ERROR]: Table[Index] is not declared");
+        
         RNS::Resource r{};
         table_vector[index] = r;
-        garbageCollector();
+        --csize;
+        garbageCollector(index);
     }
-    void Table::deleteByName(const std::string &name)              // [+] удаление по имени
+    void Table::deleteByName(const std::string &name) noexcept           // [+] удаление по имени
     {
         std::pair<bool, size_t> search = searchByName(name);
         if (!search.first)
             return;
-            
-        while ((search.second != csize) && (table_vector[search.second].getName().compare(name) == 0)){
+        
+        int index = search.second;
+        std::cout << "Deleting from index of " << index << std::endl;
+        while ((index != csize) && (table_vector[index].getName().compare(name) == 0)){
             RNS::Resource r;
-            table_vector[search.second] = r;
-            ++search.second;
+            table_vector[index] = r;
+            --csize;
+            garbageCollector(index);
         }
-        garbageCollector();
     }
     std::ostream &Table::print(std::ostream &stream) const  // [+] вывод
     {
@@ -181,6 +196,7 @@ namespace TNS {
     std::istream &Table::input(std::istream & stream)
     {
         try {
+            clear();
             if (&stream == &std::cin)
                 std::cout << "Введите число элементов для заполнения: (max = " << MAX_SIZE << ")\n" << PROMPT;
             int quantity = Handler::getInt(stream, 0, MAX_SIZE);
@@ -279,6 +295,7 @@ namespace TNS {
             std::pair<bool, size_t> search = searchByName(old_name);
             if (!search.first)
                 return;
+            std::cout << "Renaming started from index " << search.second << std::endl;
             while ((table_vector[search.second].getName() == old_name) && (search.second < csize)){
                 table_vector[search.second].setName(new_name);
                 ++search.second;
@@ -288,20 +305,24 @@ namespace TNS {
     }
     void Table::incTurnover(double multipliter)             // увеличение оборота всех ресурсов
     {
-        try {
+        try
+        {
             for (int i = 0; i < csize; ++i)
                 table_vector[i].RNS::Resource::incTurnover(multipliter);
-        } catch (...) { throw; }
+        } 
+        
+        catch (std::invalid_argument &e)
+        { 
+            throw std::invalid_argument("invalid <multiplier>! (must be >= 0)");
+        }
     }
 
-    double Table::getProfit()                         // вычисление прибыльности всех ресурсов таблицы
+    double Table::getProfit() noexcept                  // вычисление прибыльности всех ресурсов таблицы
     {
-        try {
-            double summary = 0;
-            for (int i = 0; i < csize; ++i)
-                summary += table_vector[i].getProfit();
-            return summary;
-        } catch (...) { throw; }
+        double summary = 0;
+        for (int i = 0; i < csize; ++i)
+            summary += table_vector[i].getProfit();
+        return summary;
     }
 
     Table Table::searchResult(const std::string &name) // вывод таблицы найденного
@@ -309,9 +330,14 @@ namespace TNS {
         TNS::Table table;
         std::pair<bool, size_t> search = searchByName(name);
         if (search.first){
-            while ((table_vector[search.second].getName().compare(name) == 0) && (search.second != msize)){
-                table.add(table_vector[search.second]);
-                ++search.second;
+            int index = search.second;
+            std::string tmp_name = table_vector[index].getName();;
+
+            while ((tmp_name.compare(name) == 0) && (index != msize)){
+                tmp_name = table_vector[index].getName();
+                table.add(table_vector[index]);
+                ++index;
+
             }
         }
         return table;
@@ -323,15 +349,20 @@ namespace TNS {
         sort();
     }
 
-    size_t Table::operator [] (std::string name)
+    RNS::Resource &Table::operator[] (const std::string& name)
     {
         std::pair<bool, size_t> search = searchByName(name);
-        if (search.first)
-            return search.second;
-        
+        if (search.first){
+            RNS::Resource& link = table_vector[search.second];
+            return link;
+        }
         else
             throw std::runtime_error("[ERROR]: Элемента с таким наименованием нет в таблице!\n");
-    }
+    }  
+    // const RNS::Resource &Table::operator[] (const std::string& name) const
+    // {
+    //     continue;
+    // }
     Table Table::operator * (double multiplier)
     {
         incTurnover(multiplier);

@@ -2,6 +2,7 @@
 #include <limits>
 #include <cstring>
 #include <cerrno>
+#include <sstream>
 
 #include "Handlers/Handlers.h"
 
@@ -65,11 +66,12 @@ namespace Handler {
     // функция ввода строки с проверками
     std::string getString(std::istream &stream){
         std::string label;
+        stream.ignore();
         stream.clear();
-        stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         while (true){
-            std::getline(stream, label, '\n');
-            std::cout << "[" << label << "]\n";
+            std::getline(stream, label);
+            std::cout << "[SYSTEM]: Got input of '" << label << "'\n";
+            
             if (stream.eof())
                 throw std::runtime_error("[ERROR]: Обнаружен конец файла");
 
@@ -87,6 +89,8 @@ namespace Handler {
                 std::cout << "[WARNING]: Вы ввели пустую строку, повторите ввод!" << std::endl << PROMPT;
             }
             else {
+                stream.clear();
+                std::cout << "[SYSTEM]: Ввод успешен!\n";
                 return label;
             }
         }

@@ -16,18 +16,32 @@ namespace TNS {
         /*!
             @brief Sorting the Table's entities by their names (Bubble Sort)
         */
-        void sort();
+        void sort() noexcept;
+
         /*!
             @brief Refreshes the table, deleting all gaps between resources
             @param start_index Index to start cleaning with
         */
-        void garbageCollector(int start_index = 0);
+        void garbageCollector(int start_index = 0) noexcept;
+
+        /*!
+            @brief Setting all the Table's entities to default Resources
+        */
+        void clear() noexcept;
 
     public:
+
+        /*!
+            @brief Default destructor for Table
+        */
         ~Table() = default;
+        
+        /*!
+            @brief Default constructor for Table
+        */
         Table();
         
-
+        
         /*!
             @brief Returns the msize of a Table
             @returns the msize of a Table
@@ -39,7 +53,7 @@ namespace TNS {
             @returns the csize of a Table
         */
         int getCSize() const { return csize; }
-        
+
         /*!
             @brief Returns a link to the resource of index <index>
             @returns a link to the resource of index <index>
@@ -80,13 +94,14 @@ namespace TNS {
             @brief Deletes the resource from the table by it's name
             @param name The name of the deleting resource
         */
-        void deleteByName(const std::string &name); // удаляет ресурс из таблицы по наименованию
+        void deleteByName(const std::string &name) noexcept; // удаляет ресурс из таблицы по наименованию
 
         /*!
             @brief Deletes the resource from the table by it's index
             @param index The index of the deleting resource
+            @throws std::invalid_argument in case of (<index> >= <csize>) or (<index> < 0)
         */
-        void deleteByIndex(int index); // удаляет ресур по индексу
+        void deleteByIndex(int index); // удаляет ресурс по индексу
 
         /*!
             @brief Returns the first index of resource appearance or -1
@@ -112,22 +127,20 @@ namespace TNS {
         /*!
             @brief Increasing the turnover of all resources in <multiplier> times
             @param multiplier A multuiplier for increasing the turnover of all resources
+            @throws std::invalid_argument - in case of <multiplier> < 0 
         */
-        void incTurnover(double multipliter); // (*) увеличение оборота всех ресурсов
+        void incTurnover(double multipliter);
 
         /*!
             @brief Returns a profit for all of the resources in summary
             @returns A profit for all of the resources in summary
         */
-        double getProfit();
+        double getProfit() noexcept;
 
         /*!
             @brief Executing garbage collection and sorting
         */
        void prettify() noexcept;
-
-
-
 
         /*!
             @brief An overloaded operator "*" of increasing turnover for all table in <multiplier> times
@@ -145,11 +158,19 @@ namespace TNS {
             @brief An overloaded operator "[]" of indexing the Resource in the Table
             @param name The name of the indexing Resource
         */
-       // Resource& operator[] (const string&)
-       // const Resource& operator (const string&) const;
-        size_t operator[] (std::string name);
+        RNS::Resource &operator[] (const std::string& name);
+        const RNS::Resource &operator[] (const std::string& name) const;
 
+        /*!
+            @brief An overloaded operator << for output
+            @param stream The link to an output stream
+        */
         friend std::ostream &operator << (std::ostream &stream, const Table &t);
+        
+        /*!
+            @brief An overloaded operator >> for output
+            @param stream The link to an input stream
+        */
         friend std::istream &operator >> (std::istream &stream, Table &t);
     };
 }

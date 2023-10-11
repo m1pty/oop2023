@@ -106,12 +106,13 @@ namespace dialogueT {
             t.deleteByIndex(index);
         } catch (...) { throw; }
     }
-    void tableRenameResD  (TNS::Table &t) // [07, ---] переименовать тип ресурса (запрашивает дополнительный ввод)
+    void tableRenameResD  (TNS::Table &t) // [07, +/-] переименовать тип ресурса (запрашивает дополнительный ввод)
     {
         try {
             std::cout << "Введите старое имя переименовываемого ресурса:\n" << PROMPT;
             std::string old_name = Handler::getString(std::cin);
             std::cout << "Введите новое имя переименовываемого ресурса:\n" << PROMPT;
+            std::cin.ignore();
             std::string new_name = Handler::getString(std::cin);
             t.rename(old_name, new_name);
             std::cout << "[RESULT]: Переименовывание прошло успешно!\n";
