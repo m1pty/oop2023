@@ -67,20 +67,29 @@ namespace Handler {
         std::string label;
         stream.clear();
         stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::getline(stream, label, '\n');
-        std::cout << "[" << label << "]\n";
-        if (stream.eof())
-            throw std::runtime_error("[ERROR]: Обнаружен конец файла");
+        while (true){
+            std::getline(stream, label, '\n');
+            std::cout << "[" << label << "]\n";
+            if (stream.eof())
+                throw std::runtime_error("[ERROR]: Обнаружен конец файла");
 
-        else if (stream.bad()) // невосстановимая ошибка
-            throw std::runtime_error(std::string("[ERROR]: Невосстановимая шибка типа: ") + strerror(errno));
+            else if (stream.bad()) // невосстановимая ошибка
+                throw std::runtime_error(std::string("[ERROR]: Невосстановимая шибка типа: ") + strerror(errno));
             
-        else if (stream.fail()){ // восстановимая ошибка (откат до стабильного состояния)
-            stream.clear();
-            stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "[WARNING]: Вы сделали что-то неверно, повторите ввод!" << std::endl << PROMPT;
+            else if (stream.fail()){ // восстановимая ошибка (откат до стабильного состояния)
+                stream.clear();
+                stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "[WARNING]: Вы сделали что-то неверно, повторите ввод!" << std::endl << PROMPT;
+            }
+            else if (label.compare("") == 0){
+                stream.clear();
+                stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "[WARNING]: Вы ввели пустую строку, повторите ввод!" << std::endl << PROMPT;
+            }
+            else {
+                return label;
+            }
         }
-        return label;
     }
 
     int countIntLength(int link){

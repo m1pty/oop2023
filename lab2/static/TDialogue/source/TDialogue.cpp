@@ -83,12 +83,10 @@ namespace dialogueT {
     void tableGetResD(TNS::Table &t)      // [04, +] вывести ресурс по его наименованию
     { 
         try {
-            TNS::Table new_table;
-            TNS::Table &link = new_table;
             std::cout << "Введите название ресурса для поиска:\n";
             std::string name = Handler::getString(std::cin);
             std::cout << "[STREAM]: " << name << std::endl;
-            t.searchResult(name, link);
+            TNS::Table new_table = t.searchResult(name);
             new_table.print(std::cout);
         } catch (... ) { throw; }
     }
@@ -126,6 +124,7 @@ namespace dialogueT {
             int index = Handler::getInt(std::cin, 0, t.getCSize());
             RNS::Resource &link = t.getResByIndex(index);
             dialogR::menuD(link);
+            t.prettify();
         } catch (...) { throw; }
     } 
     void tableGetProfitD  (TNS::Table &t) // [09, +] получение прибыльности всех ресурсов таблицы

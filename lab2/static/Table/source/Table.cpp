@@ -78,8 +78,8 @@ namespace TNS {
         while (swap_made){
             swap_made = false;
             for (int j = 0; j < csize - 1; ++j){
-                if (table_vector[j].getName() == "Empty"){
-                    if (table_vector[j + 1].getName() != "Empty"){
+                if (table_vector[j].getName() == ""){
+                    if (table_vector[j + 1].getName() != ""){
                         swap_made = true;
                     }
                     RNS::Resource tmp = table_vector[j];
@@ -102,16 +102,16 @@ namespace TNS {
         table_vector[index] = r;
         garbageCollector();
     }
-    void Table::deleteByName(std::string name)              // [+] удаление по имени
+    void Table::deleteByName(const std::string &name)              // [+] удаление по имени
     {
-        int index = searchByName(name);
-        if (index == -1)
+        std::pair<bool, size_t> search = searchByName(name);
+        if (!search.first)
             return;
             
-        while ((index != csize) && (table_vector[index].getName() == name)){
+        while ((search.second != csize) && (table_vector[search.second].getName().compare(name) == 0)){
             RNS::Resource r;
-            table_vector[index] = r;
-            ++index;
+            table_vector[search.second] = r;
+            ++search.second;
         }
         garbageCollector();
     }
@@ -121,7 +121,7 @@ namespace TNS {
         int spaces_n = Handler::countIntLength(msize - 1);
 
         // считаем кол-во символов в максимальном названии
-        int spaces_str = 5; // "Empty"
+        int spaces_str = 1; // "Empty"
         for (int i = 0; i < csize; ++i){
             int length = (int)table_vector[i].getName().length();
             spaces_str = (length > spaces_str) ? length : spaces_str;
@@ -184,44 +184,65 @@ namespace TNS {
             if (&stream == &std::cin)
                 std::cout << "Введите число элементов для заполнения: (max = " << MAX_SIZE << ")\n" << PROMPT;
             int quantity = Handler::getInt(stream, 0, MAX_SIZE);
+            csize = quantity;
             for (int i = 0; i < quantity; ++i){
                 if (&stream == &std::cin)
                     std::cout << "Введите элемент " << i << ":\n";
                 table_vector[i].input(stream);
             }
+            return stream;
         } catch (...) { throw; }
     }
-    size_t Table::searchByName(std::string name)               // [+] поиск по имени
+    
+    std::pair<bool, size_t> Table::searchByName(const std::string &name)               // [+] поиск по имени
     {
         int left     = 0, right  = csize - 1;
         int comp_res = 0, middle = 0;
-        bool found = false;
+        std::pair<bool, size_t> answer{false, 0};
         while (left <= right){
+            std::cout << "Left: " << left << " Mid: " << middle << " Right: " << right << std::endl;
             middle = (left + right) / 2;
-            comp_res = table_vector[middle].getName().compare(name);
-            if (comp_res == 0){
-                found = true;
+            comp_res = table_vector[middle].getName() == (name);
+            int comp_res2 = name.compare(table_vector[middle].getName());
+
+            std::string raw_1 = table_vector[middle].getName() + " to ";
+            std::string raw_2 = name;
+
+            std::string eqaulity_res = (comp_res != 0) ? "equals" : "not_equals";
+            std::cout << "Comparing: " << "(" << table_vector[middle].getName().size() << ") " << raw_1;
+            std::cout << " (" << raw_2.size() << ") " << raw_2 << " " << eqaulity_res << "(" << comp_res2 << ")" << std::endl;
+            
+            
+            if (comp_res2 == 0){
+                answer.first = true;
                 break;
             }
-            else if (comp_res < 0){
+            else if (comp_res2 < 0){
                 left  = middle + 1;
             }
             else {
                 right = middle - 1;
             }
         }
+
+        std::string result = (answer.first) ? "True" : "False";
+        std::cout << result << " " << answer.second << std::endl;
         // если элемент не был найден
-        if (!found)
-            return -1;
+        if (!answer.first)
+            return answer;
         
         // если найден, откатываем до первого вхождения
         while ((table_vector[middle].getName().compare(name) == 0) && (middle != -1)){
             middle -= 1;
         }
         ++middle;
-        return (size_t)middle;
+        answer.second = middle;
+
+        std::cout << answer.first << answer.second << std::endl;
+        return answer;
     }
-    Fullness Table::checkFullness()                         // [+] проверка заполненности таблицы
+    
+    Fullness Table::checkFullness() const                       // [+] проверка заполненности таблицы
     {
         if (csize == 0)
             return Fullness::empty;
@@ -229,37 +250,38 @@ namespace TNS {
             return Fullness::partly_full;
         return Fullness::full;
     }
-    void Table::add(RNS::Resource &r)                       // (+=) [+] добавление ресурса в таблицу
+
+    void Table::add(const RNS::Resource &r)                       // (+=) [+] добавление ресурса в таблицу
     {
         if (csize == msize){
             std::cout << "[ERROR]: Таблица заполнена, добавление нового ресурса невозможно!\n";
             return;
         }
         // если такого элемента ранее не было
-        int index = searchByName(r.getName()); 
-        if (index == -1){
+        std::pair<bool, size_t> search = searchByName(r.getName()); 
+        if (!search.first){
             table_vector[csize] = r;
             ++csize;
             sort();
         }
         // если такие элемненты уже есть
         else {
-            for (int i = csize; i > index; --i)
+            for (int i = csize; i > search.second; --i)
                 table_vector[i] = table_vector[i - 1];
-            table_vector[index] = r;
+            table_vector[search.second] = r;
             ++csize;
             // уже отсортировано по имени
         }
     }
-    void Table::rename(std::string old_name, std::string new_name) // переименование типа ресурса 
+    void Table::rename(const std::string &old_name, const std::string &new_name) // переименование типа ресурса 
     {
         try {
-            int index = searchByName(old_name);
-            if (index == -1)
+            std::pair<bool, size_t> search = searchByName(old_name);
+            if (!search.first)
                 return;
-            while ((table_vector[index].getName() == old_name) && (index < csize)){
-                table_vector[index].setName(new_name);
-                ++index;
+            while ((table_vector[search.second].getName() == old_name) && (search.second < csize)){
+                table_vector[search.second].setName(new_name);
+                ++search.second;
             }
             sort();
         } catch (...) { throw; }    
@@ -271,7 +293,8 @@ namespace TNS {
                 table_vector[i].RNS::Resource::incTurnover(multipliter);
         } catch (...) { throw; }
     }
-    double Table::getProfit()                               // вычисление прибыльности всех ресурсов таблицы
+
+    double Table::getProfit()                         // вычисление прибыльности всех ресурсов таблицы
     {
         try {
             double summary = 0;
@@ -280,23 +303,34 @@ namespace TNS {
             return summary;
         } catch (...) { throw; }
     }
-    void Table::searchResult(std::string name, Table &link) // вывод таблицы найденного
+
+    Table Table::searchResult(const std::string &name) // вывод таблицы найденного
     {
-        int index = searchByName(name);
-        std::cout << "[INDEX]: " << index << std::endl;
-        if (index != -1){
-            while ((table_vector[index].getName().compare(name) == 0) && (index != msize)){
-                link.add(table_vector[index]);
-                ++index;
+        TNS::Table table;
+        std::pair<bool, size_t> search = searchByName(name);
+        if (search.first){
+            while ((table_vector[search.second].getName().compare(name) == 0) && (search.second != msize)){
+                table.add(table_vector[search.second]);
+                ++search.second;
             }
         }
+        return table;
     }
 
+    void Table::prettify() noexcept
+    {
+        garbageCollector();
+        sort();
+    }
 
     size_t Table::operator [] (std::string name)
     {
-        size_t index = searchByName(name);
-        return index;
+        std::pair<bool, size_t> search = searchByName(name);
+        if (search.first)
+            return search.second;
+        
+        else
+            throw std::runtime_error("[ERROR]: Элемента с таким наименованием нет в таблице!\n");
     }
     Table Table::operator * (double multiplier)
     {

@@ -7,7 +7,7 @@
 
 namespace RNS {
     Resource::Resource(){
-        name = std::string("Empty");
+        name = std::string("");
         price = 0.0;
         daily_consumption = 0.0;
         daily_production = 0.0;

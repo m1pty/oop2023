@@ -17,6 +17,11 @@ namespace TNS {
             @brief Sorting the Table's entities by their names (Bubble Sort)
         */
         void sort();
+        /*!
+            @brief Refreshes the table, deleting all gaps between resources
+            @param start_index Index to start cleaning with
+        */
+        void garbageCollector(int start_index = 0);
 
     public:
         ~Table() = default;
@@ -27,27 +32,23 @@ namespace TNS {
             @brief Returns the msize of a Table
             @returns the msize of a Table
         */
-        int getMSize(){ return msize; }
+        int getMSize() const { return msize; }
+        
         /*!
             @brief Returns the csize of a Table
             @returns the csize of a Table
         */
-        int getCSize(){ return csize; }
+        int getCSize() const { return csize; }
+        
         /*!
             @brief Returns a link to the resource of index <index>
             @returns a link to the resource of index <index>
         */
-        RNS::Resource &getResByIndex(int index) {
+        RNS::Resource &getResByIndex(int index){
             if ((index < 0) || (index > getCSize()))
                 throw std::invalid_argument("[ERROR]: Invalid index");
             return table_vector[index];
         }
-
-        /*!
-            @brief Refreshes the table, deleting all gaps between resources
-            @param start_index Index to start cleaning with
-        */
-        void garbageCollector(int start_index = 0);
 
         /*!
             @brief Prints the current state of the Table
@@ -67,19 +68,19 @@ namespace TNS {
             @brief Returns a state of the table (full / partly full / empty)
             @returns A state of the table (full / partly full / empty)
         */
-        Fullness checkFullness();
+        Fullness checkFullness() const;
 
         /*!
             @brief Adding the resource to the table by it's link
             @param r a link to the adding resource
         */
-        void add(RNS::Resource &r);   // (+=) добавление ресурса в таблицу
+        void add(const RNS::Resource &r);   // (+=) добавление ресурса в таблицу
         
         /*!
             @brief Deletes the resource from the table by it's name
             @param name The name of the deleting resource
         */
-        void deleteByName(std::string name); // удаляет ресурс из таблицы по наименованию
+        void deleteByName(const std::string &name); // удаляет ресурс из таблицы по наименованию
 
         /*!
             @brief Deletes the resource from the table by it's index
@@ -92,21 +93,21 @@ namespace TNS {
             @param name the name of the searched resource 
             @returns the first index of resource appearance or -1
         */
-        int searchByName(std::string name);
+        std::pair<bool, size_t> searchByName(const std::string &name);
 
         /*!
             @brief Returns a link to the new printable table, containing all examples of this result
             @param indices a pointer to array of integers, containing indecies of resource
             @returns a link to the new printable table, containing all examples of this result
         */
-        void searchResult(std::string name, Table &result); // ([]) получение таблицы найденных ресурсов, при помощи двоичного поиска
+        Table searchResult(const std::string &name); // ([]) получение таблицы найденных ресурсов, при помощи двоичного поиска
     
         /*!
             @brief Changing the name of the resource
             @param old_name An old name of the resource
             @param new_name A new name of the resource
         */
-        void rename(std::string old_name, std::string new_name);
+        void rename(const std::string &old_name, const std::string &new_name);
 
         /*!
             @brief Increasing the turnover of all resources in <multiplier> times
@@ -120,6 +121,10 @@ namespace TNS {
         */
         double getProfit();
 
+        /*!
+            @brief Executing garbage collection and sorting
+        */
+       void prettify() noexcept;
 
 
 
@@ -128,7 +133,7 @@ namespace TNS {
             @brief An overloaded operator "*" of increasing turnover for all table in <multiplier> times
             @param multiplier A multiplier of increasing
         */
-        Table operator *  (double multiplier) const;
+        Table operator *  (double multiplier);
         
         /*!
             @brief An overloaded operator "+=" of adding the Resource to the Table
@@ -142,7 +147,7 @@ namespace TNS {
         */
        // Resource& operator[] (const string&)
        // const Resource& operator (const string&) const;
-        int operator[] (std::string name);
+        size_t operator[] (std::string name);
 
         friend std::ostream &operator << (std::ostream &stream, const Table &t);
         friend std::istream &operator >> (std::istream &stream, Table &t);
