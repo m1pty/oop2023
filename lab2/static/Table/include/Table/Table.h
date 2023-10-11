@@ -82,7 +82,7 @@ namespace TNS {
             @brief Returns a state of the table (full / partly full / empty)
             @returns A state of the table (full / partly full / empty)
         */
-        Fullness checkFullness() const;
+        Fullness checkFullness() const noexcept;
 
         /*!
             @brief Adding the resource to the table by it's link

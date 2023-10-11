@@ -83,10 +83,11 @@ namespace dialogueT {
     void tableGetResD(TNS::Table &t)      // [04, +] вывести ресурс по его наименованию
     { 
         try {
-            std::cout << "Введите название ресурса для поиска:\n";
+            std::cout << "Введите название ресурса для поиска:\n" << PROMPT;
             std::string name = Handler::getString(std::cin);
             std::cout << "[STREAM]: " << name << std::endl;
-            TNS::Table new_table = t.searchResult(name);
+            const std::string& link = name;
+            TNS::Table new_table = t.searchResult(link);
             new_table.print(std::cout);
         } catch (... ) { throw; }
     }

@@ -206,6 +206,7 @@ namespace TNS {
                     std::cout << "Введите элемент " << i << ":\n";
                 table_vector[i].input(stream);
             }
+            sort();
             return stream;
         } catch (...) { throw; }
     }
@@ -216,9 +217,9 @@ namespace TNS {
         int comp_res = 0, middle = 0;
         std::pair<bool, size_t> answer{false, 0};
         while (left <= right){
-            std::cout << "Left: " << left << " Mid: " << middle << " Right: " << right << std::endl;
+            // std::cout << "Left: " << left << " Mid: " << middle << " Right: " << right << std::endl;
             middle = (left + right) / 2;
-            comp_res = table_vector[middle].getName() == (name);
+            // comp_res = table_vector[middle].getName() == (name);
             int comp_res2 = name.compare(table_vector[middle].getName());
 
             std::string raw_1 = table_vector[middle].getName() + " to ";
@@ -234,15 +235,17 @@ namespace TNS {
                 break;
             }
             else if (comp_res2 < 0){
-                left  = middle + 1;
+                right = middle - 1;
             }
             else {
-                right = middle - 1;
+                left  = middle + 1;
             }
         }
 
         std::string result = (answer.first) ? "True" : "False";
-        std::cout << result << " " << answer.second << std::endl;
+        if (result == "False")
+            std::cout << result << " " << answer.second << std::endl;
+        
         // если элемент не был найден
         if (!answer.first)
             return answer;
@@ -253,12 +256,11 @@ namespace TNS {
         }
         ++middle;
         answer.second = middle;
-
-        std::cout << answer.first << answer.second << std::endl;
+        std::cout << result << " " << answer.second << std::endl;
         return answer;
     }
     
-    Fullness Table::checkFullness() const                       // [+] проверка заполненности таблицы
+    Fullness Table::checkFullness() const noexcept                     // [+] проверка заполненности таблицы
     {
         if (csize == 0)
             return Fullness::empty;
@@ -282,9 +284,10 @@ namespace TNS {
         }
         // если такие элемненты уже есть
         else {
-            for (int i = csize; i > search.second; --i)
+            int index = search.second;
+            for (int i = csize; i > index; --i)
                 table_vector[i] = table_vector[i - 1];
-            table_vector[search.second] = r;
+            table_vector[index] = r;
             ++csize;
             // уже отсортировано по имени
         }
@@ -295,10 +298,11 @@ namespace TNS {
             std::pair<bool, size_t> search = searchByName(old_name);
             if (!search.first)
                 return;
-            std::cout << "Renaming started from index " << search.second << std::endl;
-            while ((table_vector[search.second].getName() == old_name) && (search.second < csize)){
-                table_vector[search.second].setName(new_name);
-                ++search.second;
+            int index = search.second;
+            std::cout << "Renaming started from index " << index << std::endl;
+            while ((table_vector[index].getName() == old_name) && (index < csize)){
+                table_vector[index].setName(new_name);
+                ++index;
             }
             sort();
         } catch (...) { throw; }    
@@ -327,17 +331,25 @@ namespace TNS {
 
     Table Table::searchResult(const std::string &name) // вывод таблицы найденного
     {
-        TNS::Table table;
+        Table table{};
         std::pair<bool, size_t> search = searchByName(name);
         if (search.first){
             int index = search.second;
-            std::string tmp_name = table_vector[index].getName();;
+            for (int i = index; i < csize; ++i)
+            {
+                if (table_vector[i].getName().compare(name) == 0)
+                {
+                    RNS::Resource res = table_vector[i];
+                    RNS::Resource& link = res;
 
-            while ((tmp_name.compare(name) == 0) && (index != msize)){
-                tmp_name = table_vector[index].getName();
-                table.add(table_vector[index]);
-                ++index;
-
+                    link.print(std::cout);
+                    table.add(link);
+                    std::cout << "STRING: " << table_vector[i].getName() << " ON INDEX " << index << std::endl;
+                    table.print(std::cout);
+                    std::cout << table.getCSize() << " " << table.getMSize() << std::endl;
+                }
+                else 
+                    break;
             }
         }
         return table;
@@ -359,10 +371,6 @@ namespace TNS {
         else
             throw std::runtime_error("[ERROR]: Элемента с таким наименованием нет в таблице!\n");
     }  
-    // const RNS::Resource &Table::operator[] (const std::string& name) const
-    // {
-    //     continue;
-    // }
     Table Table::operator * (double multiplier)
     {
         incTurnover(multiplier);
