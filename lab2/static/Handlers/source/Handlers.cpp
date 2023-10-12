@@ -66,9 +66,8 @@ namespace Handler {
     // функция ввода строки с проверками
     std::string getString(std::istream &stream){
         std::string label;
-        stream.ignore();
-        stream.clear();
-        while (true){
+        while (true)
+        {
             std::getline(stream, label);
             std::cout << "[SYSTEM]: Got input of '" << label << "'\n";
             
@@ -78,18 +77,20 @@ namespace Handler {
             else if (stream.bad()) // невосстановимая ошибка
                 throw std::runtime_error(std::string("[ERROR]: Невосстановимая шибка типа: ") + strerror(errno));
             
-            else if (stream.fail()){ // восстановимая ошибка (откат до стабильного состояния)
+            else if (stream.fail()) // восстановимая ошибка (откат до стабильного состояния)
+            { 
                 stream.clear();
                 stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::cout << "[WARNING]: Вы сделали что-то неверно, повторите ввод!" << std::endl << PROMPT;
             }
-            else if (label.compare("") == 0){
-                stream.clear();
-                stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            
+            else if (label.compare("") == 0)
+            {
                 std::cout << "[WARNING]: Вы ввели пустую строку, повторите ввод!" << std::endl << PROMPT;
             }
-            else {
-                stream.clear();
+            
+            else 
+            {
                 std::cout << "[SYSTEM]: Ввод успешен!\n";
                 return label;
             }
