@@ -250,15 +250,13 @@ namespace TNS {
             return answer;
         
         // если найден, откатываем до первого вхождения
-        while ((table_vector[middle].getName().compare(name) == 0) && (middle != -1)){
-            middle -= 1;
-        }
+        while ((table_vector[middle].getName() == name) && (middle != -1))
+            --middle;
         ++middle;
         answer.second = middle;
         std::cout << result << " " << answer.second << std::endl;
         return answer;
-    }
-    
+    }  
     Fullness Table::checkFullness() const noexcept                     // [+] проверка заполненности таблицы
     {
         if (csize == 0)
@@ -267,7 +265,6 @@ namespace TNS {
             return Fullness::partly_full;
         return Fullness::full;
     }
-
     void Table::add(const RNS::Resource &r) noexcept // (+=) [+] добавление ресурса в таблицу
     {
         if (csize == msize){
@@ -317,7 +314,6 @@ namespace TNS {
             throw std::invalid_argument("invalid <multiplier>! (must be >= 0)");
         }
     }
-
     double Table::getProfit() noexcept                  // вычисление прибыльности всех ресурсов таблицы
     {
         double summary = 0;
@@ -334,14 +330,9 @@ namespace TNS {
             int index = search.second;
             for (int i = index; i < csize; ++i)
             {
-                if (table_vector[i].getName().compare(name) == 0)
-                {
-                    table_vector[i].print(std::cout);
+                if (table_vector[i].getName() == name)
                     table.add(table_vector[i]);
-                    std::cout << "STRING: " << table_vector[i].getName() << " ON INDEX " << index << std::endl;
-                    table.print(std::cout);
-                    std::cout << table.getCSize() << " " << table.getMSize() << std::endl;
-                }
+
                 else 
                     break;
             }
@@ -365,7 +356,6 @@ namespace TNS {
         else
             throw std::runtime_error("[ERROR]: Элемента с таким наименованием нет в таблице!\n");
     }
-
     const RNS::Resource &Table::operator[] (const std::string& name) const
     {
         std::pair<bool, size_t> search = searchByName(name);
@@ -376,7 +366,6 @@ namespace TNS {
         else
             throw std::runtime_error("[ERROR]: Элемента с таким наименованием нет в таблице!\n");
     }
-
     Table Table::operator * (double multiplier)
     {
         incTurnover(multiplier);

@@ -69,7 +69,6 @@ namespace Handler {
     // функция ввода строки с проверками
     std::string getString(std::istream &stream){
         std::string label;
-        // stream.ignore();
         stream.clear();
         while (true)
         {

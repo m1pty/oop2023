@@ -27,6 +27,7 @@ namespace dialogueT {
         "[10]: Вывести состояние полноты таблицы\n",
         "[11]: Увеличить оборот всех ресурсов таблицы\n----------------------------------------------------\n"
     };
+
     // указатели на функции, соответствующие пунктам меню
     void (*table_menu_functions[N_TABLE_OPTIONS]) (TNS::Table &) = {
         nullptr, tableInputD, tablePrintD, tableAddResD, tableGetResD,
@@ -88,6 +89,7 @@ namespace dialogueT {
             std::cout << "[STREAM]: " << name << std::endl;
             const std::string& link = name;
             TNS::Table new_table = t.searchResult(link);
+            std::cout << "[RESULT]:\n";
             new_table.print(std::cout);
         } catch (... ) { throw; }
     }
