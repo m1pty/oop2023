@@ -53,7 +53,10 @@ namespace Handler {
             }
             else {
                 if ((max >= number) && (number >= min))
+                {
+                    stream.ignore();
                     return number;
+                }
                 
                 // число корректно в рамках запрашиваемого типа, но не входит в заданный диапазон
                 stream.clear();
@@ -66,6 +69,8 @@ namespace Handler {
     // функция ввода строки с проверками
     std::string getString(std::istream &stream){
         std::string label;
+        // stream.ignore();
+        stream.clear();
         while (true)
         {
             std::getline(stream, label);
