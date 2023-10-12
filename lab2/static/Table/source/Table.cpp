@@ -211,10 +211,10 @@ namespace TNS {
         } catch (...) { throw; }
     }
     
-    std::pair<bool, size_t> Table::searchByName(const std::string &name)               // [+] поиск по имени
+    std::pair<bool, size_t> Table::searchByName(const std::string &name) const           // [+] поиск по имени
     {
-        int left     = 0, right  = csize - 1;
-        int comp_res = 0, middle = 0;
+        int comp_res = 0;
+        int left = 0,  middle = 0, right  = csize - 1;
         std::pair<bool, size_t> answer{false, 0};
         while (left <= right){
             // std::cout << "Left: " << left << " Mid: " << middle << " Right: " << right << std::endl;
@@ -228,7 +228,6 @@ namespace TNS {
             std::string eqaulity_res = (comp_res != 0) ? "equals" : "not_equals";
             std::cout << "Comparing: " << "(" << table_vector[middle].getName().size() << ") " << raw_1;
             std::cout << " (" << raw_2.size() << ") " << raw_2 << " " << eqaulity_res << "(" << comp_res2 << ")" << std::endl;
-            
             
             if (comp_res2 == 0){
                 answer.first = true;
@@ -269,7 +268,7 @@ namespace TNS {
         return Fullness::full;
     }
 
-    void Table::add(const RNS::Resource &r)                       // (+=) [+] добавление ресурса в таблицу
+    void Table::add(const RNS::Resource &r) noexcept // (+=) [+] добавление ресурса в таблицу
     {
         if (csize == msize){
             std::cout << "[ERROR]: Таблица заполнена, добавление нового ресурса невозможно!\n";
@@ -292,20 +291,18 @@ namespace TNS {
             // уже отсортировано по имени
         }
     }
-    void Table::rename(const std::string &old_name, const std::string &new_name) // переименование типа ресурса 
+    void Table::rename(const std::string &old_name, const std::string &new_name) noexcept // переименование типа ресурса 
     {
-        try {
-            std::pair<bool, size_t> search = searchByName(old_name);
-            if (!search.first)
-                return;
-            int index = search.second;
-            std::cout << "Renaming started from index " << index << std::endl;
-            while ((table_vector[index].getName() == old_name) && (index < csize)){
-                table_vector[index].setName(new_name);
-                ++index;
-            }
-            sort();
-        } catch (...) { throw; }    
+        std::pair<bool, size_t> search = searchByName(old_name);
+        if (!search.first)
+            return;
+        int index = search.second;
+        std::cout << "[SYSTEM]: Renaming started from index " << index << std::endl;
+        while ((table_vector[index].getName() == old_name) && (index < csize)){
+            table_vector[index].setName(new_name);
+            ++index;
+        }
+        sort();   
     }
     void Table::incTurnover(double multipliter)             // увеличение оборота всех ресурсов
     {
@@ -339,11 +336,8 @@ namespace TNS {
             {
                 if (table_vector[i].getName().compare(name) == 0)
                 {
-                    RNS::Resource res = table_vector[i];
-                    RNS::Resource& link = res;
-
-                    link.print(std::cout);
-                    table.add(link);
+                    table_vector[i].print(std::cout);
+                    table.add(table_vector[i]);
                     std::cout << "STRING: " << table_vector[i].getName() << " ON INDEX " << index << std::endl;
                     table.print(std::cout);
                     std::cout << table.getCSize() << " " << table.getMSize() << std::endl;
@@ -370,7 +364,19 @@ namespace TNS {
         }
         else
             throw std::runtime_error("[ERROR]: Элемента с таким наименованием нет в таблице!\n");
-    }  
+    }
+
+    const RNS::Resource &Table::operator[] (const std::string& name) const
+    {
+        std::pair<bool, size_t> search = searchByName(name);
+        if (search.first){
+            const RNS::Resource& link = table_vector[search.second];
+            return link;
+        }
+        else
+            throw std::runtime_error("[ERROR]: Элемента с таким наименованием нет в таблице!\n");
+    }
+
     Table Table::operator * (double multiplier)
     {
         incTurnover(multiplier);

@@ -41,7 +41,6 @@ namespace TNS {
         */
         Table();
         
-        
         /*!
             @brief Returns the msize of a Table
             @returns the msize of a Table
@@ -57,8 +56,10 @@ namespace TNS {
         /*!
             @brief Returns a link to the resource of index <index>
             @returns a link to the resource of index <index>
+            @throws std::invalid_argument in case of wrong index
         */
-        RNS::Resource &getResByIndex(int index){
+        RNS::Resource &getResByIndex(int index)
+        {
             if ((index < 0) || (index > getCSize()))
                 throw std::invalid_argument("[ERROR]: Invalid index");
             return table_vector[index];
@@ -88,7 +89,7 @@ namespace TNS {
             @brief Adding the resource to the table by it's link
             @param r a link to the adding resource
         */
-        void add(const RNS::Resource &r);   // (+=) добавление ресурса в таблицу
+        void add(const RNS::Resource &r) noexcept;   // (+=) добавление ресурса в таблицу
         
         /*!
             @brief Deletes the resource from the table by it's name
@@ -108,7 +109,7 @@ namespace TNS {
             @param name the name of the searched resource 
             @returns the first index of resource appearance or -1
         */
-        std::pair<bool, size_t> searchByName(const std::string &name);
+        std::pair<bool, size_t> searchByName(const std::string &name) const;
 
         /*!
             @brief Returns a link to the new printable table, containing all examples of this result
@@ -122,7 +123,7 @@ namespace TNS {
             @param old_name An old name of the resource
             @param new_name A new name of the resource
         */
-        void rename(const std::string &old_name, const std::string &new_name);
+        void rename(const std::string &old_name, const std::string &new_name) noexcept ;
 
         /*!
             @brief Increasing the turnover of all resources in <multiplier> times
@@ -146,7 +147,7 @@ namespace TNS {
             @brief An overloaded operator "*" of increasing turnover for all table in <multiplier> times
             @param multiplier A multiplier of increasing
         */
-        Table operator *  (double multiplier);
+        Table operator * (double multiplier);
         
         /*!
             @brief An overloaded operator "+=" of adding the Resource to the Table
