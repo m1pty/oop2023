@@ -73,15 +73,15 @@ static/Resource/CMakeFiles/Resource.dir/source/Resource.cpp.o: static/Resource/C
 static/Resource/CMakeFiles/Resource.dir/source/Resource.cpp.o: ../static/Resource/source/Resource.cpp
 static/Resource/CMakeFiles/Resource.dir/source/Resource.cpp.o: static/Resource/CMakeFiles/Resource.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object static/Resource/CMakeFiles/Resource.dir/source/Resource.cpp.o"
-	cd /home/m1pty/university/oop2023/lab2/build/static/Resource && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT static/Resource/CMakeFiles/Resource.dir/source/Resource.cpp.o -MF CMakeFiles/Resource.dir/source/Resource.cpp.o.d -o CMakeFiles/Resource.dir/source/Resource.cpp.o -c /home/m1pty/university/oop2023/lab2/static/Resource/source/Resource.cpp
+	cd /home/m1pty/university/oop2023/lab2/build/static/Resource && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT static/Resource/CMakeFiles/Resource.dir/source/Resource.cpp.o -MF CMakeFiles/Resource.dir/source/Resource.cpp.o.d -o CMakeFiles/Resource.dir/source/Resource.cpp.o -c /home/m1pty/university/oop2023/lab2/static/Resource/source/Resource.cpp
 
 static/Resource/CMakeFiles/Resource.dir/source/Resource.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Resource.dir/source/Resource.cpp.i"
-	cd /home/m1pty/university/oop2023/lab2/build/static/Resource && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/static/Resource/source/Resource.cpp > CMakeFiles/Resource.dir/source/Resource.cpp.i
+	cd /home/m1pty/university/oop2023/lab2/build/static/Resource && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/static/Resource/source/Resource.cpp > CMakeFiles/Resource.dir/source/Resource.cpp.i
 
 static/Resource/CMakeFiles/Resource.dir/source/Resource.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Resource.dir/source/Resource.cpp.s"
-	cd /home/m1pty/university/oop2023/lab2/build/static/Resource && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/static/Resource/source/Resource.cpp -o CMakeFiles/Resource.dir/source/Resource.cpp.s
+	cd /home/m1pty/university/oop2023/lab2/build/static/Resource && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/static/Resource/source/Resource.cpp -o CMakeFiles/Resource.dir/source/Resource.cpp.s
 
 # Object files for target Resource
 Resource_OBJECTS = \

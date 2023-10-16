@@ -4,4 +4,5 @@ set(CMAKE_CXX_STANDARD 17) # установка стандарта языка - 
 
 # установка флагов компилятора: CMAKE_CXX_FLAGS += -Wall -Wextra
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g -Wextra")
-add_subdirectory( static )
+add_subdirectory(  static )
+add_subdirectory( dynamic )

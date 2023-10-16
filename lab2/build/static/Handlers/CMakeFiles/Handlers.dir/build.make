@@ -73,15 +73,15 @@ static/Handlers/CMakeFiles/Handlers.dir/source/Handlers.cpp.o: static/Handlers/C
 static/Handlers/CMakeFiles/Handlers.dir/source/Handlers.cpp.o: ../static/Handlers/source/Handlers.cpp
 static/Handlers/CMakeFiles/Handlers.dir/source/Handlers.cpp.o: static/Handlers/CMakeFiles/Handlers.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object static/Handlers/CMakeFiles/Handlers.dir/source/Handlers.cpp.o"
-	cd /home/m1pty/university/oop2023/lab2/build/static/Handlers && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT static/Handlers/CMakeFiles/Handlers.dir/source/Handlers.cpp.o -MF CMakeFiles/Handlers.dir/source/Handlers.cpp.o.d -o CMakeFiles/Handlers.dir/source/Handlers.cpp.o -c /home/m1pty/university/oop2023/lab2/static/Handlers/source/Handlers.cpp
+	cd /home/m1pty/university/oop2023/lab2/build/static/Handlers && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT static/Handlers/CMakeFiles/Handlers.dir/source/Handlers.cpp.o -MF CMakeFiles/Handlers.dir/source/Handlers.cpp.o.d -o CMakeFiles/Handlers.dir/source/Handlers.cpp.o -c /home/m1pty/university/oop2023/lab2/static/Handlers/source/Handlers.cpp
 
 static/Handlers/CMakeFiles/Handlers.dir/source/Handlers.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Handlers.dir/source/Handlers.cpp.i"
-	cd /home/m1pty/university/oop2023/lab2/build/static/Handlers && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/static/Handlers/source/Handlers.cpp > CMakeFiles/Handlers.dir/source/Handlers.cpp.i
+	cd /home/m1pty/university/oop2023/lab2/build/static/Handlers && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/static/Handlers/source/Handlers.cpp > CMakeFiles/Handlers.dir/source/Handlers.cpp.i
 
 static/Handlers/CMakeFiles/Handlers.dir/source/Handlers.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Handlers.dir/source/Handlers.cpp.s"
-	cd /home/m1pty/university/oop2023/lab2/build/static/Handlers && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/static/Handlers/source/Handlers.cpp -o CMakeFiles/Handlers.dir/source/Handlers.cpp.s
+	cd /home/m1pty/university/oop2023/lab2/build/static/Handlers && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/static/Handlers/source/Handlers.cpp -o CMakeFiles/Handlers.dir/source/Handlers.cpp.s
 
 # Object files for target Handlers
 Handlers_OBJECTS = \

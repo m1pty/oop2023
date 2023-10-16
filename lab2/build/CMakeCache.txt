@@ -169,15 +169,14 @@ CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
-//Choose the type of build, options are: None Debug Release RelWithDebInfo
-// MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
+//No help, variable specified on the command line.
+CMAKE_BUILD_TYPE:STRING=Debug
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
-//CXX compiler
-CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
+//No help, variable specified on the command line.
+CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -202,8 +201,8 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
-//C compiler
-CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
+//No help, variable specified on the command line.
+CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -246,8 +245,8 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
 //Flags used by the linker during RELWITHDEBINFO builds.
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
-//Enable/Disable output of compile commands during generation.
-CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
+//No help, variable specified on the command line.
+CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE
 
 //User executables (bin)
 CMAKE_INSTALL_BINDIR:PATH=bin
@@ -457,6 +456,15 @@ FETCHCONTENT_UPDATES_DISCONNECTED_CATCH2:BOOL=OFF
 GIT_EXECUTABLE:FILEPATH=/usr/bin/git
 
 //Value Computed by CMake
+HandlersDynamic_BINARY_DIR:STATIC=/home/m1pty/university/oop2023/lab2/build/dynamic/HandlersDynamic
+
+//Value Computed by CMake
+HandlersDynamic_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+HandlersDynamic_SOURCE_DIR:STATIC=/home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic
+
+//Value Computed by CMake
 Handlers_BINARY_DIR:STATIC=/home/m1pty/university/oop2023/lab2/build/static/Handlers
 
 //Value Computed by CMake
@@ -475,6 +483,15 @@ OOPLab2_IS_TOP_LEVEL:STATIC=ON
 OOPLab2_SOURCE_DIR:STATIC=/home/m1pty/university/oop2023/lab2
 
 //Value Computed by CMake
+RDialogueDynamic_BINARY_DIR:STATIC=/home/m1pty/university/oop2023/lab2/build/dynamic/RDialogueDynamic
+
+//Value Computed by CMake
+RDialogueDynamic_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+RDialogueDynamic_SOURCE_DIR:STATIC=/home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic
+
+//Value Computed by CMake
 RDialogue_BINARY_DIR:STATIC=/home/m1pty/university/oop2023/lab2/build/static/RDialogue
 
 //Value Computed by CMake
@@ -482,6 +499,15 @@ RDialogue_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 RDialogue_SOURCE_DIR:STATIC=/home/m1pty/university/oop2023/lab2/static/RDialogue
+
+//Value Computed by CMake
+ResourceDynamic_BINARY_DIR:STATIC=/home/m1pty/university/oop2023/lab2/build/dynamic/ResourceDynamic
+
+//Value Computed by CMake
+ResourceDynamic_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+ResourceDynamic_SOURCE_DIR:STATIC=/home/m1pty/university/oop2023/lab2/dynamic/ResourceDynamic
 
 //Value Computed by CMake
 Resource_BINARY_DIR:STATIC=/home/m1pty/university/oop2023/lab2/build/static/Resource
@@ -493,6 +519,15 @@ Resource_IS_TOP_LEVEL:STATIC=OFF
 Resource_SOURCE_DIR:STATIC=/home/m1pty/university/oop2023/lab2/static/Resource
 
 //Value Computed by CMake
+TDialogueDynamic_BINARY_DIR:STATIC=/home/m1pty/university/oop2023/lab2/build/dynamic/TDialogueDynamic
+
+//Value Computed by CMake
+TDialogueDynamic_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+TDialogueDynamic_SOURCE_DIR:STATIC=/home/m1pty/university/oop2023/lab2/dynamic/TDialogueDynamic
+
+//Value Computed by CMake
 TDialogue_BINARY_DIR:STATIC=/home/m1pty/university/oop2023/lab2/build/static/TDialogue
 
 //Value Computed by CMake
@@ -502,6 +537,15 @@ TDialogue_IS_TOP_LEVEL:STATIC=OFF
 TDialogue_SOURCE_DIR:STATIC=/home/m1pty/university/oop2023/lab2/static/TDialogue
 
 //Value Computed by CMake
+TableDynamic_BINARY_DIR:STATIC=/home/m1pty/university/oop2023/lab2/build/dynamic/TableDynamic
+
+//Value Computed by CMake
+TableDynamic_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+TableDynamic_SOURCE_DIR:STATIC=/home/m1pty/university/oop2023/lab2/dynamic/TableDynamic
+
+//Value Computed by CMake
 Table_BINARY_DIR:STATIC=/home/m1pty/university/oop2023/lab2/build/static/Table
 
 //Value Computed by CMake
@@ -509,6 +553,15 @@ Table_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 Table_SOURCE_DIR:STATIC=/home/m1pty/university/oop2023/lab2/static/Table
+
+//Value Computed by CMake
+dynamic_BINARY_DIR:STATIC=/home/m1pty/university/oop2023/lab2/build/dynamic
+
+//Value Computed by CMake
+dynamic_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+dynamic_SOURCE_DIR:STATIC=/home/m1pty/university/oop2023/lab2/dynamic
 
 //Value Computed by CMake
 static_BINARY_DIR:STATIC=/home/m1pty/university/oop2023/lab2/build/static
@@ -656,7 +709,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=9
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=15
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

@@ -25,8 +25,11 @@ namespace Handler {
             }
             else {
                 if ((max >= number) && (number >= min))
+                {
+                    stream.ignore();
                     return number;
-                
+                }
+
                 // число корректно в рамках запрашиваемого типа, но не входит в заданный диапазон
                 stream.clear();
                 stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

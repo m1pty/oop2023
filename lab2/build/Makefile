@@ -246,6 +246,110 @@ Catch2WithMain/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build
 .PHONY : Catch2WithMain/fast
 
+#=============================================================================
+# Target rules for targets named main_rd
+
+# Build rule for target.
+main_rd: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main_rd
+.PHONY : main_rd
+
+# fast build rule for target.
+main_rd/fast:
+	$(MAKE) $(MAKESILENT) -f dynamic/CMakeFiles/main_rd.dir/build.make dynamic/CMakeFiles/main_rd.dir/build
+.PHONY : main_rd/fast
+
+#=============================================================================
+# Target rules for targets named main_td
+
+# Build rule for target.
+main_td: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main_td
+.PHONY : main_td
+
+# fast build rule for target.
+main_td/fast:
+	$(MAKE) $(MAKESILENT) -f dynamic/CMakeFiles/main_td.dir/build.make dynamic/CMakeFiles/main_td.dir/build
+.PHONY : main_td/fast
+
+#=============================================================================
+# Target rules for targets named TestsDynamic
+
+# Build rule for target.
+TestsDynamic: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TestsDynamic
+.PHONY : TestsDynamic
+
+# fast build rule for target.
+TestsDynamic/fast:
+	$(MAKE) $(MAKESILENT) -f dynamic/CMakeFiles/TestsDynamic.dir/build.make dynamic/CMakeFiles/TestsDynamic.dir/build
+.PHONY : TestsDynamic/fast
+
+#=============================================================================
+# Target rules for targets named ResourceDynamic
+
+# Build rule for target.
+ResourceDynamic: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ResourceDynamic
+.PHONY : ResourceDynamic
+
+# fast build rule for target.
+ResourceDynamic/fast:
+	$(MAKE) $(MAKESILENT) -f dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/build.make dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/build
+.PHONY : ResourceDynamic/fast
+
+#=============================================================================
+# Target rules for targets named HandlersDynamic
+
+# Build rule for target.
+HandlersDynamic: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 HandlersDynamic
+.PHONY : HandlersDynamic
+
+# fast build rule for target.
+HandlersDynamic/fast:
+	$(MAKE) $(MAKESILENT) -f dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/build.make dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/build
+.PHONY : HandlersDynamic/fast
+
+#=============================================================================
+# Target rules for targets named TableDynamic
+
+# Build rule for target.
+TableDynamic: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TableDynamic
+.PHONY : TableDynamic
+
+# fast build rule for target.
+TableDynamic/fast:
+	$(MAKE) $(MAKESILENT) -f dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/build.make dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/build
+.PHONY : TableDynamic/fast
+
+#=============================================================================
+# Target rules for targets named RDialogueDynamic
+
+# Build rule for target.
+RDialogueDynamic: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 RDialogueDynamic
+.PHONY : RDialogueDynamic
+
+# fast build rule for target.
+RDialogueDynamic/fast:
+	$(MAKE) $(MAKESILENT) -f dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/build.make dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/build
+.PHONY : RDialogueDynamic/fast
+
+#=============================================================================
+# Target rules for targets named TDialogueDynamic
+
+# Build rule for target.
+TDialogueDynamic: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TDialogueDynamic
+.PHONY : TDialogueDynamic
+
+# fast build rule for target.
+TDialogueDynamic/fast:
+	$(MAKE) $(MAKESILENT) -f dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/build.make dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/build
+.PHONY : TDialogueDynamic/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -257,13 +361,21 @@ help:
 	@echo "... Catch2"
 	@echo "... Catch2WithMain"
 	@echo "... Handlers"
+	@echo "... HandlersDynamic"
 	@echo "... RDialogue"
+	@echo "... RDialogueDynamic"
 	@echo "... Resource"
+	@echo "... ResourceDynamic"
 	@echo "... TDialogue"
+	@echo "... TDialogueDynamic"
 	@echo "... Table"
+	@echo "... TableDynamic"
 	@echo "... Tests"
+	@echo "... TestsDynamic"
 	@echo "... main_r"
+	@echo "... main_rd"
 	@echo "... main_t"
+	@echo "... main_td"
 .PHONY : help
 
 

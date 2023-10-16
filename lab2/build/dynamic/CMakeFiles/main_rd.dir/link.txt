@@ -1,0 +1,1 @@
+/usr/bin/g++  -Wall -g -Wextra -Wall -g -Wextra -g CMakeFiles/main_rd.dir/main_r.cpp.o -o main_rd  ResourceDynamic/libResourceDynamic.a HandlersDynamic/libHandlersDynamic.a RDialogueDynamic/libRDialogueDynamic.a ResourceDynamic/libResourceDynamic.a HandlersDynamic/libHandlersDynamic.a 

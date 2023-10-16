@@ -64,14 +64,17 @@ CMAKE_BINARY_DIR = /home/m1pty/university/oop2023/lab2/build
 
 # The main recursive "all" target.
 all: static/all
+all: dynamic/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: static/preinstall
+preinstall: dynamic/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: static/clean
+clean: dynamic/clean
 .PHONY : clean
 
 #=============================================================================
@@ -105,6 +108,114 @@ _deps/catch2-build/src/preinstall:
 _deps/catch2-build/src/clean: _deps/catch2-build/src/CMakeFiles/Catch2.dir/clean
 _deps/catch2-build/src/clean: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/clean
 .PHONY : _deps/catch2-build/src/clean
+
+#=============================================================================
+# Directory level rules for directory dynamic
+
+# Recursive "all" directory target.
+dynamic/all: dynamic/CMakeFiles/main_rd.dir/all
+dynamic/all: dynamic/CMakeFiles/main_td.dir/all
+dynamic/all: dynamic/CMakeFiles/TestsDynamic.dir/all
+dynamic/all: dynamic/ResourceDynamic/all
+dynamic/all: dynamic/HandlersDynamic/all
+dynamic/all: dynamic/TableDynamic/all
+dynamic/all: dynamic/RDialogueDynamic/all
+dynamic/all: dynamic/TDialogueDynamic/all
+.PHONY : dynamic/all
+
+# Recursive "preinstall" directory target.
+dynamic/preinstall: dynamic/ResourceDynamic/preinstall
+dynamic/preinstall: dynamic/HandlersDynamic/preinstall
+dynamic/preinstall: dynamic/TableDynamic/preinstall
+dynamic/preinstall: dynamic/RDialogueDynamic/preinstall
+dynamic/preinstall: dynamic/TDialogueDynamic/preinstall
+.PHONY : dynamic/preinstall
+
+# Recursive "clean" directory target.
+dynamic/clean: dynamic/CMakeFiles/main_rd.dir/clean
+dynamic/clean: dynamic/CMakeFiles/main_td.dir/clean
+dynamic/clean: dynamic/CMakeFiles/TestsDynamic.dir/clean
+dynamic/clean: dynamic/ResourceDynamic/clean
+dynamic/clean: dynamic/HandlersDynamic/clean
+dynamic/clean: dynamic/TableDynamic/clean
+dynamic/clean: dynamic/RDialogueDynamic/clean
+dynamic/clean: dynamic/TDialogueDynamic/clean
+.PHONY : dynamic/clean
+
+#=============================================================================
+# Directory level rules for directory dynamic/HandlersDynamic
+
+# Recursive "all" directory target.
+dynamic/HandlersDynamic/all: dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/all
+.PHONY : dynamic/HandlersDynamic/all
+
+# Recursive "preinstall" directory target.
+dynamic/HandlersDynamic/preinstall:
+.PHONY : dynamic/HandlersDynamic/preinstall
+
+# Recursive "clean" directory target.
+dynamic/HandlersDynamic/clean: dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/clean
+.PHONY : dynamic/HandlersDynamic/clean
+
+#=============================================================================
+# Directory level rules for directory dynamic/RDialogueDynamic
+
+# Recursive "all" directory target.
+dynamic/RDialogueDynamic/all: dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/all
+.PHONY : dynamic/RDialogueDynamic/all
+
+# Recursive "preinstall" directory target.
+dynamic/RDialogueDynamic/preinstall:
+.PHONY : dynamic/RDialogueDynamic/preinstall
+
+# Recursive "clean" directory target.
+dynamic/RDialogueDynamic/clean: dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/clean
+.PHONY : dynamic/RDialogueDynamic/clean
+
+#=============================================================================
+# Directory level rules for directory dynamic/ResourceDynamic
+
+# Recursive "all" directory target.
+dynamic/ResourceDynamic/all: dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/all
+.PHONY : dynamic/ResourceDynamic/all
+
+# Recursive "preinstall" directory target.
+dynamic/ResourceDynamic/preinstall:
+.PHONY : dynamic/ResourceDynamic/preinstall
+
+# Recursive "clean" directory target.
+dynamic/ResourceDynamic/clean: dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/clean
+.PHONY : dynamic/ResourceDynamic/clean
+
+#=============================================================================
+# Directory level rules for directory dynamic/TDialogueDynamic
+
+# Recursive "all" directory target.
+dynamic/TDialogueDynamic/all: dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/all
+.PHONY : dynamic/TDialogueDynamic/all
+
+# Recursive "preinstall" directory target.
+dynamic/TDialogueDynamic/preinstall:
+.PHONY : dynamic/TDialogueDynamic/preinstall
+
+# Recursive "clean" directory target.
+dynamic/TDialogueDynamic/clean: dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/clean
+.PHONY : dynamic/TDialogueDynamic/clean
+
+#=============================================================================
+# Directory level rules for directory dynamic/TableDynamic
+
+# Recursive "all" directory target.
+dynamic/TableDynamic/all: dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/all
+.PHONY : dynamic/TableDynamic/all
+
+# Recursive "preinstall" directory target.
+dynamic/TableDynamic/preinstall:
+.PHONY : dynamic/TableDynamic/preinstall
+
+# Recursive "clean" directory target.
+dynamic/TableDynamic/clean: dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/clean
+.PHONY : dynamic/TableDynamic/clean
 
 #=============================================================================
 # Directory level rules for directory static
@@ -226,12 +337,12 @@ static/CMakeFiles/main_r.dir/all: static/Handlers/CMakeFiles/Handlers.dir/all
 static/CMakeFiles/main_r.dir/all: static/RDialogue/CMakeFiles/RDialogue.dir/all
 	$(MAKE) $(MAKESILENT) -f static/CMakeFiles/main_r.dir/build.make static/CMakeFiles/main_r.dir/depend
 	$(MAKE) $(MAKESILENT) -f static/CMakeFiles/main_r.dir/build.make static/CMakeFiles/main_r.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=92,93 "Built target main_r"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=93,94 "Built target main_r"
 .PHONY : static/CMakeFiles/main_r.dir/all
 
 # Build rule for subdir invocation for target.
 static/CMakeFiles/main_r.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 static/CMakeFiles/main_r.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
 .PHONY : static/CMakeFiles/main_r.dir/rule
@@ -256,12 +367,12 @@ static/CMakeFiles/main_t.dir/all: static/RDialogue/CMakeFiles/RDialogue.dir/all
 static/CMakeFiles/main_t.dir/all: static/TDialogue/CMakeFiles/TDialogue.dir/all
 	$(MAKE) $(MAKESILENT) -f static/CMakeFiles/main_t.dir/build.make static/CMakeFiles/main_t.dir/depend
 	$(MAKE) $(MAKESILENT) -f static/CMakeFiles/main_t.dir/build.make static/CMakeFiles/main_t.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=94,95 "Built target main_t"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=97,98 "Built target main_t"
 .PHONY : static/CMakeFiles/main_t.dir/all
 
 # Build rule for subdir invocation for target.
 static/CMakeFiles/main_t.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 static/CMakeFiles/main_t.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
 .PHONY : static/CMakeFiles/main_t.dir/rule
@@ -288,12 +399,12 @@ static/CMakeFiles/Tests.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/al
 static/CMakeFiles/Tests.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
 	$(MAKE) $(MAKESILENT) -f static/CMakeFiles/Tests.dir/build.make static/CMakeFiles/Tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f static/CMakeFiles/Tests.dir/build.make static/CMakeFiles/Tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=90,91 "Built target Tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=90 "Built target Tests"
 .PHONY : static/CMakeFiles/Tests.dir/all
 
 # Build rule for subdir invocation for target.
 static/CMakeFiles/Tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 91
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 81
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 static/CMakeFiles/Tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
 .PHONY : static/CMakeFiles/Tests.dir/rule
@@ -314,12 +425,12 @@ static/CMakeFiles/Tests.dir/clean:
 static/Resource/CMakeFiles/Resource.dir/all: static/Handlers/CMakeFiles/Handlers.dir/all
 	$(MAKE) $(MAKESILENT) -f static/Resource/CMakeFiles/Resource.dir/build.make static/Resource/CMakeFiles/Resource.dir/depend
 	$(MAKE) $(MAKESILENT) -f static/Resource/CMakeFiles/Resource.dir/build.make static/Resource/CMakeFiles/Resource.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=84,85 "Built target Resource"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=79,80 "Built target Resource"
 .PHONY : static/Resource/CMakeFiles/Resource.dir/all
 
 # Build rule for subdir invocation for target.
 static/Resource/CMakeFiles/Resource.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 static/Resource/CMakeFiles/Resource.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
 .PHONY : static/Resource/CMakeFiles/Resource.dir/rule
@@ -340,12 +451,12 @@ static/Resource/CMakeFiles/Resource.dir/clean:
 static/Handlers/CMakeFiles/Handlers.dir/all:
 	$(MAKE) $(MAKESILENT) -f static/Handlers/CMakeFiles/Handlers.dir/build.make static/Handlers/CMakeFiles/Handlers.dir/depend
 	$(MAKE) $(MAKESILENT) -f static/Handlers/CMakeFiles/Handlers.dir/build.make static/Handlers/CMakeFiles/Handlers.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=80,81 "Built target Handlers"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=72 "Built target Handlers"
 .PHONY : static/Handlers/CMakeFiles/Handlers.dir/all
 
 # Build rule for subdir invocation for target.
 static/Handlers/CMakeFiles/Handlers.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 static/Handlers/CMakeFiles/Handlers.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
 .PHONY : static/Handlers/CMakeFiles/Handlers.dir/rule
@@ -368,12 +479,12 @@ static/Table/CMakeFiles/Table.dir/all: static/Handlers/CMakeFiles/Handlers.dir/a
 static/Table/CMakeFiles/Table.dir/all: static/RDialogue/CMakeFiles/RDialogue.dir/all
 	$(MAKE) $(MAKESILENT) -f static/Table/CMakeFiles/Table.dir/build.make static/Table/CMakeFiles/Table.dir/depend
 	$(MAKE) $(MAKESILENT) -f static/Table/CMakeFiles/Table.dir/build.make static/Table/CMakeFiles/Table.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=88,89 "Built target Table"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=86,87 "Built target Table"
 .PHONY : static/Table/CMakeFiles/Table.dir/all
 
 # Build rule for subdir invocation for target.
 static/Table/CMakeFiles/Table.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 static/Table/CMakeFiles/Table.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
 .PHONY : static/Table/CMakeFiles/Table.dir/rule
@@ -395,12 +506,12 @@ static/RDialogue/CMakeFiles/RDialogue.dir/all: static/Resource/CMakeFiles/Resour
 static/RDialogue/CMakeFiles/RDialogue.dir/all: static/Handlers/CMakeFiles/Handlers.dir/all
 	$(MAKE) $(MAKESILENT) -f static/RDialogue/CMakeFiles/RDialogue.dir/build.make static/RDialogue/CMakeFiles/RDialogue.dir/depend
 	$(MAKE) $(MAKESILENT) -f static/RDialogue/CMakeFiles/RDialogue.dir/build.make static/RDialogue/CMakeFiles/RDialogue.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=82,83 "Built target RDialogue"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=75,76 "Built target RDialogue"
 .PHONY : static/RDialogue/CMakeFiles/RDialogue.dir/all
 
 # Build rule for subdir invocation for target.
 static/RDialogue/CMakeFiles/RDialogue.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 static/RDialogue/CMakeFiles/RDialogue.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
 .PHONY : static/RDialogue/CMakeFiles/RDialogue.dir/rule
@@ -424,12 +535,12 @@ static/TDialogue/CMakeFiles/TDialogue.dir/all: static/Table/CMakeFiles/Table.dir
 static/TDialogue/CMakeFiles/TDialogue.dir/all: static/RDialogue/CMakeFiles/RDialogue.dir/all
 	$(MAKE) $(MAKESILENT) -f static/TDialogue/CMakeFiles/TDialogue.dir/build.make static/TDialogue/CMakeFiles/TDialogue.dir/depend
 	$(MAKE) $(MAKESILENT) -f static/TDialogue/CMakeFiles/TDialogue.dir/build.make static/TDialogue/CMakeFiles/TDialogue.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=86,87 "Built target TDialogue"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=82,83 "Built target TDialogue"
 .PHONY : static/TDialogue/CMakeFiles/TDialogue.dir/all
 
 # Build rule for subdir invocation for target.
 static/TDialogue/CMakeFiles/TDialogue.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 static/TDialogue/CMakeFiles/TDialogue.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
 .PHONY : static/TDialogue/CMakeFiles/TDialogue.dir/rule
@@ -450,12 +561,12 @@ static/TDialogue/CMakeFiles/TDialogue.dir/clean:
 _deps/catch2-build/src/CMakeFiles/Catch2.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77 "Built target Catch2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69 "Built target Catch2"
 .PHONY : _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/catch2-build/src/CMakeFiles/Catch2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 77
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 69
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
 .PHONY : _deps/catch2-build/src/CMakeFiles/Catch2.dir/rule
@@ -476,12 +587,12 @@ _deps/catch2-build/src/CMakeFiles/Catch2.dir/clean:
 _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=78,79 "Built target Catch2WithMain"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=70,71 "Built target Catch2WithMain"
 .PHONY : _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 79
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 71
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
 .PHONY : _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/rule
@@ -494,6 +605,232 @@ Catch2WithMain: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/rule
 _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/clean:
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/clean
 .PHONY : _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/clean
+
+#=============================================================================
+# Target rules for target dynamic/CMakeFiles/main_rd.dir
+
+# All Build rule for target.
+dynamic/CMakeFiles/main_rd.dir/all: dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/all
+dynamic/CMakeFiles/main_rd.dir/all: dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/all
+dynamic/CMakeFiles/main_rd.dir/all: dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/all
+	$(MAKE) $(MAKESILENT) -f dynamic/CMakeFiles/main_rd.dir/build.make dynamic/CMakeFiles/main_rd.dir/depend
+	$(MAKE) $(MAKESILENT) -f dynamic/CMakeFiles/main_rd.dir/build.make dynamic/CMakeFiles/main_rd.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=95,96 "Built target main_rd"
+.PHONY : dynamic/CMakeFiles/main_rd.dir/all
+
+# Build rule for subdir invocation for target.
+dynamic/CMakeFiles/main_rd.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 7
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dynamic/CMakeFiles/main_rd.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
+.PHONY : dynamic/CMakeFiles/main_rd.dir/rule
+
+# Convenience name for target.
+main_rd: dynamic/CMakeFiles/main_rd.dir/rule
+.PHONY : main_rd
+
+# clean rule for target.
+dynamic/CMakeFiles/main_rd.dir/clean:
+	$(MAKE) $(MAKESILENT) -f dynamic/CMakeFiles/main_rd.dir/build.make dynamic/CMakeFiles/main_rd.dir/clean
+.PHONY : dynamic/CMakeFiles/main_rd.dir/clean
+
+#=============================================================================
+# Target rules for target dynamic/CMakeFiles/main_td.dir
+
+# All Build rule for target.
+dynamic/CMakeFiles/main_td.dir/all: dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/all
+dynamic/CMakeFiles/main_td.dir/all: dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/all
+dynamic/CMakeFiles/main_td.dir/all: dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/all
+dynamic/CMakeFiles/main_td.dir/all: dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/all
+dynamic/CMakeFiles/main_td.dir/all: dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/all
+	$(MAKE) $(MAKESILENT) -f dynamic/CMakeFiles/main_td.dir/build.make dynamic/CMakeFiles/main_td.dir/depend
+	$(MAKE) $(MAKESILENT) -f dynamic/CMakeFiles/main_td.dir/build.make dynamic/CMakeFiles/main_td.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=99,100 "Built target main_td"
+.PHONY : dynamic/CMakeFiles/main_td.dir/all
+
+# Build rule for subdir invocation for target.
+dynamic/CMakeFiles/main_td.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 11
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dynamic/CMakeFiles/main_td.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
+.PHONY : dynamic/CMakeFiles/main_td.dir/rule
+
+# Convenience name for target.
+main_td: dynamic/CMakeFiles/main_td.dir/rule
+.PHONY : main_td
+
+# clean rule for target.
+dynamic/CMakeFiles/main_td.dir/clean:
+	$(MAKE) $(MAKESILENT) -f dynamic/CMakeFiles/main_td.dir/build.make dynamic/CMakeFiles/main_td.dir/clean
+.PHONY : dynamic/CMakeFiles/main_td.dir/clean
+
+#=============================================================================
+# Target rules for target dynamic/CMakeFiles/TestsDynamic.dir
+
+# All Build rule for target.
+dynamic/CMakeFiles/TestsDynamic.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
+dynamic/CMakeFiles/TestsDynamic.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
+dynamic/CMakeFiles/TestsDynamic.dir/all: dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/all
+dynamic/CMakeFiles/TestsDynamic.dir/all: dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/all
+dynamic/CMakeFiles/TestsDynamic.dir/all: dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/all
+dynamic/CMakeFiles/TestsDynamic.dir/all: dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/all
+dynamic/CMakeFiles/TestsDynamic.dir/all: dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/all
+	$(MAKE) $(MAKESILENT) -f dynamic/CMakeFiles/TestsDynamic.dir/build.make dynamic/CMakeFiles/TestsDynamic.dir/depend
+	$(MAKE) $(MAKESILENT) -f dynamic/CMakeFiles/TestsDynamic.dir/build.make dynamic/CMakeFiles/TestsDynamic.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=91,92 "Built target TestsDynamic"
+.PHONY : dynamic/CMakeFiles/TestsDynamic.dir/all
+
+# Build rule for subdir invocation for target.
+dynamic/CMakeFiles/TestsDynamic.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 82
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dynamic/CMakeFiles/TestsDynamic.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
+.PHONY : dynamic/CMakeFiles/TestsDynamic.dir/rule
+
+# Convenience name for target.
+TestsDynamic: dynamic/CMakeFiles/TestsDynamic.dir/rule
+.PHONY : TestsDynamic
+
+# clean rule for target.
+dynamic/CMakeFiles/TestsDynamic.dir/clean:
+	$(MAKE) $(MAKESILENT) -f dynamic/CMakeFiles/TestsDynamic.dir/build.make dynamic/CMakeFiles/TestsDynamic.dir/clean
+.PHONY : dynamic/CMakeFiles/TestsDynamic.dir/clean
+
+#=============================================================================
+# Target rules for target dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir
+
+# All Build rule for target.
+dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/all: dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/all
+	$(MAKE) $(MAKESILENT) -f dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/build.make dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/depend
+	$(MAKE) $(MAKESILENT) -f dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/build.make dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=81 "Built target ResourceDynamic"
+.PHONY : dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/all
+
+# Build rule for subdir invocation for target.
+dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
+.PHONY : dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/rule
+
+# Convenience name for target.
+ResourceDynamic: dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/rule
+.PHONY : ResourceDynamic
+
+# clean rule for target.
+dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/clean:
+	$(MAKE) $(MAKESILENT) -f dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/build.make dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/clean
+.PHONY : dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/clean
+
+#=============================================================================
+# Target rules for target dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir
+
+# All Build rule for target.
+dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/all:
+	$(MAKE) $(MAKESILENT) -f dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/build.make dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/depend
+	$(MAKE) $(MAKESILENT) -f dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/build.make dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=73,74 "Built target HandlersDynamic"
+.PHONY : dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/all
+
+# Build rule for subdir invocation for target.
+dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
+.PHONY : dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/rule
+
+# Convenience name for target.
+HandlersDynamic: dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/rule
+.PHONY : HandlersDynamic
+
+# clean rule for target.
+dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/clean:
+	$(MAKE) $(MAKESILENT) -f dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/build.make dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/clean
+.PHONY : dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/clean
+
+#=============================================================================
+# Target rules for target dynamic/TableDynamic/CMakeFiles/TableDynamic.dir
+
+# All Build rule for target.
+dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/all: dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/all
+dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/all: dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/all
+dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/all: dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/all
+	$(MAKE) $(MAKESILENT) -f dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/build.make dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/depend
+	$(MAKE) $(MAKESILENT) -f dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/build.make dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=88,89 "Built target TableDynamic"
+.PHONY : dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/all
+
+# Build rule for subdir invocation for target.
+dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 7
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
+.PHONY : dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/rule
+
+# Convenience name for target.
+TableDynamic: dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/rule
+.PHONY : TableDynamic
+
+# clean rule for target.
+dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/clean:
+	$(MAKE) $(MAKESILENT) -f dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/build.make dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/clean
+.PHONY : dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/clean
+
+#=============================================================================
+# Target rules for target dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir
+
+# All Build rule for target.
+dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/all: dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/all
+dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/all: dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/all
+	$(MAKE) $(MAKESILENT) -f dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/build.make dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/depend
+	$(MAKE) $(MAKESILENT) -f dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/build.make dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=77,78 "Built target RDialogueDynamic"
+.PHONY : dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/all
+
+# Build rule for subdir invocation for target.
+dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
+.PHONY : dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/rule
+
+# Convenience name for target.
+RDialogueDynamic: dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/rule
+.PHONY : RDialogueDynamic
+
+# clean rule for target.
+dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/clean:
+	$(MAKE) $(MAKESILENT) -f dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/build.make dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/clean
+.PHONY : dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/clean
+
+#=============================================================================
+# Target rules for target dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir
+
+# All Build rule for target.
+dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/all: dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/all
+dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/all: dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/all
+dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/all: dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/all
+dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/all: dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/all
+	$(MAKE) $(MAKESILENT) -f dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/build.make dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/depend
+	$(MAKE) $(MAKESILENT) -f dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/build.make dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=84,85 "Built target TDialogueDynamic"
+.PHONY : dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/all
+
+# Build rule for subdir invocation for target.
+dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 9
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/m1pty/university/oop2023/lab2/build/CMakeFiles 0
+.PHONY : dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/rule
+
+# Convenience name for target.
+TDialogueDynamic: dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/rule
+.PHONY : TDialogueDynamic
+
+# clean rule for target.
+dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/clean:
+	$(MAKE) $(MAKESILENT) -f dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/build.make dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/clean
+.PHONY : dynamic/TDialogueDynamic/CMakeFiles/TDialogueDynamic.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

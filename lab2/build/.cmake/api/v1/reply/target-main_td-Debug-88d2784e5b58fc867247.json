@@ -1,0 +1,197 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "dynamic/main_td"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"dynamic/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 20,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 21,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -Wall -g -Wextra -Wall -g -Wextra -g"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 2,
+					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/ResourceDynamic/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/TableDynamic/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/TDialogueDynamic/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "ResourceDynamic::@b6b8d405269b46c7a28e"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "HandlersDynamic::@f7ecb57f383b516fda57"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "TableDynamic::@62f27ae4694b59dc6532"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "RDialogueDynamic::@0fb917b6fed69cc02568"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "TDialogueDynamic::@62f892c467d471ef2640"
+		}
+	],
+	"id" : "main_td::@96a574a5008773828130",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-Wall -g -Wextra -Wall -g -Wextra -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "ResourceDynamic/libResourceDynamic.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "HandlersDynamic/libHandlersDynamic.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "RDialogueDynamic/libRDialogueDynamic.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "TableDynamic/libTableDynamic.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "TDialogueDynamic/libTDialogueDynamic.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "TableDynamic/libTableDynamic.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "RDialogueDynamic/libRDialogueDynamic.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "ResourceDynamic/libResourceDynamic.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "HandlersDynamic/libHandlersDynamic.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "main_td",
+	"nameOnDisk" : "main_td",
+	"paths" : 
+	{
+		"build" : "dynamic",
+		"source" : "dynamic"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "dynamic/main_t.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

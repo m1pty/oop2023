@@ -73,15 +73,15 @@ static/CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.o: static/CMakeFiles/Tests
 static/CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.o: ../static/Tests/source/TestCase.cpp
 static/CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.o: static/CMakeFiles/Tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object static/CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.o"
-	cd /home/m1pty/university/oop2023/lab2/build/static && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT static/CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.o -MF CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.o.d -o CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.o -c /home/m1pty/university/oop2023/lab2/static/Tests/source/TestCase.cpp
+	cd /home/m1pty/university/oop2023/lab2/build/static && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT static/CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.o -MF CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.o.d -o CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.o -c /home/m1pty/university/oop2023/lab2/static/Tests/source/TestCase.cpp
 
 static/CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.i"
-	cd /home/m1pty/university/oop2023/lab2/build/static && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/static/Tests/source/TestCase.cpp > CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.i
+	cd /home/m1pty/university/oop2023/lab2/build/static && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/static/Tests/source/TestCase.cpp > CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.i
 
 static/CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.s"
-	cd /home/m1pty/university/oop2023/lab2/build/static && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/static/Tests/source/TestCase.cpp -o CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.s
+	cd /home/m1pty/university/oop2023/lab2/build/static && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/static/Tests/source/TestCase.cpp -o CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.s
 
 # Object files for target Tests
 Tests_OBJECTS = \
@@ -92,13 +92,13 @@ Tests_EXTERNAL_OBJECTS =
 
 static/Tests: static/CMakeFiles/Tests.dir/Tests/source/TestCase.cpp.o
 static/Tests: static/CMakeFiles/Tests.dir/build.make
-static/Tests: _deps/catch2-build/src/libCatch2Main.a
+static/Tests: _deps/catch2-build/src/libCatch2Maind.a
 static/Tests: static/Resource/libResource.a
 static/Tests: static/Handlers/libHandlers.a
 static/Tests: static/RDialogue/libRDialogue.a
 static/Tests: static/TDialogue/libTDialogue.a
 static/Tests: static/Table/libTable.a
-static/Tests: _deps/catch2-build/src/libCatch2.a
+static/Tests: _deps/catch2-build/src/libCatch2d.a
 static/Tests: static/RDialogue/libRDialogue.a
 static/Tests: static/Resource/libResource.a
 static/Tests: static/Handlers/libHandlers.a
