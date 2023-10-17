@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdexcept>
-#include "ResourceDynamic/Resource.h"
 #include "HandlersDynamic/Handlers.h"
+#include "ResourceDynamic/Resource.h"
 #include "TableDynamic/Table.h"
 
 namespace TNS {
