@@ -73,15 +73,15 @@ dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.o:
 dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.o: ../dynamic/RDialogueDynamic/source/RDialogue.cpp
 dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.o: dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.o"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic/RDialogueDynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.o -MF CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.o.d -o CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.o -c /home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic/source/RDialogue.cpp
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic/RDialogueDynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.o -MF CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.o.d -o CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.o -c /home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic/source/RDialogue.cpp
 
 dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.i"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic/RDialogueDynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic/source/RDialogue.cpp > CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.i
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic/RDialogueDynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic/source/RDialogue.cpp > CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.i
 
 dynamic/RDialogueDynamic/CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.s"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic/RDialogueDynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic/source/RDialogue.cpp -o CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.s
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic/RDialogueDynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic/source/RDialogue.cpp -o CMakeFiles/RDialogueDynamic.dir/source/RDialogue.cpp.s
 
 # Object files for target RDialogueDynamic
 RDialogueDynamic_OBJECTS = \

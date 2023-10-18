@@ -73,15 +73,15 @@ dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.o: dy
 dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.o: ../dynamic/ResourceDynamic/source/Resource.cpp
 dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.o: dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.o"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic/ResourceDynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.o -MF CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.o.d -o CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.o -c /home/m1pty/university/oop2023/lab2/dynamic/ResourceDynamic/source/Resource.cpp
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic/ResourceDynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.o -MF CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.o.d -o CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.o -c /home/m1pty/university/oop2023/lab2/dynamic/ResourceDynamic/source/Resource.cpp
 
 dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.i"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic/ResourceDynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/dynamic/ResourceDynamic/source/Resource.cpp > CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.i
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic/ResourceDynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/dynamic/ResourceDynamic/source/Resource.cpp > CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.i
 
 dynamic/ResourceDynamic/CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.s"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic/ResourceDynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/dynamic/ResourceDynamic/source/Resource.cpp -o CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.s
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic/ResourceDynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/dynamic/ResourceDynamic/source/Resource.cpp -o CMakeFiles/ResourceDynamic.dir/source/Resource.cpp.s
 
 # Object files for target ResourceDynamic
 ResourceDynamic_OBJECTS = \

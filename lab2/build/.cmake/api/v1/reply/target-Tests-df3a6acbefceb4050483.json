@@ -1,0 +1,259 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "static/Tests"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"add_link_options",
+			"target_link_libraries",
+			"add_compile_options"
+		],
+		"files" : 
+		[
+			"static/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 36,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 37,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 23,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -Wall -g -Wextra --coverage -Wall -g -Wextra"
+				},
+				{
+					"backtrace" : 4,
+					"fragment" : "--coverage"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/home/m1pty/university/oop2023/lab2/build/_deps/catch2-src/src/catch2/.."
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/m1pty/university/oop2023/lab2/build/generated-includes"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/Resource/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/Handlers/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/RDialogue/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/TDialogue/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/Table/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3,
+					3
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 3,
+			"id" : "Resource::@cb7abfe4129eae538f99"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "Handlers::@4d602eff4298a51c28ef"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "Table::@5746d8e03c60b1860eb1"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "RDialogue::@4febc956db3b237b9924"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "TDialogue::@579c064fc7bfe9577a66"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "Catch2::@fa92aa50e9bf5e1a7206"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "Catch2WithMain::@fa92aa50e9bf5e1a7206"
+		}
+	],
+	"id" : "Tests::@9673205551b5378734bd",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-Wall -g -Wextra --coverage -Wall -g -Wextra",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "--coverage",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "../_deps/catch2-build/src/libCatch2Main.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "Resource/libResource.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "Handlers/libHandlers.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "RDialogue/libRDialogue.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "TDialogue/libTDialogue.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "Table/libTable.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../_deps/catch2-build/src/libCatch2.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "RDialogue/libRDialogue.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "Resource/libResource.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "Handlers/libHandlers.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "Tests",
+	"nameOnDisk" : "Tests",
+	"paths" : 
+	{
+		"build" : "static",
+		"source" : "static"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "static/Tests/source/TestCase.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

@@ -73,15 +73,15 @@ static/CMakeFiles/main_r.dir/main_r.cpp.o: static/CMakeFiles/main_r.dir/flags.ma
 static/CMakeFiles/main_r.dir/main_r.cpp.o: ../static/main_r.cpp
 static/CMakeFiles/main_r.dir/main_r.cpp.o: static/CMakeFiles/main_r.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object static/CMakeFiles/main_r.dir/main_r.cpp.o"
-	cd /home/m1pty/university/oop2023/lab2/build/static && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT static/CMakeFiles/main_r.dir/main_r.cpp.o -MF CMakeFiles/main_r.dir/main_r.cpp.o.d -o CMakeFiles/main_r.dir/main_r.cpp.o -c /home/m1pty/university/oop2023/lab2/static/main_r.cpp
+	cd /home/m1pty/university/oop2023/lab2/build/static && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT static/CMakeFiles/main_r.dir/main_r.cpp.o -MF CMakeFiles/main_r.dir/main_r.cpp.o.d -o CMakeFiles/main_r.dir/main_r.cpp.o -c /home/m1pty/university/oop2023/lab2/static/main_r.cpp
 
 static/CMakeFiles/main_r.dir/main_r.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_r.dir/main_r.cpp.i"
-	cd /home/m1pty/university/oop2023/lab2/build/static && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/static/main_r.cpp > CMakeFiles/main_r.dir/main_r.cpp.i
+	cd /home/m1pty/university/oop2023/lab2/build/static && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/static/main_r.cpp > CMakeFiles/main_r.dir/main_r.cpp.i
 
 static/CMakeFiles/main_r.dir/main_r.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_r.dir/main_r.cpp.s"
-	cd /home/m1pty/university/oop2023/lab2/build/static && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/static/main_r.cpp -o CMakeFiles/main_r.dir/main_r.cpp.s
+	cd /home/m1pty/university/oop2023/lab2/build/static && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/static/main_r.cpp -o CMakeFiles/main_r.dir/main_r.cpp.s
 
 # Object files for target main_r
 main_r_OBJECTS = \

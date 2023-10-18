@@ -42,7 +42,7 @@ namespace TNS {
     }
 
     // перемещающий конструктор
-    Table::Table(Table&& link) noexcept : csize(link.csize), table_vector(link.table_vector)
+    Table::Table(Table&& link) noexcept : table_vector(link.table_vector), csize(link.csize)
     {
         link.csize = 0;
         link.table_vector = nullptr;
@@ -57,6 +57,12 @@ namespace TNS {
         link.csize = 0;
         link.table_vector = nullptr;
         return *this;
+    }
+
+    Table::~Table()
+    {
+        delete[] table_vector;
+        csize = 0;
     }
 
     void Table::garbageCollector(int start_index) noexcept         // [+] удаляет лишние пробелы в таблице
@@ -269,23 +275,39 @@ namespace TNS {
         return answer;
     }
 
-    void Table::add(const RNS::Resource &r) noexcept // (+=) [+] добавление ресурса в таблицу
+    void Table::add(const RNS::Resource &r) // (+=) [+] добавление ресурса в таблицу
     {
-        // если такого элемента ранее не было
-        std::pair<bool, size_t> search = searchByName(r.getName()); 
-        if (!search.first){
-            table_vector[csize] = r;
-            ++csize;
-            sort();
+        try {
+
+            // possible bad_alloc
+            RNS::Resource* new_vector = new RNS::Resource[csize + 1];
+            std::copy(table_vector, table_vector + csize, new_vector);
+
+            // если такого элемента ранее не было
+            std::pair<bool, size_t> search = searchByName(r.getName()); 
+            if (!search.first){
+                new_vector[csize] = r;
+                ++csize;
+                delete[] table_vector;
+                table_vector = new_vector;
+                sort();
+            }
+            // если такие элемненты уже есть
+            else {
+                int index = search.second;
+                for (int i = csize; i > index; --i)
+                    new_vector[i] = new_vector[i - 1];
+                new_vector[index] = r;
+                ++csize;
+                delete[] table_vector;
+                table_vector = new_vector;
+                // уже отсортировано по имени
+            }
         }
-        // если такие элемненты уже есть
-        else {
-            int index = search.second;
-            for (int i = csize; i > index; --i)
-                table_vector[i] = table_vector[i - 1];
-            table_vector[index] = r;
-            ++csize;
-            // уже отсортировано по имени
+
+        catch (std::bad_alloc &e)
+        {
+            std::cout << "[ERROR]: Not enough memory!\n";
         }
     }
 

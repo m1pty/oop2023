@@ -73,15 +73,15 @@ static/TDialogue/CMakeFiles/TDialogue.dir/source/TDialogue.cpp.o: static/TDialog
 static/TDialogue/CMakeFiles/TDialogue.dir/source/TDialogue.cpp.o: ../static/TDialogue/source/TDialogue.cpp
 static/TDialogue/CMakeFiles/TDialogue.dir/source/TDialogue.cpp.o: static/TDialogue/CMakeFiles/TDialogue.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object static/TDialogue/CMakeFiles/TDialogue.dir/source/TDialogue.cpp.o"
-	cd /home/m1pty/university/oop2023/lab2/build/static/TDialogue && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT static/TDialogue/CMakeFiles/TDialogue.dir/source/TDialogue.cpp.o -MF CMakeFiles/TDialogue.dir/source/TDialogue.cpp.o.d -o CMakeFiles/TDialogue.dir/source/TDialogue.cpp.o -c /home/m1pty/university/oop2023/lab2/static/TDialogue/source/TDialogue.cpp
+	cd /home/m1pty/university/oop2023/lab2/build/static/TDialogue && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT static/TDialogue/CMakeFiles/TDialogue.dir/source/TDialogue.cpp.o -MF CMakeFiles/TDialogue.dir/source/TDialogue.cpp.o.d -o CMakeFiles/TDialogue.dir/source/TDialogue.cpp.o -c /home/m1pty/university/oop2023/lab2/static/TDialogue/source/TDialogue.cpp
 
 static/TDialogue/CMakeFiles/TDialogue.dir/source/TDialogue.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TDialogue.dir/source/TDialogue.cpp.i"
-	cd /home/m1pty/university/oop2023/lab2/build/static/TDialogue && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/static/TDialogue/source/TDialogue.cpp > CMakeFiles/TDialogue.dir/source/TDialogue.cpp.i
+	cd /home/m1pty/university/oop2023/lab2/build/static/TDialogue && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/static/TDialogue/source/TDialogue.cpp > CMakeFiles/TDialogue.dir/source/TDialogue.cpp.i
 
 static/TDialogue/CMakeFiles/TDialogue.dir/source/TDialogue.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TDialogue.dir/source/TDialogue.cpp.s"
-	cd /home/m1pty/university/oop2023/lab2/build/static/TDialogue && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/static/TDialogue/source/TDialogue.cpp -o CMakeFiles/TDialogue.dir/source/TDialogue.cpp.s
+	cd /home/m1pty/university/oop2023/lab2/build/static/TDialogue && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/static/TDialogue/source/TDialogue.cpp -o CMakeFiles/TDialogue.dir/source/TDialogue.cpp.s
 
 # Object files for target TDialogue
 TDialogue_OBJECTS = \

@@ -1,9 +1,9 @@
 #include <iostream>
-#include "Table/Table.h"
-#include "Resource/Resource.h"
-#include "Handlers/Handlers.h"
-#include "RDialogue/RDialogue.h"
-#include "TDialogue/TDialogue.h"
+#include "TableDynamic/Table.h"
+#include "ResourceDynamic/Resource.h"
+#include "HandlersDynamic/Handlers.h"
+#include "RDialogueDynamic/RDialogue.h"
+#include "TDialogueDynamic/TDialogue.h"
 
 int main(){
     TNS::Table table{};
@@ -14,16 +14,19 @@ int main(){
     // ошибки выделения памяти
     catch (std::bad_alloc &ba){
         std::cout << "[ERROR]: Недостаточно памяти!" << std::endl;
+        table.TNS::Table::~Table();
         return 1;
     }
     // все runtime-ошибки
     catch (std::runtime_error &rt){
         std::cout << "[ERROR]: Runtime-error!" << std::endl;
+        table.TNS::Table::~Table();
         return 1;
     }
     // прочие исключения
     catch (std::exception &e) {
         std::cout << "[ERROR]: Ошибка типа: " << e.what() << std::endl;
+        table.TNS::Table::~Table();
         return 1;
     }
     return 0;

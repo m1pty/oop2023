@@ -73,15 +73,15 @@ dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.o: dy
 dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.o: ../dynamic/HandlersDynamic/source/Handlers.cpp
 dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.o: dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.o"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic/HandlersDynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.o -MF CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.o.d -o CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.o -c /home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic/source/Handlers.cpp
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic/HandlersDynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.o -MF CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.o.d -o CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.o -c /home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic/source/Handlers.cpp
 
 dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.i"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic/HandlersDynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic/source/Handlers.cpp > CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.i
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic/HandlersDynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic/source/Handlers.cpp > CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.i
 
 dynamic/HandlersDynamic/CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.s"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic/HandlersDynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic/source/Handlers.cpp -o CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.s
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic/HandlersDynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic/source/Handlers.cpp -o CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.s
 
 # Object files for target HandlersDynamic
 HandlersDynamic_OBJECTS = \

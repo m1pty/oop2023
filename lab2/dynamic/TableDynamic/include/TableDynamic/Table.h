@@ -76,7 +76,7 @@ namespace TNS {
             @brief Adding the resource to the table by it's link
             @param r a link to the adding resource
         */
-        void add(const RNS::Resource &r) noexcept;   // (+=) добавление ресурса в таблицу
+        void add(const RNS::Resource &r);   // (+=) добавление ресурса в таблицу
         
         /*!
             @brief Deletes the resource from the table by it's name
@@ -165,13 +165,13 @@ namespace TNS {
             @brief An overloaded copy operator '='
             @param link The constant link to the Table being copied to the current Table
         */
-        Table& Table::operator = (const Table& link);
+        Table& operator = (const Table& link);
 
         /*!
             @brief An overloaded move operator '='
             @param link The constant link to the Table being copied to the current Table
         */
-        Table& Table::operator = (Table&& link) noexcept;
+        Table& operator = (Table&& link) noexcept;
     };
 }
 #endif

@@ -73,15 +73,15 @@ dynamic/CMakeFiles/main_td.dir/main_t.cpp.o: dynamic/CMakeFiles/main_td.dir/flag
 dynamic/CMakeFiles/main_td.dir/main_t.cpp.o: ../dynamic/main_t.cpp
 dynamic/CMakeFiles/main_td.dir/main_t.cpp.o: dynamic/CMakeFiles/main_td.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object dynamic/CMakeFiles/main_td.dir/main_t.cpp.o"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT dynamic/CMakeFiles/main_td.dir/main_t.cpp.o -MF CMakeFiles/main_td.dir/main_t.cpp.o.d -o CMakeFiles/main_td.dir/main_t.cpp.o -c /home/m1pty/university/oop2023/lab2/dynamic/main_t.cpp
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT dynamic/CMakeFiles/main_td.dir/main_t.cpp.o -MF CMakeFiles/main_td.dir/main_t.cpp.o.d -o CMakeFiles/main_td.dir/main_t.cpp.o -c /home/m1pty/university/oop2023/lab2/dynamic/main_t.cpp
 
 dynamic/CMakeFiles/main_td.dir/main_t.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_td.dir/main_t.cpp.i"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/dynamic/main_t.cpp > CMakeFiles/main_td.dir/main_t.cpp.i
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/dynamic/main_t.cpp > CMakeFiles/main_td.dir/main_t.cpp.i
 
 dynamic/CMakeFiles/main_td.dir/main_t.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_td.dir/main_t.cpp.s"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/dynamic/main_t.cpp -o CMakeFiles/main_td.dir/main_t.cpp.s
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/dynamic/main_t.cpp -o CMakeFiles/main_td.dir/main_t.cpp.s
 
 # Object files for target main_td
 main_td_OBJECTS = \

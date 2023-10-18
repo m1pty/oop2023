@@ -73,15 +73,15 @@ dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/source/Table.cpp.o: dynamic/Tab
 dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/source/Table.cpp.o: ../dynamic/TableDynamic/source/Table.cpp
 dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/source/Table.cpp.o: dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/source/Table.cpp.o"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic/TableDynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/source/Table.cpp.o -MF CMakeFiles/TableDynamic.dir/source/Table.cpp.o.d -o CMakeFiles/TableDynamic.dir/source/Table.cpp.o -c /home/m1pty/university/oop2023/lab2/dynamic/TableDynamic/source/Table.cpp
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic/TableDynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/source/Table.cpp.o -MF CMakeFiles/TableDynamic.dir/source/Table.cpp.o.d -o CMakeFiles/TableDynamic.dir/source/Table.cpp.o -c /home/m1pty/university/oop2023/lab2/dynamic/TableDynamic/source/Table.cpp
 
 dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/source/Table.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TableDynamic.dir/source/Table.cpp.i"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic/TableDynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/dynamic/TableDynamic/source/Table.cpp > CMakeFiles/TableDynamic.dir/source/Table.cpp.i
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic/TableDynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/dynamic/TableDynamic/source/Table.cpp > CMakeFiles/TableDynamic.dir/source/Table.cpp.i
 
 dynamic/TableDynamic/CMakeFiles/TableDynamic.dir/source/Table.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TableDynamic.dir/source/Table.cpp.s"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic/TableDynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/dynamic/TableDynamic/source/Table.cpp -o CMakeFiles/TableDynamic.dir/source/Table.cpp.s
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic/TableDynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/dynamic/TableDynamic/source/Table.cpp -o CMakeFiles/TableDynamic.dir/source/Table.cpp.s
 
 # Object files for target TableDynamic
 TableDynamic_OBJECTS = \

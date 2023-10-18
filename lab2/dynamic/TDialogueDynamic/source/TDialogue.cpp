@@ -33,6 +33,7 @@ namespace dialogueT {
         tableDelResNameD, tableDelResIndexD, tableRenameResD, 
         tableChangeResD, tableGetProfitD, tableIncTurnoverD
     };
+
     void tableMenuD  (TNS::Table &t)      // [**, +] основной выбор, меню 
     {
         int user_choice = 1;
@@ -50,7 +51,7 @@ namespace dialogueT {
         }
     }
 
-    void tableInputD (TNS::Table &t)      // [01, +] ввод таблицы
+    void tableInputD (TNS::Table &t)          // [01, +] ввод таблицы
     { 
         t.input(std::cin);
     }
@@ -60,20 +61,13 @@ namespace dialogueT {
         t.print(std::cout);
     }
     
-    void tableAddResD(TNS::Table &t)      // [03, +] добавление нового элемента
+    void tableAddResD(TNS::Table &t)          // [03, +] добавление нового элемента
     { 
-        try {
-            RNS::Resource r;
-            std::cout << "Введите ресурс:\n";
-            r.input(std::cin);
-            t.add(r);
-            std::cout << "[RESULT]: Элемент успешно добавлен!";
-
-        } 
-        catch (...)
-        { 
-            throw; 
-        }
+        RNS::Resource r;
+        std::cout << "Введите ресурс:\n";
+        r.input(std::cin);
+        t.add(r);
+        std::cout << "[RESULT]: Элемент успешно добавлен!";
     }
 
     void tableGetResD(TNS::Table &t)      // [04, +] вывести ресурс по его наименованию
@@ -86,6 +80,7 @@ namespace dialogueT {
             TNS::Table new_table = t.searchResult(link);
             std::cout << "[RESULT]:\n";
             new_table.print(std::cout);
+            new_table.TNS::Table::~Table();
         } 
         catch (...) 
         { 

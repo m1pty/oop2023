@@ -1,0 +1,197 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "static/main_t"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"static/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 20,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 21,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -Wall -g -Wextra --coverage -Wall -g -Wextra"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 2,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/Resource/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/Handlers/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/RDialogue/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/Table/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/TDialogue/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "Resource::@cb7abfe4129eae538f99"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "Handlers::@4d602eff4298a51c28ef"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "Table::@5746d8e03c60b1860eb1"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "RDialogue::@4febc956db3b237b9924"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "TDialogue::@579c064fc7bfe9577a66"
+		}
+	],
+	"id" : "main_t::@9673205551b5378734bd",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-Wall -g -Wextra --coverage -Wall -g -Wextra",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "Resource/libResource.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "Handlers/libHandlers.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "RDialogue/libRDialogue.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "Table/libTable.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "TDialogue/libTDialogue.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "Table/libTable.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "RDialogue/libRDialogue.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "Resource/libResource.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "Handlers/libHandlers.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "main_t",
+	"nameOnDisk" : "main_t",
+	"paths" : 
+	{
+		"build" : "static",
+		"source" : "static"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "static/main_t.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

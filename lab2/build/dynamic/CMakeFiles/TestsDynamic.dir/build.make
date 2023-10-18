@@ -73,15 +73,15 @@ dynamic/CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.o: dynamic/
 dynamic/CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.o: ../dynamic/TestsDynamic/source/TestCase.cpp
 dynamic/CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.o: dynamic/CMakeFiles/TestsDynamic.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m1pty/university/oop2023/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object dynamic/CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.o"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT dynamic/CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.o -MF CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.o.d -o CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.o -c /home/m1pty/university/oop2023/lab2/dynamic/TestsDynamic/source/TestCase.cpp
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT dynamic/CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.o -MF CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.o.d -o CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.o -c /home/m1pty/university/oop2023/lab2/dynamic/TestsDynamic/source/TestCase.cpp
 
 dynamic/CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.i"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/dynamic/TestsDynamic/source/TestCase.cpp > CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.i
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m1pty/university/oop2023/lab2/dynamic/TestsDynamic/source/TestCase.cpp > CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.i
 
 dynamic/CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.s"
-	cd /home/m1pty/university/oop2023/lab2/build/dynamic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/dynamic/TestsDynamic/source/TestCase.cpp -o CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.s
+	cd /home/m1pty/university/oop2023/lab2/build/dynamic && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m1pty/university/oop2023/lab2/dynamic/TestsDynamic/source/TestCase.cpp -o CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.s
 
 # Object files for target TestsDynamic
 TestsDynamic_OBJECTS = \
@@ -92,13 +92,13 @@ TestsDynamic_EXTERNAL_OBJECTS =
 
 dynamic/TestsDynamic: dynamic/CMakeFiles/TestsDynamic.dir/TestsDynamic/source/TestCase.cpp.o
 dynamic/TestsDynamic: dynamic/CMakeFiles/TestsDynamic.dir/build.make
-dynamic/TestsDynamic: _deps/catch2-build/src/libCatch2Maind.a
+dynamic/TestsDynamic: _deps/catch2-build/src/libCatch2Main.a
 dynamic/TestsDynamic: dynamic/ResourceDynamic/libResourceDynamic.a
 dynamic/TestsDynamic: dynamic/HandlersDynamic/libHandlersDynamic.a
 dynamic/TestsDynamic: dynamic/RDialogueDynamic/libRDialogueDynamic.a
 dynamic/TestsDynamic: dynamic/TDialogueDynamic/libTDialogueDynamic.a
 dynamic/TestsDynamic: dynamic/TableDynamic/libTableDynamic.a
-dynamic/TestsDynamic: _deps/catch2-build/src/libCatch2d.a
+dynamic/TestsDynamic: _deps/catch2-build/src/libCatch2.a
 dynamic/TestsDynamic: dynamic/RDialogueDynamic/libRDialogueDynamic.a
 dynamic/TestsDynamic: dynamic/ResourceDynamic/libResourceDynamic.a
 dynamic/TestsDynamic: dynamic/HandlersDynamic/libHandlersDynamic.a
