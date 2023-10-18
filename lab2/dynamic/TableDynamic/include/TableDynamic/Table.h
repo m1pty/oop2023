@@ -45,12 +45,7 @@ namespace TNS {
             @returns a link to the resource of index <index>
             @throws std::invalid_argument in case of wrong index
         */
-        RNS::Resource &getResByIndex(int index)
-        {
-            if ((index < 0) || (index >= getCSize()))
-                throw std::invalid_argument("[ERROR]: Invalid index");
-            return table_vector[index];
-        }
+        RNS::Resource &getResByIndex(int index);
 
         /*!
             @brief Prints the current state of the Table

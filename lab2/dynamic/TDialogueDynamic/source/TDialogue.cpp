@@ -90,32 +90,29 @@ namespace dialogueT {
 
     void tableDelResIndexD(TNS::Table &t) // [06, +] удалить ресурс по его индексу
     { 
-        try {
-            std::cout << "Введите индекс удаляемого элемента\n" << PROMPT;
-            int index = Handler::getInt(std::cin, 0, t.getCSize());
-            t.deleteByIndex(index);
-        } catch (...) { throw; }
+        std::cout << "Введите индекс удаляемого элемента\n" << PROMPT;
+        int index = Handler::getInt(std::cin, 0, t.getCSize());
+        t.deleteByIndex(index);
     }
+    
     void tableRenameResD  (TNS::Table &t) // [07, +/-] переименовать тип ресурса (запрашивает дополнительный ввод)
     {
-        try {
-            std::cout << "Введите старое имя переименовываемого ресурса:\n" << PROMPT;
-            std::string old_name = Handler::getString(std::cin);
-            std::cout << "Введите новое имя переименовываемого ресурса:\n" << PROMPT;
-            std::string new_name = Handler::getString(std::cin);
-            t.rename(old_name, new_name);
-            std::cout << "[RESULT]: Переименовывание прошло успешно!\n";
-        } catch (...) { throw; }
+        std::cout << "Введите старое имя переименовываемого ресурса:\n" << PROMPT;
+        std::string old_name = Handler::getString(std::cin);
+        std::cout << "Введите новое имя переименовываемого ресурса:\n" << PROMPT;
+        std::string new_name = Handler::getString(std::cin);
+        t.rename(old_name, new_name);
+        std::cout << "[RESULT]: Переименовывание прошло успешно!\n";
     }
+
     void tableChangeResD  (TNS::Table &t) // [08, +] изменение ресурса по индексу через диалоговую функцию ресурса
     {
-        try {
-            std::cout << "Введите индекс изменяемого элемента\n" << PROMPT;
-            int index = Handler::getInt(std::cin, 0, t.getCSize());
-            RNS::Resource &link = t.getResByIndex(index);
+        std::cout << "Введите индекс изменяемого элемента\n" << PROMPT;
+        int index = Handler::getInt(std::cin, 0, t.getCSize());
+        RNS::Resource &link = t.getResByIndex(index);
+        if (link.getName() != "")
             dialogR::menuD(link);
-            t.prettify();
-        } catch (...) { throw; }
+        t.prettify();
     } 
 
     void tableGetProfitD  (TNS::Table &t) noexcept // [09, +] получение прибыльности всех ресурсов таблицы
@@ -126,14 +123,8 @@ namespace dialogueT {
 
     void tableIncTurnoverD(TNS::Table &t) // [10, +] увеличение оборота всех ресурсов таблицы
     {
-        try {
-            std::cout << "Введите коэф. умножения\n" << PROMPT;
-            double coef = Handler::getDouble(std::cin, 0.0);
-            t.incTurnover(coef);
-        } 
-        catch (...) 
-        { 
-            throw; 
-        }
+        std::cout << "Введите коэф. умножения\n" << PROMPT;
+        double coef = Handler::getDouble(std::cin, 0.0);
+        t.incTurnover(coef);
     }
 }

@@ -147,9 +147,12 @@ namespace TNS {
             int quantity = del_end - index + 1;
             int new_size = csize - quantity;
             RNS::Resource* new_vector = new RNS::Resource[new_size];
-            for (int i = index; i < del_end; ++i)
-                table_vector[i] = table_vector[i + quantity];
-            
+            for (int i = index; i <= del_end; ++i)
+            {
+                if (i + quantity < csize)
+                    table_vector[i] = table_vector[i + quantity];
+            }
+
             // realloc analogue
             std::copy(table_vector, table_vector + new_size, new_vector);
             csize = new_size;
@@ -160,6 +163,24 @@ namespace TNS {
         catch (std::bad_alloc &ba)
         {
             std::cout << "[ERROR]: Not enough memory for safe deleting!\n";
+        }
+    }
+
+    RNS::Resource &Table::getResByIndex(int index)
+    {
+        try {
+            if ((index >= csize) || (index < 0))
+                throw std::invalid_argument("[ERROR]: Table[Index] is not declared!\n");
+
+            return table_vector[index];
+        }
+        catch (std::invalid_argument &ia)
+        {
+            std::cout << "[ERROR]: Table[Index] is not declared!\n";
+            
+            RNS::Resource res;
+            RNS::Resource& link = res; 
+            return link;
         }
     }
 
@@ -267,8 +288,8 @@ namespace TNS {
             std::string raw_2 = name;
 
             std::string eqaulity_res = (comp_res != 0) ? "equals" : "not_equals";
-            std::cout << "Comparing: " << "(" << table_vector[middle].getName().size() << ") " << raw_1;
-            std::cout << " (" << raw_2.size() << ") " << raw_2 << " " << eqaulity_res << "(" << comp_res2 << ")" << std::endl;
+            // std::cout << "Comparing: " << "(" << table_vector[middle].getName().size() << ") " << raw_1;
+            // std::cout << " (" << raw_2.size() << ") " << raw_2 << " " << eqaulity_res << "(" << comp_res2 << ")" << std::endl;
             
             if (comp_res2 == 0){
                 answer.first = true;
@@ -282,9 +303,9 @@ namespace TNS {
             }
         }
 
-        std::string result = (answer.first) ? "True" : "False";
-        if (result == "False")
-            std::cout << result << " " << answer.second << std::endl;
+        // std::string result = (answer.first) ? "True" : "False";
+        // if (result == "False")
+        //     std::cout << result << " " << answer.second << std::endl;
         
         // если элемент не был найден
         if (!answer.first)
@@ -301,7 +322,7 @@ namespace TNS {
         
         ++middle;
         answer.second = middle;
-        std::cout << result << " " << answer.second << std::endl;
+        // std::cout << result << " " << answer.second << std::endl;
         return answer;
     }
 
@@ -401,6 +422,14 @@ namespace TNS {
         sort();
     }
 
+    /*
+     ________                              __
+     \_____  \ ______   ________________ _/  |_  ___________  ______
+      /   |   \\____ \_/ __ \_  __ \__  \\   __\/  _ \_  __ \/  ___/
+     /    |    \  |_> >  ___/|  | \// __ \|  | (  <_> )  | \/\___ \ 
+     \_______  /   __/ \___  >__|  (____  /__|  \____/|__|  /____  >
+             \/|__|        \/           \/                       \/ 
+    */
     RNS::Resource &Table::operator[] (const std::string& name)
     {
         std::pair<bool, size_t> search = searchByName(name);
