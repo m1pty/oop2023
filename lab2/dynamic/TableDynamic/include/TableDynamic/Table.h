@@ -16,12 +16,6 @@ namespace TNS {
         void sort() noexcept;
 
         /*!
-            @brief Refreshes the table, deleting all gaps between resources
-            @param start_index Index to start cleaning with
-        */
-        void garbageCollector(int start_index = 0) noexcept;
-
-        /*!
             @brief Setting all the Table's entities to default Resources
         */
         void clear() noexcept;

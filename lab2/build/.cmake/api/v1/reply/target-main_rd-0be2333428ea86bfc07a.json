@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "dynamic/main_td"
+			"path" : "dynamic/main_rd"
 		}
 	],
 	"backtrace" : 1,
@@ -25,13 +25,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 20,
+				"line" : 16,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 21,
+				"line" : 17,
 				"parent" : 0
 			}
 		]
@@ -42,7 +42,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -g -Wextra --coverage -Wall -g -Wextra"
+					"fragment" : " -Wall -g -Wextra --coverage -Wall -g -Wextra --coverage"
 				}
 			],
 			"includes" : 
@@ -58,14 +58,6 @@
 				{
 					"backtrace" : 2,
 					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic/include"
-				},
-				{
-					"backtrace" : 2,
-					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/TableDynamic/include"
-				},
-				{
-					"backtrace" : 2,
-					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/TDialogueDynamic/include"
 				}
 			],
 			"language" : "CXX",
@@ -95,24 +87,16 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "TableDynamic::@62f27ae4694b59dc6532"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "RDialogueDynamic::@0fb917b6fed69cc02568"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "TDialogueDynamic::@62f892c467d471ef2640"
 		}
 	],
-	"id" : "main_td::@96a574a5008773828130",
+	"id" : "main_rd::@96a574a5008773828130",
 	"link" : 
 	{
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-Wall -g -Wextra --coverage -Wall -g -Wextra",
+				"fragment" : "-Wall -g -Wextra --coverage -Wall -g -Wextra --coverage",
 				"role" : "flags"
 			},
 			{
@@ -136,26 +120,6 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "TableDynamic/libTableDynamic.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "TDialogueDynamic/libTDialogueDynamic.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "TableDynamic/libTableDynamic.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "RDialogueDynamic/libRDialogueDynamic.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
 				"fragment" : "ResourceDynamic/libResourceDynamic.a",
 				"role" : "libraries"
 			},
@@ -167,8 +131,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "main_td",
-	"nameOnDisk" : "main_td",
+	"name" : "main_rd",
+	"nameOnDisk" : "main_rd",
 	"paths" : 
 	{
 		"build" : "dynamic",
@@ -189,7 +153,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "dynamic/main_t.cpp",
+			"path" : "dynamic/main_r.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

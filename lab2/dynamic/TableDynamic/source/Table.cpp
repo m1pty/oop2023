@@ -59,28 +59,11 @@ namespace TNS {
         return *this;
     }
 
+    // деструктор
     Table::~Table()
     {
         delete[] table_vector;
         csize = 0;
-    }
-
-    void Table::garbageCollector(int start_index) noexcept         // [+] удаляет лишние пробелы в таблице
-    {
-        for (int i = start_index; i < csize; ++i){
-            if (table_vector[i].getName() == ""){
-                for (int j = i + 1; j < csize; ++j){
-                    if (table_vector[j].getName() != ""){
-                        table_vector[i].setName(table_vector[j].getName());
-                        table_vector[i].setDC(table_vector[j].getDC());
-                        table_vector[i].setDP(table_vector[j].getDP());
-                        table_vector[i].setPrice(table_vector[j].getPrice());
-                        table_vector[j] = RNS::Resource();
-                        break;
-                    }
-                }
-            }
-        }
     }
 
     void Table::sort() noexcept  // [+] сортировка пузырьком для ресурсов в таблице
@@ -151,8 +134,14 @@ namespace TNS {
             // counting N of elements to delete
             int index = search.second, del_end = index;
             std::cout << "[SYSTEM]: Deleting started from index of " << index << std::endl;
-            while ((del_end != csize) && (table_vector[del_end].getName().compare(name) == 0))
-                ++del_end;
+            while ((del_end != csize))
+            {
+                if (table_vector[del_end].getName().compare(name) == 0)
+                    ++del_end;
+                
+                else
+                    break;
+            }
             --del_end;
 
             int quantity = del_end - index + 1;
@@ -272,7 +261,6 @@ namespace TNS {
         while (left <= right){
             // std::cout << "Left: " << left << " Mid: " << middle << " Right: " << right << std::endl;
             middle = (left + right) / 2;
-            // comp_res = table_vector[middle].getName() == (name);
             int comp_res2 = name.compare(table_vector[middle].getName());
 
             std::string raw_1 = table_vector[middle].getName() + " to ";
@@ -303,8 +291,14 @@ namespace TNS {
             return answer;
         
         // если найден, откатываем до первого вхождения
-        while ((table_vector[middle].getName() == name) && (middle != -1))
-            --middle;
+        while (middle != -1)
+        {
+            if (table_vector[middle].getName() == name)
+                --middle;
+            else 
+                break;
+        }
+        
         ++middle;
         answer.second = middle;
         std::cout << result << " " << answer.second << std::endl;
@@ -386,7 +380,7 @@ namespace TNS {
 
     Table Table::searchResult(const std::string &name) // вывод таблицы найденного
     {
-        Table table{};
+        Table table;
         std::pair<bool, size_t> search = searchByName(name);
         if (search.first){
             int index = search.second;
@@ -404,7 +398,6 @@ namespace TNS {
 
     void Table::prettify() noexcept
     {
-        garbageCollector();
         sort();
     }
 

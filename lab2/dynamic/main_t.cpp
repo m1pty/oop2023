@@ -14,19 +14,16 @@ int main(){
     // ошибки выделения памяти
     catch (std::bad_alloc &ba){
         std::cout << "[ERROR]: Недостаточно памяти!" << std::endl;
-        table.TNS::Table::~Table();
         return 1;
     }
     // все runtime-ошибки
     catch (std::runtime_error &rt){
         std::cout << "[ERROR]: Runtime-error!" << std::endl;
-        table.TNS::Table::~Table();
         return 1;
     }
     // прочие исключения
     catch (std::exception &e) {
         std::cout << "[ERROR]: Ошибка типа: " << e.what() << std::endl;
-        table.TNS::Table::~Table();
         return 1;
     }
     return 0;

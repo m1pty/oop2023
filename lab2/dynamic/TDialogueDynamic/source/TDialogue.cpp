@@ -72,33 +72,20 @@ namespace dialogueT {
 
     void tableGetResD(TNS::Table &t)      // [04, +] вывести ресурс по его наименованию
     { 
-        try {
-            std::cout << "Введите название ресурса для поиска:\n" << PROMPT;
-            std::string name = Handler::getString(std::cin);
-            std::cout << "[STREAM]: " << name << std::endl;
-            const std::string& link = name;
-            TNS::Table new_table = t.searchResult(link);
-            std::cout << "[RESULT]:\n";
-            new_table.print(std::cout);
-            new_table.TNS::Table::~Table();
-        } 
-        catch (...) 
-        { 
-            throw; 
-        }
+        std::cout << "Введите название ресурса для поиска:\n" << PROMPT;
+        std::string name = Handler::getString(std::cin);
+        std::cout << "[STREAM]: " << name << std::endl;
+        const std::string& link = name;
+        TNS::Table new_table = t.searchResult(link);
+        std::cout << "[RESULT]:\n";
+        new_table.print(std::cout);
     }
 
     void tableDelResNameD (TNS::Table &t) // [05, +] удаление типа ресурса по имени
     { 
-        try {
-            std::cout << "Введите имя удаляемого типа ресурса:\n" << PROMPT;
-            std::string name = Handler::getString(std::cin);
-            t.deleteByName(name);
-        } 
-        catch (...) 
-        { 
-            throw; 
-        }
+        std::cout << "Введите имя удаляемого типа ресурса:\n" << PROMPT;
+        std::string name = Handler::getString(std::cin);
+        t.deleteByName(name);
     }
 
     void tableDelResIndexD(TNS::Table &t) // [06, +] удалить ресурс по его индексу

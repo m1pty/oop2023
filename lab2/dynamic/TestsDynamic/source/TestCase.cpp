@@ -1,8 +1,12 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch_test_macros.hpp>
+#include <sstream>
+
 #include <ResourceDynamic/Resource.h>
 #include <HandlersDynamic/Handlers.h>
-#include <sstream>
+#include <TableDynamic/Table.h>
+#include <RDialogueDynamic/RDialogue.h>
+#include <TDialogueDynamic/TDialogue.h>
 
 TEST_CASE("Resource Constructors + Getters")
 {
@@ -157,5 +161,15 @@ TEST_CASE("Other Methods")
         REQUIRE_THROWS(r.incTurnover(-15));
         REQUIRE(std::abs(r.getDC() - 10.0) < eps);
         REQUIRE(std::abs(r.getDP() -  7.0) < eps);
+    }
+}
+
+TEST_CASE("Dynamic Table Adding")
+{
+    SECTION("Dynamic Table Adding : NoExcept")
+    {
+        TNS::Table t;
+        RNS::Resource r1{"coal", 0.7, 10.0, 13.3};
+        
     }
 }
