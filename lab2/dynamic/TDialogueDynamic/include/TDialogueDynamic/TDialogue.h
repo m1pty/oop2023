@@ -19,7 +19,7 @@ namespace dialogueT {
         @brief 
         @param t A link to the table
     */
-    void tablePrintD ( TNS::Table & );
+    void tablePrintD ( TNS::Table & ) noexcept ;
     
     /*!
         @brief 
@@ -49,7 +49,7 @@ namespace dialogueT {
         @brief 
         @param t A link to the table
     */
-    void tableGetProfitD(TNS::Table &t);
+    void tableGetProfitD(TNS::Table &t) noexcept;
     
     /*!
         @brief 
@@ -62,12 +62,6 @@ namespace dialogueT {
         @param t A link to the table
     */
     void tableDelResIndexD(TNS::Table &t);
-    
-    /*!
-        @brief 
-        @param t A link to the table
-    */
-    void tableCheckStateD (TNS::Table &t);
     
     /*!
         @brief 

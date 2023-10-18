@@ -69,7 +69,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -g -Wextra -Wall -g -Wextra -g"
+					"fragment" : " -Wall -g -Wextra --coverage -Wall -g -Wextra -g"
 				},
 				{
 					"backtrace" : 4,

@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "dynamic/main_rd"
+			"path" : "static/main_r"
 		}
 	],
 	"backtrace" : 1,
@@ -15,7 +15,7 @@
 		],
 		"files" : 
 		[
-			"dynamic/CMakeLists.txt"
+			"static/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -42,22 +42,22 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -g -Wextra -Wall -g -Wextra -g"
+					"fragment" : " -Wall -g -Wextra --coverage -Wall -g -Wextra -g"
 				}
 			],
 			"includes" : 
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/ResourceDynamic/include"
+					"path" : "/home/m1pty/university/oop2023/lab2/static/Resource/include"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic/include"
+					"path" : "/home/m1pty/university/oop2023/lab2/static/Handlers/include"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic/include"
+					"path" : "/home/m1pty/university/oop2023/lab2/static/RDialogue/include"
 				}
 			],
 			"language" : "CXX",
@@ -79,24 +79,24 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "ResourceDynamic::@b6b8d405269b46c7a28e"
+			"id" : "Resource::@cb7abfe4129eae538f99"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "HandlersDynamic::@f7ecb57f383b516fda57"
+			"id" : "Handlers::@4d602eff4298a51c28ef"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "RDialogueDynamic::@0fb917b6fed69cc02568"
+			"id" : "RDialogue::@4febc956db3b237b9924"
 		}
 	],
-	"id" : "main_rd::@96a574a5008773828130",
+	"id" : "main_r::@9673205551b5378734bd",
 	"link" : 
 	{
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-Wall -g -Wextra -Wall -g -Wextra -g",
+				"fragment" : "-Wall -g -Wextra --coverage -Wall -g -Wextra -g",
 				"role" : "flags"
 			},
 			{
@@ -105,38 +105,38 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "ResourceDynamic/libResourceDynamic.a",
+				"fragment" : "Resource/libResource.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "HandlersDynamic/libHandlersDynamic.a",
+				"fragment" : "Handlers/libHandlers.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "RDialogueDynamic/libRDialogueDynamic.a",
+				"fragment" : "RDialogue/libRDialogue.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "ResourceDynamic/libResourceDynamic.a",
+				"fragment" : "Resource/libResource.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "HandlersDynamic/libHandlersDynamic.a",
+				"fragment" : "Handlers/libHandlers.a",
 				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
-	"name" : "main_rd",
-	"nameOnDisk" : "main_rd",
+	"name" : "main_r",
+	"nameOnDisk" : "main_r",
 	"paths" : 
 	{
-		"build" : "dynamic",
-		"source" : "dynamic"
+		"build" : "static",
+		"source" : "static"
 	},
 	"sourceGroups" : 
 	[
@@ -153,7 +153,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "dynamic/main_r.cpp",
+			"path" : "static/main_r.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

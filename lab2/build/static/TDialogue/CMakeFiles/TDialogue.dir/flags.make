@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/m1pty/university/oop2023/lab2/static/TDialogue/include -I/home/m1pty/university/oop2023/lab2/static/TDialogue/../Handlers -I/home/m1pty/university/oop2023/lab2/static/TDialogue/../Resource -I/home/m1pty/university/oop2023/lab2/static/TDialogue/../RDialogue -I/home/m1pty/university/oop2023/lab2/static/TDialogue/../Table -I/home/m1pty/university/oop2023/lab2/static/RDialogue/include -I/home/m1pty/university/oop2023/lab2/static/Resource/include -I/home/m1pty/university/oop2023/lab2/static/Handlers/include -I/home/m1pty/university/oop2023/lab2/static/Table/include
 
-CXX_FLAGS =  -Wall -g -Wextra -Wall -g -Wextra -g
+CXX_FLAGS =  -Wall -g -Wextra --coverage -Wall -g -Wextra -g
 

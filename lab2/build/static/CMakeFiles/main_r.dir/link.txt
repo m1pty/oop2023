@@ -1,1 +1,1 @@
-/usr/bin/g++  -Wall -g -Wextra -Wall -g -Wextra -g CMakeFiles/main_r.dir/main_r.cpp.o -o main_r  Resource/libResource.a Handlers/libHandlers.a RDialogue/libRDialogue.a Resource/libResource.a Handlers/libHandlers.a 
+/usr/bin/g++  -Wall -g -Wextra --coverage -Wall -g -Wextra -g CMakeFiles/main_r.dir/main_r.cpp.o -o main_r  Resource/libResource.a Handlers/libHandlers.a RDialogue/libRDialogue.a Resource/libResource.a Handlers/libHandlers.a 

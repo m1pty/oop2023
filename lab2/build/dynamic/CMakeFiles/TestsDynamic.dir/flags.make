@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/m1pty/university/oop2023/lab2/build/_deps/catch2-src/src/catch2/.. -I/home/m1pty/university/oop2023/lab2/build/generated-includes -I/home/m1pty/university/oop2023/lab2/dynamic/ResourceDynamic/include -I/home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic/include -I/home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic/include -I/home/m1pty/university/oop2023/lab2/dynamic/TDialogueDynamic/include -I/home/m1pty/university/oop2023/lab2/dynamic/TableDynamic/include
 
-CXX_FLAGS =  -Wall -g -Wextra -Wall -g -Wextra -g --coverage
+CXX_FLAGS =  -Wall -g -Wextra --coverage -Wall -g -Wextra -g --coverage
 

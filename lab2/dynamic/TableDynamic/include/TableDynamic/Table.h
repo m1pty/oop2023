@@ -29,7 +29,7 @@ namespace TNS {
     public:
 
         /*! @brief Default destructor for Table */
-        ~Table() = default;
+        ~Table();
         
         /*! @brief Default constructor for Table */
         Table();
@@ -38,7 +38,7 @@ namespace TNS {
         Table(const Table& link);
 
         /*! @brief Move constructor */
-        Table(const Table&& link) noexcept;
+        Table(Table&& link) noexcept;
 
         /*!
             @brief Returns the csize of a Table
@@ -162,16 +162,16 @@ namespace TNS {
         friend std::istream &operator >> (std::istream &stream, Table &t);
     
         /*!
-            @brief An overloaded copying operator '='
+            @brief An overloaded copy operator '='
             @param link The constant link to the Table being copied to the current Table
         */
         Table& Table::operator = (const Table& link);
 
         /*!
-            @brief An overloaded copying operator '='
+            @brief An overloaded move operator '='
             @param link The constant link to the Table being copied to the current Table
         */
-        Table& Table::operator = (const Table&& link) noexcept;
+        Table& Table::operator = (Table&& link) noexcept;
     };
 }
 #endif

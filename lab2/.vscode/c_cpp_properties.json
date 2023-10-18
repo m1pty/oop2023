@@ -6,7 +6,11 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/static/RDialogue/include",
                 "${workspaceFolder}/static/TDialogue/include",
-                "${workspaceFolder}/dynamic/ResourceDynamic/include"
+                "${workspaceFolder}/dynamic/ResourceDynamic/include",
+                "${workspaceFolder}/dynamic/TableDynamic/include",
+                "${workspaceFolder}/dynamic/HandlersDynamic/include",
+                "${workspaceFolder}/dynamic/RDialogueDynamic/include",
+                "${workspaceFolder}/dynamic/TDialogueDynamic/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

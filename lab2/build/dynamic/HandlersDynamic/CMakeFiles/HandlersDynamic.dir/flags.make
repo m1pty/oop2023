@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic/include
 
-CXX_FLAGS =  -Wall -g -Wextra -Wall -g -Wextra -g
+CXX_FLAGS =  -Wall -g -Wextra --coverage -Wall -g -Wextra -g
 

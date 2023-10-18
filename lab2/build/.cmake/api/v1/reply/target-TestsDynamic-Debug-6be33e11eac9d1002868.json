@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "static/Tests"
+			"path" : "dynamic/TestsDynamic"
 		}
 	],
 	"backtrace" : 1,
@@ -17,7 +17,7 @@
 		],
 		"files" : 
 		[
-			"static/CMakeLists.txt"
+			"dynamic/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -56,7 +56,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -g -Wextra -Wall -g -Wextra -g"
+					"fragment" : " -Wall -g -Wextra --coverage -Wall -g -Wextra -g"
 				},
 				{
 					"backtrace" : 4,
@@ -75,23 +75,23 @@
 				},
 				{
 					"backtrace" : 3,
-					"path" : "/home/m1pty/university/oop2023/lab2/static/Resource/include"
+					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/ResourceDynamic/include"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "/home/m1pty/university/oop2023/lab2/static/Handlers/include"
+					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic/include"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "/home/m1pty/university/oop2023/lab2/static/RDialogue/include"
+					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic/include"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "/home/m1pty/university/oop2023/lab2/static/TDialogue/include"
+					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/TDialogueDynamic/include"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "/home/m1pty/university/oop2023/lab2/static/Table/include"
+					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/TableDynamic/include"
 				}
 			],
 			"language" : "CXX",
@@ -132,40 +132,40 @@
 	[
 		{
 			"backtrace" : 3,
-			"id" : "Resource::@cb7abfe4129eae538f99"
-		},
-		{
-			"backtrace" : 3,
-			"id" : "Handlers::@4d602eff4298a51c28ef"
-		},
-		{
-			"backtrace" : 3,
-			"id" : "Table::@5746d8e03c60b1860eb1"
-		},
-		{
-			"backtrace" : 3,
-			"id" : "RDialogue::@4febc956db3b237b9924"
-		},
-		{
-			"backtrace" : 3,
-			"id" : "TDialogue::@579c064fc7bfe9577a66"
-		},
-		{
-			"backtrace" : 3,
 			"id" : "Catch2::@fa92aa50e9bf5e1a7206"
 		},
 		{
 			"backtrace" : 3,
 			"id" : "Catch2WithMain::@fa92aa50e9bf5e1a7206"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "ResourceDynamic::@b6b8d405269b46c7a28e"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "HandlersDynamic::@f7ecb57f383b516fda57"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "TableDynamic::@62f27ae4694b59dc6532"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "RDialogueDynamic::@0fb917b6fed69cc02568"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "TDialogueDynamic::@62f892c467d471ef2640"
 		}
 	],
-	"id" : "Tests::@9673205551b5378734bd",
+	"id" : "TestsDynamic::@96a574a5008773828130",
 	"link" : 
 	{
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-Wall -g -Wextra -Wall -g -Wextra -g",
+				"fragment" : "-Wall -g -Wextra --coverage -Wall -g -Wextra -g",
 				"role" : "flags"
 			},
 			{
@@ -184,27 +184,27 @@
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "Resource/libResource.a",
+				"fragment" : "ResourceDynamic/libResourceDynamic.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "Handlers/libHandlers.a",
+				"fragment" : "HandlersDynamic/libHandlersDynamic.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "RDialogue/libRDialogue.a",
+				"fragment" : "RDialogueDynamic/libRDialogueDynamic.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "TDialogue/libTDialogue.a",
+				"fragment" : "TDialogueDynamic/libTDialogueDynamic.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "Table/libTable.a",
+				"fragment" : "TableDynamic/libTableDynamic.a",
 				"role" : "libraries"
 			},
 			{
@@ -213,28 +213,28 @@
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "RDialogue/libRDialogue.a",
+				"fragment" : "RDialogueDynamic/libRDialogueDynamic.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "Resource/libResource.a",
+				"fragment" : "ResourceDynamic/libResourceDynamic.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "Handlers/libHandlers.a",
+				"fragment" : "HandlersDynamic/libHandlersDynamic.a",
 				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
-	"name" : "Tests",
-	"nameOnDisk" : "Tests",
+	"name" : "TestsDynamic",
+	"nameOnDisk" : "TestsDynamic",
 	"paths" : 
 	{
-		"build" : "static",
-		"source" : "static"
+		"build" : "dynamic",
+		"source" : "dynamic"
 	},
 	"sourceGroups" : 
 	[
@@ -251,7 +251,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "static/Tests/source/TestCase.cpp",
+			"path" : "dynamic/TestsDynamic/source/TestCase.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

@@ -25,7 +25,7 @@ namespace TNS {
     }
 
     // копирующий оператор присваивания
-    Table& Table::operator = (const Table& link) const
+    Table& Table::operator = (const Table& link)
     {
         if (this != &link)
         {
@@ -42,14 +42,14 @@ namespace TNS {
     }
 
     // перемещающий конструктор
-    Table::Table(const Table&& link) noexcept : csize(link.csize), table_vector(link.table_vector)
+    Table::Table(Table&& link) noexcept : csize(link.csize), table_vector(link.table_vector)
     {
         link.csize = 0;
         link.table_vector = nullptr;
     }
 
     // перемещающий оператор
-    Table& Table::operator = (const Table&& link) noexcept
+    Table& Table::operator = (Table&& link) noexcept
     {
         delete[] table_vector;
         csize = link.csize;
@@ -59,52 +59,11 @@ namespace TNS {
         return *this;
     }
 
-    // иниц. конструктор (при отрицательном csz копирует последние csz эл-тов)
-    // Table::Table(int msz, RNS::Resource* vector, int csz){
-    //     if (msz <= 0)
-    //         throw std::invalid_argument("Invalid <msize> occured, while initializing! Must be > 0");
-        
-    //     // если пустой вектор
-    //     if (!vector){ csize = 0; }
-    //     // если вектор не пуст    
-    //     else {
-    //         int v_size = sizeof(vector) / sizeof(RNS::Resource);
-    //         // если нужно заполнить весь массив элементами из начала 
-    //         if ((std::abs(csz) >= msz) && (csz > 0)){
-    //             csize = (msz < v_size) ? msz : v_size;
-    //             for (int i = 0; i < csize; ++i)
-    //                 table_vector[i] = vector[i];
-    //         }
-    //         // если нужно заполнить весь массив элементами из конца
-    //         else if ((std::abs(csz) >= msz) && (csz < 0)){
-    //             csize = (msz < v_size) ? msz : v_size;
-    //             for (int i = 0; i < csize; ++i)
-    //                 table_vector[i] = vector[v_size - csize + i];
-    //         }
-    //         // если нужно заполнить массив частично элементами из начала 
-    //         else if ((std::abs(csz) < msz) && (csz >= 0)){
-    //             csize = (csz < v_size) ? csz : v_size;
-    //             for (int i = 0; i < csize; ++i)
-    //                 table_vector[i] = vector[i];
-    //         }
-    //         // если нужно заполнить массив частично элементами из конца
-    //         else if ((std::abs(csz) < msz) && (csz <= 0)){
-    //             csize = (std::abs(csz) < v_size) ? std::abs(csz) : v_size;
-    //             for (int i = 0; i < csize; ++i)
-    //                 table_vector[i] = vector[v_size - csize + i];
-    //         }
-    //     }
-    // }
-
-
     void Table::garbageCollector(int start_index) noexcept         // [+] удаляет лишние пробелы в таблице
-    {   
-        if (msize == csize)
-            return;
-
+    {
         for (int i = start_index; i < csize; ++i){
             if (table_vector[i].getName() == ""){
-                for (int j = i + 1; j < msize; ++j){
+                for (int j = i + 1; j < csize; ++j){
                     if (table_vector[j].getName() != ""){
                         table_vector[i].setName(table_vector[j].getName());
                         table_vector[i].setDC(table_vector[j].getDC());
@@ -142,16 +101,14 @@ namespace TNS {
             ++i;
         }
     }
+
     void Table::clear() noexcept
     {
-        RNS::Resource empty_resource;
-        for (int i = 0; i < csize; ++i)
-            table_vector[i] = empty_resource;
+        delete[] table_vector;
         csize = 0;
     }
 
-
-    void Table::deleteByIndex(int index)                    // [+] удаление по индексу
+    void Table::deleteByIndex(int index) // [+] удаление по индексу
     {
         if ((index >= csize) || (index < 0))
             throw std::invalid_argument("[ERROR]: Table[Index] is not declared");
@@ -161,6 +118,7 @@ namespace TNS {
         --csize;
         garbageCollector(index);
     }
+
     void Table::deleteByName(const std::string &name) noexcept           // [+] удаление по имени
     {
         std::pair<bool, size_t> search = searchByName(name);
@@ -179,7 +137,7 @@ namespace TNS {
     std::ostream &Table::print(std::ostream &stream) const  // [+] вывод
     {
         // считаем кол-во пробелов для форматированого вывода индекса
-        int spaces_n = Handler::countIntLength(msize - 1);
+        int spaces_n = Handler::countIntLength(csize - 1);
 
         // считаем кол-во символов в максимальном названии
         int spaces_str = 1; // "Empty"
@@ -201,7 +159,7 @@ namespace TNS {
         spaces_double += 4; // разряды после точки и сама точка
 
         // выводим
-        for (int i = 0; i < msize; ++i){
+        for (int i = 0; i < csize; ++i){
             stream << "| ";
             // вывод индекса
             int current_spaces = Handler::countIntLength(i);
@@ -239,13 +197,14 @@ namespace TNS {
         }
         return stream;
     }
+
     std::istream &Table::input(std::istream & stream)
     {
         try {
             clear();
             if (&stream == &std::cin)
-                std::cout << "Введите число элементов для заполнения: (max = " << MAX_SIZE << ")\n" << PROMPT;
-            int quantity = Handler::getInt(stream, 0, MAX_SIZE);
+                std::cout << "Введите число элементов для заполнения:\n" << PROMPT;
+            int quantity = Handler::getInt(stream, 0);
             csize = quantity;
             for (int i = 0; i < quantity; ++i){
                 if (&stream == &std::cin)
@@ -254,7 +213,13 @@ namespace TNS {
             }
             sort();
             return stream;
-        } catch (...) { throw; }
+        } 
+
+        catch (...) 
+        { 
+            throw; 
+        
+        }
     }
     
     std::pair<bool, size_t> Table::searchByName(const std::string &name) const           // [+] поиск по имени
@@ -302,21 +267,10 @@ namespace TNS {
         answer.second = middle;
         std::cout << result << " " << answer.second << std::endl;
         return answer;
-    }  
-    Fullness Table::checkFullness() const noexcept                     // [+] проверка заполненности таблицы
-    {
-        if (csize == 0)
-            return Fullness::empty;
-        if (csize < msize)
-            return Fullness::partly_full;
-        return Fullness::full;
     }
+
     void Table::add(const RNS::Resource &r) noexcept // (+=) [+] добавление ресурса в таблицу
     {
-        if (csize == msize){
-            std::cout << "[ERROR]: Таблица заполнена, добавление нового ресурса невозможно!\n";
-            return;
-        }
         // если такого элемента ранее не было
         std::pair<bool, size_t> search = searchByName(r.getName()); 
         if (!search.first){
@@ -334,6 +288,7 @@ namespace TNS {
             // уже отсортировано по имени
         }
     }
+
     void Table::rename(const std::string &old_name, const std::string &new_name) noexcept // переименование типа ресурса 
     {
         std::pair<bool, size_t> search = searchByName(old_name);
@@ -347,6 +302,7 @@ namespace TNS {
         }
         sort();   
     }
+
     void Table::incTurnover(double multipliter)             // увеличение оборота всех ресурсов
     {
         try
@@ -360,6 +316,7 @@ namespace TNS {
             throw std::invalid_argument("invalid <multiplier>! (must be >= 0)");
         }
     }
+
     double Table::getProfit() noexcept                  // вычисление прибыльности всех ресурсов таблицы
     {
         double summary = 0;
@@ -402,6 +359,7 @@ namespace TNS {
         else
             throw std::runtime_error("[ERROR]: Элемента с таким наименованием нет в таблице!\n");
     }
+
     const RNS::Resource &Table::operator[] (const std::string& name) const
     {
         std::pair<bool, size_t> search = searchByName(name);
@@ -412,11 +370,13 @@ namespace TNS {
         else
             throw std::runtime_error("[ERROR]: Элемента с таким наименованием нет в таблице!\n");
     }
+
     Table Table::operator * (double multiplier)
     {
         incTurnover(multiplier);
         return *this;
     }
+
     Table &Table::operator += (RNS::Resource &r)
     {
         add(r);
@@ -427,6 +387,7 @@ namespace TNS {
         std::ostream &s = t.print(stream);
         return s;
     }
+
     std::istream &operator >> (std::istream &stream, Table &t)
     {
         std::istream &s = t.input(stream);

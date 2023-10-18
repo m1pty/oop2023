@@ -11,7 +11,7 @@
 #include "TableDynamic/Table.h"
 #include "TDialogueDynamic/TDialogue.h"
 
-const int N_TABLE_OPTIONS = 12;
+const int N_TABLE_OPTIONS = 11;
 namespace dialogueT {
     const char* menu_points[N_TABLE_OPTIONS] = {
         "\n----------------------------------------------------\n[ 0]: Выйти из программы\n",
@@ -24,63 +24,58 @@ namespace dialogueT {
         "[ 7]: Переименовать тип ресурса\n",
         "[ 8]: Перейти в меню ресурса\n",
         "[ 9]: Посчитать прибыльность ресурсов таблицы\n",
-        "[10]: Вывести состояние полноты таблицы\n",
-        "[11]: Увеличить оборот всех ресурсов таблицы\n----------------------------------------------------\n"
+        "[10]: Увеличить оборот всех ресурсов таблицы\n----------------------------------------------------\n"
     };
 
     // указатели на функции, соответствующие пунктам меню
     void (*table_menu_functions[N_TABLE_OPTIONS]) (TNS::Table &) = {
         nullptr, tableInputD, tablePrintD, tableAddResD, tableGetResD,
         tableDelResNameD, tableDelResIndexD, tableRenameResD, 
-        tableChangeResD, tableGetProfitD, tableCheckStateD, tableIncTurnoverD
+        tableChangeResD, tableGetProfitD, tableIncTurnoverD
     };
     void tableMenuD  (TNS::Table &t)      // [**, +] основной выбор, меню 
     {
         int user_choice = 1;
-        while (user_choice != 0){
+        while (user_choice != 0)
+        {
             for (int i = 0; i < N_TABLE_OPTIONS; ++i)
                 std::cout << menu_points[i];
             std::cout << PROMPT;
-            try {
-                int user_choice = Handler::getInt(std::cin, 0, N_TABLE_OPTIONS - 1);
-                if (user_choice != 0)
-                    table_menu_functions[user_choice](t);
+            int user_choice = Handler::getInt(std::cin, 0, N_TABLE_OPTIONS - 1);
+            if (user_choice != 0)
+                table_menu_functions[user_choice](t);
                 
-                else
-                    break;
-                
-            } catch (...) { throw; }
+            else
+                break;
         }
     }
+
     void tableInputD (TNS::Table &t)      // [01, +] ввод таблицы
     { 
-        try {
-            t.input(std::cin);
-        } catch (...) { throw; }
-
-    } // ввод матрицы
-    void tablePrintD (TNS::Table &t)      // [02, +] печать таблицы
-    {
-        try {
-            t.print(std::cout);
-        } catch (...) { throw; }
+        t.input(std::cin);
     }
+
+    void tablePrintD (TNS::Table &t) noexcept // [02, +] печать таблицы
+    {
+        t.print(std::cout);
+    }
+    
     void tableAddResD(TNS::Table &t)      // [03, +] добавление нового элемента
     { 
         try {
             RNS::Resource r;
-            RNS::Resource &link = r;
             std::cout << "Введите ресурс:\n";
-            link.input(std::cin);
+            r.input(std::cin);
+            t.add(r);
+            std::cout << "[RESULT]: Элемент успешно добавлен!";
 
-            if (t.checkFullness() != TNS::Fullness::full){
-                t.add(r);
-                std::cout << "[RESULT]: Элемент успешно добавлен!";
-            }
-            else
-                std::cout << "[RESULT]: Таблица заполнена - невозможно добавить элемент!";
-        } catch (...){ throw; }
+        } 
+        catch (...)
+        { 
+            throw; 
+        }
     }
+
     void tableGetResD(TNS::Table &t)      // [04, +] вывести ресурс по его наименованию
     { 
         try {
@@ -91,16 +86,26 @@ namespace dialogueT {
             TNS::Table new_table = t.searchResult(link);
             std::cout << "[RESULT]:\n";
             new_table.print(std::cout);
-        } catch (... ) { throw; }
+        } 
+        catch (...) 
+        { 
+            throw; 
+        }
     }
+
     void tableDelResNameD (TNS::Table &t) // [05, +] удаление типа ресурса по имени
     { 
         try {
             std::cout << "Введите имя удаляемого типа ресурса:\n" << PROMPT;
             std::string name = Handler::getString(std::cin);
             t.deleteByName(name);
-        } catch (...) { throw; }
+        } 
+        catch (...) 
+        { 
+            throw; 
+        }
     }
+
     void tableDelResIndexD(TNS::Table &t) // [06, +] удалить ресурс по его индексу
     { 
         try {
@@ -130,34 +135,23 @@ namespace dialogueT {
             t.prettify();
         } catch (...) { throw; }
     } 
-    void tableGetProfitD  (TNS::Table &t) // [09, +] получение прибыльности всех ресурсов таблицы
-    {
-        try {
-            double profit = t.getProfit();
-            std::cout << "[PROFIT]: " << profit << " у.е.\n";
-        } catch (...) { throw; }
-    }
-    void tableCheckStateD (TNS::Table &t) // [10, +] проверка заполненности таблицы
-    {
-        try {
-            TNS::Fullness state = t.checkFullness();
-            if (state == TNS::Fullness::full)
-                std::cout << "[STATE]: Заполнена (" << t.getCSize() << "/" << t.getMSize() << ")\n";
-            
-            if (state == TNS::Fullness::partly_full)
-                std::cout << "[STATE]: Частично заполнена (" << t.getCSize() << "/" << t.getMSize() << ")\n";
 
-            if (state == TNS::Fullness::empty)
-                std::cout << "[STATE]: Пуста (" << t.getCSize() << "/" << t.getMSize() << ")\n";
-
-        } catch (...) { throw; }
+    void tableGetProfitD  (TNS::Table &t) noexcept // [09, +] получение прибыльности всех ресурсов таблицы
+    {
+        double profit = t.getProfit();
+        std::cout << "[PROFIT]: " << profit << " у.е.\n";
     }
-    void tableIncTurnoverD(TNS::Table &t) // [11, +] увеличение оборота всех ресурсов таблицы
+
+    void tableIncTurnoverD(TNS::Table &t) // [10, +] увеличение оборота всех ресурсов таблицы
     {
         try {
             std::cout << "Введите коэф. умножения\n" << PROMPT;
             double coef = Handler::getDouble(std::cin, 0.0);
             t.incTurnover(coef);
-        } catch (...) { throw; }
+        } 
+        catch (...) 
+        { 
+            throw; 
+        }
     }
 }

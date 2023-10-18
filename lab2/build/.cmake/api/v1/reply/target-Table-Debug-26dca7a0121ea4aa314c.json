@@ -3,7 +3,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "static/Handlers/libHandlers.a"
+			"path" : "static/Table/libTable.a"
 		}
 	],
 	"backtrace" : 1,
@@ -12,11 +12,12 @@
 		"commands" : 
 		[
 			"add_library",
+			"target_link_libraries",
 			"target_include_directories"
 		],
 		"files" : 
 		[
-			"static/Handlers/CMakeLists.txt"
+			"static/Table/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -32,6 +33,12 @@
 			{
 				"command" : 1,
 				"file" : 0,
+				"line" : 7,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
 				"line" : 6,
 				"parent" : 0
 			}
@@ -43,14 +50,26 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -g -Wextra -Wall -g -Wextra -g"
+					"fragment" : " -Wall -g -Wextra --coverage -Wall -g -Wextra -g"
 				}
 			],
 			"includes" : 
 			[
 				{
+					"backtrace" : 3,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/Table/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/Resource/include"
+				},
+				{
 					"backtrace" : 2,
 					"path" : "/home/m1pty/university/oop2023/lab2/static/Handlers/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/m1pty/university/oop2023/lab2/static/RDialogue/include"
 				}
 			],
 			"language" : "CXX",
@@ -68,13 +87,28 @@
 			]
 		}
 	],
-	"id" : "Handlers::@4d602eff4298a51c28ef",
-	"name" : "Handlers",
-	"nameOnDisk" : "libHandlers.a",
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "Resource::@cb7abfe4129eae538f99"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "Handlers::@4d602eff4298a51c28ef"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "RDialogue::@4febc956db3b237b9924"
+		}
+	],
+	"id" : "Table::@5746d8e03c60b1860eb1",
+	"name" : "Table",
+	"nameOnDisk" : "libTable.a",
 	"paths" : 
 	{
-		"build" : "static/Handlers",
-		"source" : "static/Handlers"
+		"build" : "static/Table",
+		"source" : "static/Table"
 	},
 	"sourceGroups" : 
 	[
@@ -84,13 +118,6 @@
 			[
 				0
 			]
-		},
-		{
-			"name" : "Header Files",
-			"sourceIndexes" : 
-			[
-				1
-			]
 		}
 	],
 	"sources" : 
@@ -98,13 +125,8 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "static/Handlers/source/Handlers.cpp",
+			"path" : "static/Table/source/Table.cpp",
 			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "static/Handlers/include/Handlers/Handlers.h",
-			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "STATIC_LIBRARY"
