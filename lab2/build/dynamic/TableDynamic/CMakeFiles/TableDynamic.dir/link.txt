@@ -1,2 +1,0 @@
-/usr/bin/ar qc libTableDynamic.a CMakeFiles/TableDynamic.dir/source/Table.cpp.o
-/usr/bin/ranlib libTableDynamic.a

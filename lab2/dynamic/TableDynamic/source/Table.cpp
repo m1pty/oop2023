@@ -82,6 +82,7 @@ namespace TNS {
             }
         }
     }
+
     void Table::sort() noexcept  // [+] сортировка пузырьком для ресурсов в таблице
     {
         int i = 0;
@@ -116,37 +117,70 @@ namespace TNS {
 
     void Table::deleteByIndex(int index) // [+] удаление по индексу
     {
-        if ((index >= csize) || (index < 0))
-            throw std::invalid_argument("[ERROR]: Table[Index] is not declared");
-        
-        RNS::Resource r{};
-        table_vector[index] = r;
-        --csize;
-        garbageCollector(index);
+        try {
+            if ((index >= csize) || (index < 0))
+                throw std::invalid_argument("[ERROR]: Table[Index] is not declared!\n");
+            
+            RNS::Resource * new_vector = new RNS::Resource[csize - 1];
+            for (int i = index; i < csize - 1; ++i)
+                table_vector[i] = table_vector[i + 1];
+            std::copy(table_vector, table_vector + (csize - 1), new_vector);
+            --csize;
+            delete[] table_vector;
+            table_vector = new_vector;
+        }
+
+        catch (std::bad_alloc &e)
+        {
+            std::cout << "[ERROR]: Not enough memory for safe deleting!\n";
+        }
+
+        catch (std::invalid_argument &i)
+        {
+            std::cout << "[ERROR]: Process corrupted due to the invalid function argument!\n";
+        }
     }
 
     void Table::deleteByName(const std::string &name) noexcept           // [+] удаление по имени
     {
-        std::pair<bool, size_t> search = searchByName(name);
-        if (!search.first)
-            return;
+        try {
+            std::pair<bool, size_t> search = searchByName(name);
+            if (!search.first)
+                return;
         
-        int index = search.second;
-        std::cout << "Deleting from index of " << index << std::endl;
-        while ((index != csize) && (table_vector[index].getName().compare(name) == 0)){
-            RNS::Resource r;
-            table_vector[index] = r;
-            --csize;
-            garbageCollector(index);
+            // counting N of elements to delete
+            int index = search.second, del_end = index;
+            std::cout << "[SYSTEM]: Deleting started from index of " << index << std::endl;
+            while ((del_end != csize) && (table_vector[del_end].getName().compare(name) == 0))
+                ++del_end;
+            --del_end;
+
+            int quantity = del_end - index + 1;
+            int new_size = csize - quantity;
+            RNS::Resource* new_vector = new RNS::Resource[new_size];
+            for (int i = index; i < del_end; ++i)
+                table_vector[i] = table_vector[i + quantity];
+            
+            // realloc analogue
+            std::copy(table_vector, table_vector + new_size, new_vector);
+            csize = new_size;
+            delete[] table_vector;
+            table_vector = new_vector;
+        }
+
+        catch (std::bad_alloc &ba)
+        {
+            std::cout << "[ERROR]: Not enough memory for safe deleting!\n";
         }
     }
+
     std::ostream &Table::print(std::ostream &stream) const  // [+] вывод
     {
         // считаем кол-во пробелов для форматированого вывода индекса
         int spaces_n = Handler::countIntLength(csize - 1);
 
         // считаем кол-во символов в максимальном названии
-        int spaces_str = 1; // "Empty"
+        int spaces_str = 1;
         for (int i = 0; i < csize; ++i){
             int length = (int)table_vector[i].getName().length();
             spaces_str = (length > spaces_str) ? length : spaces_str;
@@ -212,7 +246,9 @@ namespace TNS {
                 std::cout << "Введите число элементов для заполнения:\n" << PROMPT;
             int quantity = Handler::getInt(stream, 0);
             csize = quantity;
-            for (int i = 0; i < quantity; ++i){
+
+            table_vector = new RNS::Resource[csize];
+            for (int i = 0; i < csize; ++i){
                 if (&stream == &std::cin)
                     std::cout << "Введите элемент " << i << ":\n";
                 table_vector[i].input(stream);
@@ -221,10 +257,10 @@ namespace TNS {
             return stream;
         } 
 
-        catch (...) 
+        catch (std::bad_alloc &ba) 
         { 
-            throw; 
-        
+            std::cout << "[ERROR]: Not enough memory to set a table of this size!\n";
+            return stream;
         }
     }
     
@@ -307,7 +343,7 @@ namespace TNS {
 
         catch (std::bad_alloc &e)
         {
-            std::cout << "[ERROR]: Not enough memory!\n";
+            std::cout << "[ERROR]: Not enough memory to add!\n";
         }
     }
 
@@ -334,7 +370,8 @@ namespace TNS {
         } 
         
         catch (std::invalid_argument &e)
-        { 
+        {
+            std::cout << "[ERROR]: Increasing-Turnover process corrupted due to the wrong multiplier parameter!\n"; 
             throw std::invalid_argument("invalid <multiplier>! (must be >= 0)");
         }
     }
