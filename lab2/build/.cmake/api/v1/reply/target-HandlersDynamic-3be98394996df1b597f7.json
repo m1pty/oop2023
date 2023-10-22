@@ -43,7 +43,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -g -Wextra --coverage -Wall -g -Wextra --coverage"
+					"fragment" : " -Wall -g -Wextra --coverage -Wall -g -Wextra"
 				}
 			],
 			"includes" : 

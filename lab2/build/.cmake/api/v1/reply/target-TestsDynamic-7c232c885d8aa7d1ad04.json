@@ -11,9 +11,7 @@
 		"commands" : 
 		[
 			"add_executable",
-			"add_link_options",
-			"target_link_libraries",
-			"add_compile_options"
+			"target_link_libraries"
 		],
 		"files" : 
 		[
@@ -27,25 +25,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 36,
+				"line" : 31,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 24,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 37,
-				"parent" : 0
-			},
-			{
-				"command" : 3,
-				"file" : 0,
-				"line" : 23,
+				"line" : 32,
 				"parent" : 0
 			}
 		]
@@ -56,41 +42,37 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -g -Wextra --coverage -Wall -g -Wextra --coverage"
-				},
-				{
-					"backtrace" : 4,
-					"fragment" : "--coverage"
+					"fragment" : " -Wall -g -Wextra --coverage -Wall -g -Wextra"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "/home/m1pty/university/oop2023/lab2/build/_deps/catch2-src/src/catch2/.."
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "/home/m1pty/university/oop2023/lab2/build/generated-includes"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/ResourceDynamic/include"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/HandlersDynamic/include"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/RDialogueDynamic/include"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/TDialogueDynamic/include"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "/home/m1pty/university/oop2023/lab2/dynamic/TableDynamic/include"
 				}
 			],
@@ -99,26 +81,26 @@
 			{
 				"backtraces" : 
 				[
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3,
-					3
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2,
+					2
 				],
 				"standard" : "17"
 			},
@@ -131,31 +113,31 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "Catch2::@fa92aa50e9bf5e1a7206"
 		},
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "Catch2WithMain::@fa92aa50e9bf5e1a7206"
 		},
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "ResourceDynamic::@b6b8d405269b46c7a28e"
 		},
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "HandlersDynamic::@f7ecb57f383b516fda57"
 		},
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "TableDynamic::@62f27ae4694b59dc6532"
 		},
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "RDialogueDynamic::@0fb917b6fed69cc02568"
 		},
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "TDialogueDynamic::@62f892c467d471ef2640"
 		}
 	],
@@ -165,7 +147,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-Wall -g -Wextra --coverage -Wall -g -Wextra --coverage",
+				"fragment" : "-Wall -g -Wextra --coverage -Wall -g -Wextra",
 				"role" : "flags"
 			},
 			{
@@ -174,36 +156,31 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "--coverage",
-				"role" : "flags"
-			},
-			{
-				"backtrace" : 3,
 				"fragment" : "../_deps/catch2-build/src/libCatch2Main.a",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "ResourceDynamic/libResourceDynamic.a",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "HandlersDynamic/libHandlersDynamic.a",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "RDialogueDynamic/libRDialogueDynamic.a",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "TDialogueDynamic/libTDialogueDynamic.a",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "TableDynamic/libTableDynamic.a",
 				"role" : "libraries"
 			},
@@ -212,17 +189,17 @@
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "RDialogueDynamic/libRDialogueDynamic.a",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "ResourceDynamic/libResourceDynamic.a",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "HandlersDynamic/libHandlersDynamic.a",
 				"role" : "libraries"
 			}

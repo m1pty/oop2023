@@ -70,18 +70,13 @@ namespace TNS {
     {
         int i = 0;
         bool swap_made = true;
-        while (swap_made){
+        while (swap_made)
+        {
             swap_made = false;
-            for (int j = 0; j < csize - 1; ++j){
-                if (table_vector[j].getName() == ""){
-                    if (table_vector[j + 1].getName() != ""){
-                        swap_made = true;
-                    }
-                    RNS::Resource tmp = table_vector[j];
-                    table_vector[j] = table_vector[j + 1];
-                    table_vector[j + 1] = tmp;
-
-                } else if (table_vector[j].getName().compare(table_vector[j + 1].getName()) > 0){
+            for (int j = 0; j < csize - 1; ++j)
+            {
+                if (table_vector[j].getName().compare(table_vector[j + 1].getName()) > 0)
+                {
                     RNS::Resource tmp = table_vector[j];
                     table_vector[j] = table_vector[j + 1];
                     table_vector[j + 1] = tmp;
@@ -174,6 +169,7 @@ namespace TNS {
 
             return table_vector[index];
         }
+
         catch (std::invalid_argument &ia)
         {
             std::cout << "[ERROR]: Table[Index] is not declared!\n";
@@ -276,7 +272,6 @@ namespace TNS {
     
     std::pair<bool, size_t> Table::searchByName(const std::string &name) const           // [+] поиск по имени
     {
-        int comp_res = 0;
         int left = 0,  middle = 0, right  = csize - 1;
         std::pair<bool, size_t> answer{false, 0};
         while (left <= right){
@@ -286,10 +281,6 @@ namespace TNS {
 
             std::string raw_1 = table_vector[middle].getName() + " to ";
             std::string raw_2 = name;
-
-            std::string eqaulity_res = (comp_res != 0) ? "equals" : "not_equals";
-            // std::cout << "Comparing: " << "(" << table_vector[middle].getName().size() << ") " << raw_1;
-            // std::cout << " (" << raw_2.size() << ") " << raw_2 << " " << eqaulity_res << "(" << comp_res2 << ")" << std::endl;
             
             if (comp_res2 == 0){
                 answer.first = true;
@@ -302,10 +293,6 @@ namespace TNS {
                 left  = middle + 1;
             }
         }
-
-        // std::string result = (answer.first) ? "True" : "False";
-        // if (result == "False")
-        //     std::cout << result << " " << answer.second << std::endl;
         
         // если элемент не был найден
         if (!answer.first)
@@ -322,7 +309,6 @@ namespace TNS {
         
         ++middle;
         answer.second = middle;
-        // std::cout << result << " " << answer.second << std::endl;
         return answer;
     }
 
@@ -401,20 +387,27 @@ namespace TNS {
 
     Table Table::searchResult(const std::string &name) // вывод таблицы найденного
     {
-        Table table;
-        std::pair<bool, size_t> search = searchByName(name);
-        if (search.first){
-            int index = search.second;
-            for (int i = index; i < csize; ++i)
-            {
-                if (table_vector[i].getName() == name)
-                    table.add(table_vector[i]);
+        try {
+            Table table;
+            std::pair<bool, size_t> search = searchByName(name);
+            if (search.first){
+                int index = search.second;
+                for (int i = index; i < csize; ++i)
+                {
+                    if (table_vector[i].getName() == name)
+                        table.add(table_vector[i]);
 
-                else 
-                    break;
+                    else 
+                        break;
+                }
             }
+            return table;
         }
-        return table;
+        catch (std::bad_alloc &ba)
+        {
+            std::cout << "[ERROR]: Process failed due to the lack of memory!\n";
+            return Table();
+        }
     }
 
     void Table::prettify() noexcept
@@ -430,6 +423,7 @@ namespace TNS {
      \_______  /   __/ \___  >__|  (____  /__|  \____/|__|  /____  >
              \/|__|        \/           \/                       \/ 
     */
+   
     RNS::Resource &Table::operator[] (const std::string& name)
     {
         std::pair<bool, size_t> search = searchByName(name);
@@ -463,6 +457,7 @@ namespace TNS {
         add(r);
         return *this;
     }
+
     std::ostream &operator << (std::ostream &stream, const Table &t)
     {
         std::ostream &s = t.print(stream);

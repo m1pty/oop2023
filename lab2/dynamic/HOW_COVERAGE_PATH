@@ -1,0 +1,4 @@
+cmake ..
+make TestsDynamic
+./dynamic/TestsDynamic
+gcovr -r .. -e CMakeFiles -e _deps --html-details -o coverage.html

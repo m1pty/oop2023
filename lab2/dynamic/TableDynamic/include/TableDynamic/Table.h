@@ -41,6 +41,12 @@ namespace TNS {
         int getCSize() const { return csize; }
 
         /*!
+            @brief Returns pointer to the Table's data
+            @returns pointer to the Table's data
+        */
+        RNS::Resource* getTablePtr() const { return table_vector; }
+
+        /*!
             @brief Returns a link to the resource of index <index>
             @returns a link to the resource of index <index>
             @throws std::invalid_argument in case of wrong index
@@ -64,12 +70,14 @@ namespace TNS {
         /*!
             @brief Adding the resource to the table by it's link
             @param r a link to the adding resource
+            @throws std:bad_alloc in case of memory lack for safe adding
         */
         void add(const RNS::Resource &r);   // (+=) добавление ресурса в таблицу
         
         /*!
             @brief Deletes the resource from the table by it's name
             @param name The name of the deleting resource
+            @throws std::bad_alloc in case of memory lack for safe copying
         */
         void deleteByName(const std::string &name) noexcept; // удаляет ресурс из таблицы по наименованию
 
@@ -77,6 +85,7 @@ namespace TNS {
             @brief Deletes the resource from the table by it's index
             @param index The index of the deleting resource
             @throws std::invalid_argument in case of (<index> >= <csize>) or (<index> < 0)
+            @throws std::bad_alloc in case of memory lack for safe copying
         */
         void deleteByIndex(int index); // удаляет ресурс по индексу
 
@@ -90,7 +99,8 @@ namespace TNS {
         /*!
             @brief Returns a link to the new printable table, containing all examples of this result
             @param indices a pointer to array of integers, containing indecies of resource
-            @returns a link to the new printable table, containing all examples of this result
+            @returns new printable table, containing all examples of this result
+            @throws std::bad_alloc in case of memory lack
         */
         Table searchResult(const std::string &name); // ([]) получение таблицы найденных ресурсов, при помощи двоичного поиска
     
@@ -136,6 +146,11 @@ namespace TNS {
             @param name The name of the indexing Resource
         */
         RNS::Resource &operator[] (const std::string& name);
+        
+        /*!
+            @brief An overloaded operator "[]" of indexing the Resource in the Table
+            @param name The name of the indexing Resource
+        */
         const RNS::Resource &operator[] (const std::string& name) const;
 
         /*!
