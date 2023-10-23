@@ -117,6 +117,7 @@ TEST_CASE("Dynamic Table Deletion")
         RNS::Resource r1{"coal",  2.3,  9.5, 11.65};
         RNS::Resource r2{"gold", 33.3, 10.8, 11.91};
         RNS::Resource r3{"coal",  1.7,  2.3,  7.4 };
+        t += r1; t += r2; t += r3;
 
         REQUIRE_NOTHROW(t.deleteByName("coal"));
         REQUIRE(t.getCSize() == 1);
@@ -175,7 +176,7 @@ TEST_CASE("Dynamic Table Turnover")
         RNS::Resource r3{"coal", 1.5, 12.3, 10.9};
         t += r1; t += r1; t += r3;
 
-        t.print(std::cin);
+        t.print(std::cout);
         REQUIRE_NOTHROW(t * 1.1);
 
         double eps = 0.0000000000001;
@@ -189,25 +190,24 @@ TEST_CASE("Dynamic Table Turnover")
         REQUIRE(abs(t.getResByIndex(2).getDP() - 27.28) < eps);
     }
 }
-
 TEST_CASE("Dynamic Table Search")
 {
     SECTION("Multiple Search")
     {
         TNS::Table t;
         RNS::Resource r1{"coal", 0.7, 10.0, 13.3};
-        RNS::Resource r2{"gold", 1.3, 23.9, 24.8};
+        RNS::Resource r2{"gold :)", 1.3, 23.9, 24.8};
         RNS::Resource r3{"coal", 1.5, 12.3, 10.9};
-        t += r1; t += r1; t += r3;
+        t += r1; t += r2; t += r3;
 
         REQUIRE_NOTHROW(t.searchResult("diamond"));
         REQUIRE_NOTHROW(t.searchResult("coal"));
         TNS::Table search = t.searchResult("coal");
 
-        search.print(std::cout);
-
         REQUIRE(search.getCSize() == 2);
         double eps = 0.0000000000001;
+
+        REQUIRE_NOTHROW(search.getResByIndex(-1));
 
         REQUIRE(search.getResByIndex(0).getName() == "coal");
         REQUIRE(abs(search.getResByIndex(0).getPrice() - 0.7) < eps);
@@ -222,14 +222,13 @@ TEST_CASE("Dynamic Table Search")
         RNS::Resource r1{"coal", 0.7, 10.0, 13.3};
         RNS::Resource r2{"gold", 1.3, 23.9, 24.8};
         RNS::Resource r3{"coal", 1.5, 12.3, 10.9};
-        t += r1; t += r1; t += r3;
+        t += r1; t += r2; t += r3;
 
         double eps = 0.0000000000001;
-        RNS::Resource& found = t["coal"];
+        const RNS::Resource& found = t["coal"];
         REQUIRE(abs(found.getPrice() - 1.5) < eps);
     }
 }
-
 TEST_CASE("Dynamic Table Constructors")
 {
     SECTION("Copying")
@@ -256,18 +255,148 @@ TEST_CASE("Dynamic Table Constructors")
 
         REQUIRE(t.getCSize() == 3);
     }
+}
+TEST_CASE("Dynamic Table Move/Copy Assignments")
+{
+    SECTION("Move Assignment")
+    {
+        TNS::Table table, move;
+        RNS::Resource r1{"coal", 1.1, 10.5, 11.5};
+        RNS::Resource r2{"diamond", 1.2, 7.5, 8.5};
+        REQUIRE_NOTHROW(table += r1);
+        REQUIRE_NOTHROW(table += r2);
+        move = std::move(table);
+        REQUIRE(move.getCSize() == 2);
+        REQUIRE(table.getCSize() == 0);
+    }
 
-    // SECTION("Moving")
-    // {
-    //     TNS::Table t;
-    //     RNS::Resource r1{"coal", 0.7, 10.0, 13.3};
-    //     RNS::Resource r2{"gold", 1.3, 23.9, 24.8};
-    //     RNS::Resource r3{"coal", 1.5, 12.3, 10.9};
-    //     REQUIRE_NOTHROW(t.add(r1));
-    //     REQUIRE_NOTHROW(t.add(r2));
-    //     REQUIRE_NOTHROW(t.add(r3));
+    SECTION("Copy Assignment")
+    {
+        TNS::Table table, move;
+        RNS::Resource r1{"coal", 1.1, 10.5, 11.5};
+        RNS::Resource r2{"diamond", 1.2, 7.5, 8.5};
+        REQUIRE_NOTHROW(table += r1);
+        REQUIRE_NOTHROW(table += r2);
+        move = table;
+        REQUIRE(move.getCSize() == 2);
+        REQUIRE(table.getCSize() == 2);
+    }
+}
+TEST_CASE("Dynamic Table Output")
+{
+    SECTION("Operator Output")
+    {
+        TNS::Table t;
+        REQUIRE_NOTHROW(t.print(std::cout));
+        RNS::Resource r1{"coal", 0.7, 10.0, 13.3};
+        RNS::Resource r2{"gold!", 1.3, 23.9, 24.8};
+        RNS::Resource r3{"coal", 1.5, 12.3, 10.9};
+        t += r1; t += r1; t += r3;
 
-    //     TNS::Table moved;
-    //     moved = t;
-    // }
+        REQUIRE_NOTHROW(t.prettify());
+        std::cout << t["coal"];
+        std::cout << t;
+    }
+}
+
+TEST_CASE("Dynamic Resource")
+{
+    SECTION("Setters")
+    {
+        RNS::Resource res;
+        double eps = 0.0000000000001;
+        REQUIRE(res.getName() == "");
+        REQUIRE(abs(res.getDC() - 0.0) <= eps);
+        REQUIRE(abs(res.getDP() - 0.0) <= eps);
+        REQUIRE(abs(res.getPrice() - 0.0) <= eps);
+
+        REQUIRE_NOTHROW(res.setName("coal"));
+        REQUIRE_NOTHROW(res.setPrice(1.3));
+        REQUIRE_NOTHROW(res.setDC(9.5));
+        REQUIRE_NOTHROW(res.setDP(10));
+
+        REQUIRE(res.getName() == "coal");
+        REQUIRE(abs(res.getPrice() - 1.3) <= eps);
+        REQUIRE(abs(res.getDC() - 9.5) <= eps);
+        REQUIRE(abs(res.getDP() - 10.0) <= eps);
+
+        REQUIRE_NOTHROW(res.setPrice(-1));
+        REQUIRE_NOTHROW(res.setDC(-1));
+        REQUIRE_NOTHROW(res.setDP(-1));
+    }
+
+    SECTION("Chained Setters")
+    {
+        RNS::Resource res;
+        double eps = 0.0000000000001;
+        REQUIRE_NOTHROW(res.setName("diamond").setPrice(100.3));
+        REQUIRE_NOTHROW(res.setDP(0.7).setDC(0.1));
+
+        REQUIRE(res.getName() == "diamond");
+        REQUIRE(abs(res.getPrice() - 100.3) <= eps);
+        REQUIRE(abs(res.getDP() - 0.7) <= eps);
+        REQUIRE(abs(res.getDC() - 0.1) <= eps);
+    }
+
+    SECTION("Adding")
+    {
+        RNS::Resource r1{"coal", 1.3, 10.5, 13.2};
+        RNS::Resource r2{"coal", 1.2, 11.5, 12.8};
+        RNS::Resource res, res_op;
+        
+        REQUIRE_NOTHROW(res = r1 + r2);
+        REQUIRE_NOTHROW(res_op = r1);
+        REQUIRE_NOTHROW(res_op.add(r1));
+
+        double eps = 0.0000000000001;
+        REQUIRE(res.getName() == "coal");
+        REQUIRE(abs(res.getPrice() - 1.2) <= eps);
+        REQUIRE(abs(res.getDP() - 26.0) <= eps);
+        REQUIRE(abs(res.getDC() - 22.0) <= eps);
+
+        REQUIRE(res_op.getName() == "coal");
+        REQUIRE(abs(res_op.getPrice() - 1.2) <= eps);
+        REQUIRE(abs(res_op.getDP() - 26.4) <= eps);
+        REQUIRE(abs(res_op.getDC() - 21.0) <= eps);
+    }
+
+    SECTION("Increasing Turnover")
+    {
+        RNS::Resource r{"coal", 1.2, 11.5, 12.8};
+        REQUIRE_NOTHROW(r.incTurnover(10));
+
+        double eps = 0.0000000000001;
+        REQUIRE(abs(r.getDP() - 128.0) <= eps);
+        REQUIRE(abs(r.getDC() - 115.0) <= eps);
+    
+        r = r * 1.1;
+        REQUIRE(abs(r.getDP() - 128.0 * 1.1) <= eps);
+        REQUIRE(abs(r.getDC() - 115.0 * 1.1) <= eps);
+
+        REQUIRE_THROWS(r.incTurnover(-1));
+    }
+
+    SECTION("Comparison")
+    {
+        RNS::Resource r0{"coal", 1.2, 11.5, 12.8};
+        RNS::Resource r1{"coal", 1.2, 11.5, 12.8};
+        REQUIRE_NOTHROW(r0.compare_equal(r1));
+        REQUIRE(r0.compare_equal(r1) == true);
+        REQUIRE_NOTHROW(r1.compare_equal(r0));
+        REQUIRE(r1.compare_equal(r0) == true);
+
+        REQUIRE_NOTHROW(r0.compare_equal(r0));
+        REQUIRE(r0.compare_equal(r0) == true);
+        REQUIRE_NOTHROW(r1.compare_equal(r1));
+        REQUIRE(r1.compare_equal(r1) == true);
+
+        RNS::Resource r2{"zinc"};
+        REQUIRE_NOTHROW(r2.compare_equal(r0));
+        REQUIRE(r2.compare_equal(r0) == false);
+
+        REQUIRE_NOTHROW(r2.compare_less(r0));
+        REQUIRE(r2.compare_less(r0) == false);
+        REQUIRE_NOTHROW(r0.compare_less(r2));
+        REQUIRE(r0.compare_less(r2) == true);
+    }
 }

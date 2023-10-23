@@ -1,4 +1,4 @@
 cmake ..
 make TestsDynamic
 ./dynamic/TestsDynamic
-gcovr -r .. -e CMakeFiles -e _deps --html-details -o coverage.html
+gcovr -r .. -e CMakeFiles -e _deps -e ".*ResourceDynamic/include/ResourceDynamic/Resource.h" -e ".*TableDynamic/include/TableDynamic/Table.h" -e ".*HandlersDynamic/source/Handlers.cpp" -e ".*RDialogueDynamic/source/RDialogue.cpp" -e ".*TDialogueDynamic/source/TDialogue.cpp" --html-details -o coverage.html

@@ -238,6 +238,7 @@ namespace TNS {
             
             for (int i = 0; i < diff_price; ++i)
                 stream << " ";
+                
             stream << table_vector[i].getPrice() << " |\n";              
             
         }
@@ -274,22 +275,27 @@ namespace TNS {
     {
         int left = 0,  middle = 0, right  = csize - 1;
         std::pair<bool, size_t> answer{false, 0};
-        while (left <= right){
-            // std::cout << "Left: " << left << " Mid: " << middle << " Right: " << right << std::endl;
+        while (left <= right)
+        {
             middle = (left + right) / 2;
             int comp_res2 = name.compare(table_vector[middle].getName());
 
             std::string raw_1 = table_vector[middle].getName() + " to ";
             std::string raw_2 = name;
             
-            if (comp_res2 == 0){
+            if (comp_res2 == 0)
+            {
                 answer.first = true;
                 break;
             }
-            else if (comp_res2 < 0){
+            
+            else if (comp_res2 < 0)
+            {
                 right = middle - 1;
             }
-            else {
+            
+            else 
+            {
                 left  = middle + 1;
             }
         }
