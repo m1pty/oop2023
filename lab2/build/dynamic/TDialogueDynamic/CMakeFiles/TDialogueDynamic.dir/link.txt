@@ -1,0 +1,2 @@
+/usr/bin/ar qc libTDialogueDynamic.a CMakeFiles/TDialogueDynamic.dir/source/TDialogue.cpp.o
+/usr/bin/ranlib libTDialogueDynamic.a

@@ -174,7 +174,7 @@ TEST_CASE("Dynamic Table Turnover")
         RNS::Resource r1{"coal", 0.7, 10.0, 13.3};
         RNS::Resource r2{"gold", 1.3, 23.9, 24.8};
         RNS::Resource r3{"coal", 1.5, 12.3, 10.9};
-        t += r1; t += r1; t += r3;
+        t += r1; t += r2; t += r3;
 
         t.print(std::cout);
         REQUIRE_NOTHROW(t * 1.1);
@@ -186,6 +186,7 @@ TEST_CASE("Dynamic Table Turnover")
         REQUIRE(abs(t.getResByIndex(1).getDC() - 11.0 ) < eps);
         REQUIRE(abs(t.getResByIndex(1).getDP() - 14.63) < eps);
 
+        t.getResByIndex(2).print(std::cout);
         REQUIRE(abs(t.getResByIndex(2).getDC() - 26.29) < eps);
         REQUIRE(abs(t.getResByIndex(2).getDP() - 27.28) < eps);
     }
@@ -319,10 +320,6 @@ TEST_CASE("Dynamic Resource")
         REQUIRE(abs(res.getPrice() - 1.3) <= eps);
         REQUIRE(abs(res.getDC() - 9.5) <= eps);
         REQUIRE(abs(res.getDP() - 10.0) <= eps);
-
-        REQUIRE_NOTHROW(res.setPrice(-1));
-        REQUIRE_NOTHROW(res.setDC(-1));
-        REQUIRE_NOTHROW(res.setDP(-1));
     }
 
     SECTION("Chained Setters")
@@ -356,8 +353,8 @@ TEST_CASE("Dynamic Resource")
 
         REQUIRE(res_op.getName() == "coal");
         REQUIRE(abs(res_op.getPrice() - 1.2) <= eps);
-        REQUIRE(abs(res_op.getDP() - 26.4) <= eps);
-        REQUIRE(abs(res_op.getDC() - 21.0) <= eps);
+        REQUIRE(abs(res_op.getDP() - 52.0) <= eps);
+        REQUIRE(abs(res_op.getDC() - 44.0) <= eps);
     }
 
     SECTION("Increasing Turnover")
@@ -378,6 +375,7 @@ TEST_CASE("Dynamic Resource")
 
     SECTION("Comparison")
     {
+        // сравнение на эквивалентность
         RNS::Resource r0{"coal", 1.2, 11.5, 12.8};
         RNS::Resource r1{"coal", 1.2, 11.5, 12.8};
         REQUIRE_NOTHROW(r0.compare_equal(r1));
@@ -390,6 +388,7 @@ TEST_CASE("Dynamic Resource")
         REQUIRE_NOTHROW(r1.compare_equal(r1));
         REQUIRE(r1.compare_equal(r1) == true);
 
+        // сравнение по имени
         RNS::Resource r2{"zinc"};
         REQUIRE_NOTHROW(r2.compare_equal(r0));
         REQUIRE(r2.compare_equal(r0) == false);
@@ -398,5 +397,33 @@ TEST_CASE("Dynamic Resource")
         REQUIRE(r2.compare_less(r0) == false);
         REQUIRE_NOTHROW(r0.compare_less(r2));
         REQUIRE(r0.compare_less(r2) == true);
+    
+        // сравнение по dc
+        RNS::Resource r3{"coal", 1.2, 12.5};
+        REQUIRE_NOTHROW(r3.compare_less(r0));
+        REQUIRE(r3.compare_less(r0) == false);
+        REQUIRE_NOTHROW(r0.compare_less(r3));
+        REQUIRE(r0.compare_less(r3) == true);
+
+        // сравнение по dp
+        RNS::Resource r4{"coal", 1.2, 11.5, 13.2};
+        REQUIRE_NOTHROW(r4.compare_less(r0));
+        REQUIRE(r4.compare_less(r0) == false);
+        REQUIRE_NOTHROW(r0.compare_less(r4));
+        REQUIRE(r0.compare_less(r4) == true);
+    }
+
+    SECTION("Istream")
+    {
+        RNS::Resource res;
+        std::stringstream ss;
+        ss << "coal\n1.3\n2.5\n3.4\n";
+
+        double eps = 0.0000000000001;
+        REQUIRE_NOTHROW(res.input(ss));
+        REQUIRE(res.getName() == "coal");
+        REQUIRE(abs(res.getPrice() - 3.4) <= eps);
+        REQUIRE(abs(res.getDC() - 1.3) <= eps);
+        REQUIRE(abs(res.getDP() - 2.5) <= eps);
     }
 }

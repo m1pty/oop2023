@@ -1,0 +1,2 @@
+/usr/bin/ar qc libHandlersDynamic.a CMakeFiles/HandlersDynamic.dir/source/Handlers.cpp.o
+/usr/bin/ranlib libHandlersDynamic.a
