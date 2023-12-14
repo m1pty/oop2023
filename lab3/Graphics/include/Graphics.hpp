@@ -3,11 +3,14 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <limits>
 #include "../../Entity/include/Entity.hpp"
 #include "../../Assets/Textures/Constants.hpp"
 
-template <typename T>
-class Line;
+template <typename T> class Line;
+template <typename T, bool is_const> class MatrixIterCol;
+template <typename T, bool is_const> class MatrixIterRow;
+template <typename T, bool is_const> class MatrixIter;
 
 class Tile 
 {
@@ -53,21 +56,6 @@ class Tile
             stream << "Is Blocked: " << ((is_blocked) ? "Yes" : "No") << std::endl;
             return stream;
         };
-};
-
-class ExpirableObstacle: public Tile 
-{
-    private:
-        int ticks_left; // обозначает оставшееся время жизни препятствия
-    
-    public:
-        void decTicks()
-        {
-            --ticks_left;
-            if (ticks_left == 0)
-                expire();
-        };
-        void expire();
 };
 
 template<typename T>
@@ -203,7 +191,6 @@ class Field
             return stream;
         };
 
-
         // ========================================================== //
         Line<T> operator[] (size_t y)
         {
@@ -211,9 +198,279 @@ class Field
                 throw std::invalid_argument("Invalid index!\n");
             return Line(field[y], size.first);
         };
+        
+        MatrixIterRow<T, false> beginRow     (size_t what_row) { return MatrixIterRow<T, false>(this, what_row); };
+        MatrixIterRow<T,  true> beginRowConst(size_t what_row) { return MatrixIterRow<T,  true>(this, what_row); };
+        MatrixIterCol<T, false> beginCol     (size_t what_col) { return MatrixIterCol<T, false>(this, what_col); };
+        MatrixIterCol<T,  true> beginColConst(size_t what_col) { return MatrixIterCol<T,  true>(this, what_col); };
+        MatrixIter<T, false>    begin        () { return MatrixIter<T, false>(this); };
+        MatrixIter<T,  true>    beginConst   () { return MatrixIter<T,  true>(this); };
 
-        // void generate(); - transfer to the game's class to avoid pattern's miscommunications
-        // void draw();
+        MatrixIterRow<T, false> endRow     (size_t what_row) { return MatrixIterRow<T, false>(this, what_row).toEnd(); };
+        MatrixIterRow<T,  true> endRowConst(size_t what_row) { return MatrixIterRow<T,  true>(this, what_row).toEnd(); };
+        MatrixIterCol<T, false> endCol     (size_t what_col) { return MatrixIterCol<T, false>(this, what_col).toEnd(); };
+        MatrixIterCol<T,  true> endColConst(size_t what_col) { return MatrixIterCol<T,  true>(this, what_col).toEnd(); };
+        MatrixIter<T, false>    end        () { return MatrixIter<T, false>(this).toEnd(); };
+        MatrixIter<T,  true>    endConst   () { return MatrixIter<T,  true>(this).toEnd(); };
+};
+
+/*!
+    @brief Template class of matrix iterator per row
+*/
+template <typename T, bool is_const>
+class MatrixIterRow
+{
+
+    friend Field<T>;
+    friend Line<T>;
+
+    friend MatrixIterRow<T, !is_const>;
+    friend MatrixIterCol<T,  is_const>;
+    friend MatrixIterCol<T, !is_const>;
+
+    typedef std::conditional_t<is_const, const T, T> * CellPtr;
+    private:
+        Field<T> * field;
+        size_t     row, col;
+        CellPtr    cell;
+
+    public:
+
+        /*!
+            @brief Initializing constructor for matrix row-iterator
+        */
+        MatrixIterRow(Field<T>* newfield, size_t what_row) : field(newfield), row(what_row), cell(nullptr)
+        {
+            try 
+            {
+                 if (what_row >= (newfield->size.second))
+                {
+                    cell = nullptr;
+                    col  = std::numeric_limits<size_t>::max();
+                }
+
+                else
+                {
+                    cell = &((field->field)[what_row][0]);
+                    col = 0;
+                }
+            }
+            catch(const std::bad_alloc& e)
+            {
+                std::cout << "Not enough memory for initializing!\n";
+            }
+        };
+
+        /*!
+            @brief Copy-constructor for maxtrix row-iterator
+        */
+        template<bool another_const>
+        MatrixIterRow(MatrixIterRow<T, another_const>& another) 
+            noexcept 
+            requires (is_const >= another_const)
+            : field(another.field), row(another.row), col(another.col), cell(another.cell)
+        {};
+
+        void toEnd()
+        {
+            cell = nullptr;
+            col  = std::numeric_limits<size_t>::max();
+        };
+
+        /*!
+            @brief Prefix Increment Overloaded Operator
+        */
+        MatrixIterRow& operator ++ ()
+        {
+            if (cell)
+            {
+                ++col;
+                if (col >= field->getSize().first)
+                {
+                    col = std::numeric_limits<size_t>::max();
+                    cell = nullptr;
+                }
+                else 
+                    cell = &((field->field)[row][col]);
+            }
+        };
+
+
+
+        bool operator != (MatrixIterRow& iter) { return ((field == iter.field) && (row == iter.row) && (col != iter.col)); };
+        bool operator != (MatrixIterRow  iter) { return ((field == iter.field) && (row == iter.row) && (col != iter.col)); };
+        bool operator == (MatrixIterRow& iter) { return ((field == iter.field) && (row == iter.row) && (col == iter.col)); };
+        bool operator == (MatrixIterRow  iter) { return ((field == iter.field) && (row == iter.row) && (col == iter.col)); };
+        CellPtr operator *  () { return cell; };
+};
+
+/*!
+    @brief Template class of matrix iterator per column
+*/
+template <typename T, bool is_const>
+class MatrixIterCol
+{
+    friend Field<T>;
+    friend Line<T>;
+
+    friend MatrixIterCol<T, !is_const>;
+    friend MatrixIterRow<T,  is_const>;
+    friend MatrixIterRow<T, !is_const>;
+
+    typedef std::conditional_t<is_const, const T, T> * CellPtr;
+    private:
+        Field<T> * field;
+        size_t     row, col;
+        CellPtr    cell;
+
+    public:
+        /*!
+            @brief Initializing constructor for matrix column-iterator
+        */
+        MatrixIterCol(Field<T>* newfield, size_t what_col) : field(newfield), col(what_col), cell(nullptr)
+        {
+            try 
+            {
+                 if (what_col >= (newfield->size.first))
+                {
+                    cell = nullptr;
+                    row  = std::numeric_limits<size_t>::max();
+                }
+
+                else
+                {
+                    cell = &((field->field)[0][what_col]);
+                    row = 0;
+                }
+            }
+            catch(const std::bad_alloc& e)
+            {
+                std::cout << "Not enough memory for initializing!\n";
+            }
+        };
+
+        /*!
+            @brief Copy-constructor for maxtrix column-iterator
+        */
+        template<bool another_const>
+        MatrixIterCol(MatrixIterCol<T, another_const>& another) 
+            noexcept 
+            requires (is_const >= another_const)
+            : field(another.field), col(another.col), row(another.row), cell(another.cell)
+        {};
+
+        void toEnd()
+        {
+            row = std::numeric_limits<size_t>::max();
+            cell = nullptr;
+        };
+
+        /*!
+            @brief Prefix Increment Overloaded Operator
+        */
+        MatrixIterCol& operator ++ ()
+        {
+            if (cell)
+            {
+                ++row;
+                if (row >= field->getSize().second)
+                {
+                    row = std::numeric_limits<size_t>::max();
+                    cell = nullptr;
+                }
+                else 
+                    cell = &((field->field)[row][col]);
+            }
+        };
+
+    bool operator != (MatrixIterCol& iter) { return ((field == iter.field) && (row != iter.row) && (col == iter.col)); };
+    bool operator != (MatrixIterCol  iter) { return ((field == iter.field) && (row != iter.row) && (col == iter.col)); };
+    bool operator == (MatrixIterCol& iter) { return ((field == iter.field) && (row == iter.row) && (col == iter.col)); };
+    bool operator == (MatrixIterCol  iter) { return ((field == iter.field) && (row == iter.row) && (col == iter.col)); };
+    CellPtr operator *  () { return cell; };
+};
+
+template <typename T, bool is_const>
+class MatrixIter
+{
+    friend Field<T>;
+    friend Line<T>;
+
+    friend MatrixIterCol<T,  is_const>;
+    friend MatrixIterCol<T, !is_const>;
+    friend MatrixIterRow<T,  is_const>;
+    friend MatrixIterRow<T, !is_const>;
+
+    typedef std::conditional_t<is_const, const T, T> * CellPtr;
+    private:
+        Field<T> * field;
+        size_t     row, col;
+        CellPtr    cell;
+    
+
+    public:
+        MatrixIter(Field<T>* newfield) : field(newfield), row(0), col(0), cell(nullptr)
+        {
+            try
+            {
+                if (field->getSize().first * field->getSize().second >= 1)
+                {
+                    cell = &((field->field)[0][0]);
+                }
+                else 
+                {
+                    row = std::numeric_limits<size_t>::max();
+                    col = std::numeric_limits<size_t>::max();
+                }
+            }
+            catch(const std::bad_alloc& e)
+            {
+                std::cout << "Not enough memory for allocating!\n";
+            }
+        }
+
+        MatrixIter& operator ++ ()
+        {
+            // continue with this line
+            if (col < field->getSize().second - 1)
+            {
+                ++col;
+                cell = &((field->field)[col][row]);
+            }
+
+            // current row has ended
+            else
+            {
+                // go to the next row
+                if (row < field->getSize().first - 1)
+                {
+                    ++row; col = 0;
+                    cell = &((field->field)[col][row]);
+
+                }
+
+                // matrix has ended
+                else 
+                {
+                    cell = nullptr;
+                    row = std::numeric_limits<size_t>::max();
+                    col = std::numeric_limits<size_t>::max();
+                }
+            }
+        };
+
+        void toEnd()
+        {
+            cell = nullptr;
+            col = std::numeric_limits<size_t>::max();
+            row = std::numeric_limits<size_t>::max();
+        };
+
+        bool operator != (MatrixIter& iter) { return ((field == iter.field) && ((row != iter.row) || (col != iter.col))); };
+        bool operator != (MatrixIter  iter) { return ((field == iter.field) && ((row != iter.row) || (col != iter.col))); };
+        bool operator == (MatrixIter& iter) { return ((field == iter.field) && (row == iter.row) && (col == iter.col)); };
+        bool operator == (MatrixIter  iter) { return ((field == iter.field) && (row == iter.row) && (col == iter.col)); };
+        CellPtr operator *  () { return cell; };
 };
 
 template <typename T>

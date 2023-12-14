@@ -52,18 +52,22 @@ class LoopedQueue
         */
         void insert(T value)
         {
+            std::cout << "Creating Node with value of " << value << std::endl; 
             try
             {
                 Node<T>* node = new Node<T>(&value);
                 if (!head)
                 {
+                    std::cout << "Creating Head\n";
                     head = node;
                     tail = node;
+                    // node->next = ;
                 }
 
                 // if not empty
                 else 
                 {
+                    std::cout << "Joining...\n";
                     tail->next = node;
                     tail = node;
                 }
@@ -76,36 +80,39 @@ class LoopedQueue
             }
         }
 
-        /*!
-            @brief Inserting a value to the end of a queue by it's pointer
-            @param value a value to put in the end of a queue
-            @throws bad_alloc in case of a memory lack
-        */
-        void insert(T* value)
-        {
-            try
-            {
-                Node<T>* node = new Node<T>(value);
-                if (!head)
-                {
-                    head = node;
-                    tail = node;
-                }
+        size_t getSize() { return quantity; };
 
-                // if not empty
-                else 
-                {
-                    tail->next = node;
-                    tail = node;
-                }
-                ++quantity;
-                tail->next = head; 
-            }
-            catch (const std::bad_alloc& e)
-            {
-                std::cout << "Not enough memory for allocating!\n";
-            }
-        }
+        // /*!
+        //     @brief Inserting a value to the end of a queue by it's pointer
+        //     @param value a value to put in the end of a queue
+        //     @throws bad_alloc in case of a memory lack
+        // */
+        // void insert(T* value)
+        // {
+        //     try
+        //     {
+        //         Node<T>* node = new Node<T>(value);
+        //         if (!head)
+        //         {
+        //             head = node;
+        //             tail = node;
+        //         }
+
+        //         // if not empty
+        //         else 
+        //         {
+        //             tail->next = node;
+        //             tail = node;
+        //         }
+        //         ++quantity;
+        //         tail->next = head; 
+        //     }
+        //     catch (const std::bad_alloc& e)
+        //     {
+        //         std::cout << "Not enough memory for allocating!\n";
+        //     }
+        // }
+
         /*!
             @brief Erasing a node from the queue
             @param node a pointer to the erased node
@@ -147,7 +154,17 @@ class LoopedQueue
         QueueIterator<T> end()
         {
             return QueueIterator<T>(tail);
-        }
+        };
+
+        std::ostream& printState(std::ostream& stream)
+        {
+            stream << "Queue State is:\n";
+            for(QueueIterator<T> iter = begin(); iter != end(); ++iter)
+                stream << *iter << std::endl;
+            stream << *begin() << std::endl;
+            stream << *end() << std::endl;
+            return stream;
+        };
 };
 
 // добавить итератор по очереди
@@ -160,6 +177,15 @@ class QueueIterator
     
     public:
         QueueIterator(Node<T>* ptr) : current(ptr){};
+
+        T* getValue()
+        {
+            if (current)
+                return (current->value);
+            
+            else
+                throw std::runtime_error("Couldn't extract value from nullptr!\n");
+        }
 
         QueueIterator& operator = (Node<T>* node)
         {
@@ -196,7 +222,11 @@ class Game
         Game(std::string& name_1);
         Game(std::string& name_1, std::string& name_2);
         bool is_alive();
-        void print();    // graphical print
+
+        /*!
+            @brief Allow to print the state of game in graphics (tiles & entities)
+        */
+        void print() noexcept;    // graphical print
 };
 
 Field<Tile>* generate(size_t x, size_t y);

@@ -120,35 +120,52 @@ Field<Tile>* generate(size_t x = 16, size_t y = 11)
     return field_ptr;
 }
 
-
-void Game::print()
+void Game::print() noexcept
 {
     std::pair<size_t, size_t> sizes = field->getSize();
-    for (int j = 0; j < sizes.second; ++j)
+    std::cout << "Queue Size: " << entities->getSize() << std::endl;
+    std::cout << ((entities->begin() == nullptr) ? "No Nodes" : "Some Nodes") << std::endl;
+    std::cout << ((entities->begin().getValue() == nullptr) ? "Empty" : "Not Empty") << std::endl;
+    entities->printState(std::cout);
+
+    for (size_t y = 0; y < sizes.second; ++y)
     {
-        for (int i = 0; i < sizes.first; ++i)
+        for (size_t x = 0; x < sizes.first; ++x)
         {
-            std::cout << "[";
-            Tile cell = field->getCell(i, j);
-            // if (cell.getEntity())
-            // {
-            //     size_t n = 0;
-            //     auto iter = entities->begin();
-            //     while (iter != nullptr)
-            //     {
-            //         auto extracted_ptr = (*(*iter));
-            //         int init = extracted_ptr.get()->getInitiative();
-            //         if (init == cell.getEntity()->getInitiative())
-            //         {
-            //             if (n < 10)
-            //                 std::cout << 0;
-            //             std::cout << n;
-            //         }
-            //         ++n; ++iter;
-            //     }
-            // }
-            // else
-                std::cout << cell.getPath();
+            auto ent_ptr = (*field)[y][x].getEntity();
+            std::cout << "[";   
+
+            // if entity is located in that cell
+            // searching for it in the list
+            if (ent_ptr)
+            {
+                size_t n = 0;
+                auto iter = entities->begin();
+                while (iter != entities->end())
+                {
+                    auto this_ent = *iter.getValue();
+                    if (this_ent->getInitiative() == ent_ptr->getInitiative())
+                    {
+                        if (n < 10)
+                            std::cout << "0" << n;
+                        else
+                            std::cout << n;
+                    }
+                    ++n; ++iter;
+                }
+
+                auto this_ent = *iter.getValue();
+                if (this_ent->getInitiative() == ent_ptr->getInitiative())
+                {
+                    if (n < 10)
+                        std::cout << "0" << n;
+                    else
+                        std::cout << n;
+                }
+            }
+            else
+                std::cout << (*field)[y][x].getPath();
+
             std::cout << "]"; 
         }
         std::cout << std::endl;
@@ -165,12 +182,14 @@ Game::Game(std::string& name_1)
 {
     field = generate();
 
-    std::shared_ptr<Entity> ent1 = std::make_shared<Entity>(name_1, 0, 300, 1, 15, 2, 0, 0);
-    std::shared_ptr<Entity> ent2 = std::make_shared<Entity>("Player 2", 1, 300, 1, 15, 2, 15, 10);
+    std::shared_ptr<Entity> ent1 = std::make_shared<Entity>(Entity(name_1,     0, 300, 1, 15, 2,  0,  0));
+    std::shared_ptr<Entity> ent2 = std::make_shared<Entity>(Entity("Player 2", 1, 300, 1, 15, 2, field->getSize().first - 1, field->getSize().second - 1));
 
     entities = new LoopedQueue<std::shared_ptr<Entity>>();
     entities->insert(ent1);
     entities->insert(ent2);
+
+    // setting entities on the field
     (*field)[0][0].setEntity(ent1);
     (*field)[(field->getSize()).second - 1][(field->getSize()).first - 1].setEntity(ent2);
 }
