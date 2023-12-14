@@ -82,37 +82,6 @@ class LoopedQueue
 
         size_t getSize() { return quantity; };
 
-        // /*!
-        //     @brief Inserting a value to the end of a queue by it's pointer
-        //     @param value a value to put in the end of a queue
-        //     @throws bad_alloc in case of a memory lack
-        // */
-        // void insert(T* value)
-        // {
-        //     try
-        //     {
-        //         Node<T>* node = new Node<T>(value);
-        //         if (!head)
-        //         {
-        //             head = node;
-        //             tail = node;
-        //         }
-
-        //         // if not empty
-        //         else 
-        //         {
-        //             tail->next = node;
-        //             tail = node;
-        //         }
-        //         ++quantity;
-        //         tail->next = head; 
-        //     }
-        //     catch (const std::bad_alloc& e)
-        //     {
-        //         std::cout << "Not enough memory for allocating!\n";
-        //     }
-        // }
-
         /*!
             @brief Erasing a node from the queue
             @param node a pointer to the erased node

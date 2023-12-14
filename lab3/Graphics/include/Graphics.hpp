@@ -61,6 +61,13 @@ class Tile
 template<typename T>
 class Field
 {
+    friend class MatrixIter<T,  true>;
+    friend class MatrixIter<T, false>;
+    friend MatrixIterRow<T,  true>;
+    friend MatrixIterRow<T, false>;
+    friend MatrixIterCol<T,  true>;
+    friend MatrixIterCol<T, false>;
+
     private:
         std::pair<size_t, size_t> size;
         T** field;
@@ -199,6 +206,10 @@ class Field
             return Line(field[y], size.first);
         };
         
+        /*! 
+            @brief Method of getting row-iterator from the beginning of the line
+            
+        */
         MatrixIterRow<T, false> beginRow     (size_t what_row) { return MatrixIterRow<T, false>(this, what_row); };
         MatrixIterRow<T,  true> beginRowConst(size_t what_row) { return MatrixIterRow<T,  true>(this, what_row); };
         MatrixIterCol<T, false> beginCol     (size_t what_col) { return MatrixIterCol<T, false>(this, what_col); };
@@ -220,7 +231,6 @@ class Field
 template <typename T, bool is_const>
 class MatrixIterRow
 {
-
     friend Field<T>;
     friend Line<T>;
 
@@ -271,10 +281,11 @@ class MatrixIterRow
             : field(another.field), row(another.row), col(another.col), cell(another.cell)
         {};
 
-        void toEnd()
+        MatrixIterRow& toEnd()
         {
             cell = nullptr;
             col  = std::numeric_limits<size_t>::max();
+            return *this;
         };
 
         /*!
@@ -293,6 +304,7 @@ class MatrixIterRow
                 else 
                     cell = &((field->field)[row][col]);
             }
+            return *this;
         };
 
 
@@ -359,10 +371,11 @@ class MatrixIterCol
             : field(another.field), col(another.col), row(another.row), cell(another.cell)
         {};
 
-        void toEnd()
+        MatrixIterCol& toEnd()
         {
             row = std::numeric_limits<size_t>::max();
             cell = nullptr;
+            return *this;
         };
 
         /*!
@@ -381,6 +394,7 @@ class MatrixIterCol
                 else 
                     cell = &((field->field)[row][col]);
             }
+            return *this;
         };
 
     bool operator != (MatrixIterCol& iter) { return ((field == iter.field) && (row != iter.row) && (col == iter.col)); };
@@ -432,20 +446,20 @@ class MatrixIter
         MatrixIter& operator ++ ()
         {
             // continue with this line
-            if (col < field->getSize().second - 1)
+            if (col < field->getSize().first - 1)
             {
                 ++col;
-                cell = &((field->field)[col][row]);
+                cell = &((field->field)[row][col]);
             }
 
             // current row has ended
             else
             {
                 // go to the next row
-                if (row < field->getSize().first - 1)
+                if (row < field->getSize().second - 1)
                 {
                     ++row; col = 0;
-                    cell = &((field->field)[col][row]);
+                    cell = &((field->field)[row][col]);
 
                 }
 
@@ -457,13 +471,15 @@ class MatrixIter
                     col = std::numeric_limits<size_t>::max();
                 }
             }
+            return *this;
         };
 
-        void toEnd()
+        MatrixIter& toEnd()
         {
             cell = nullptr;
             col = std::numeric_limits<size_t>::max();
             row = std::numeric_limits<size_t>::max();
+            return *this;
         };
 
         bool operator != (MatrixIter& iter) { return ((field == iter.field) && ((row != iter.row) || (col != iter.col))); };
