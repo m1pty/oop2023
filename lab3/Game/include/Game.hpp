@@ -14,9 +14,9 @@ template <typename T> struct Node;
 template <typename T>
 struct Node
 {
-    T* value;
+    T value;
     Node* next;
-    Node(T* val) : value(val), next(nullptr) {};
+    Node(T val) : value(val), next(nullptr) {};
 };
 
 /*! 
@@ -55,7 +55,7 @@ class LoopedQueue
             std::cout << "Creating Node with value of " << value << std::endl; 
             try
             {
-                Node<T>* node = new Node<T>(&value);
+                Node<T>* node = new Node<T>(value);
                 if (!head)
                 {
                     std::cout << "Creating Head\n";
@@ -147,7 +147,7 @@ class QueueIterator
     public:
         QueueIterator(Node<T>* ptr) : current(ptr){};
 
-        T* getValue()
+        T& getValue()
         {
             if (current)
                 return (current->value);
@@ -173,7 +173,7 @@ class QueueIterator
         bool operator != (QueueIterator  iterator){ return current != iterator.current; }
         bool operator == (QueueIterator& iterator){ return current == iterator.current; }
         bool operator == (QueueIterator  iterator){ return current == iterator.current; }
-        T* operator * (){ return current->value; }
+        T& operator * (){ return current->value; }
 };
 
 

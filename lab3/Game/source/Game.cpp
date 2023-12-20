@@ -145,7 +145,7 @@ void Game::print() noexcept
             auto iter = entities->begin();
             while (iter != entities->end())
             {
-                std::shared_ptr<Entity> this_ent = *iter.getValue();
+                std::shared_ptr<Entity> this_ent = *iter;
                 if (this_ent->getInitiative() == ent_ptr->getInitiative())
                 {
                     if (n < 10)
@@ -156,7 +156,7 @@ void Game::print() noexcept
                 ++n; ++iter;
             }
 
-            auto this_ent = *iter.getValue();
+            auto this_ent = *iter;
             if (this_ent->getInitiative() == ent_ptr->getInitiative())
             {
                 if (n < 10)
